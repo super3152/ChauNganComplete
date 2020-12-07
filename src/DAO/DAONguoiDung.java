@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class DAONguoiDung {
      public static ResultSet LayNhanVienCBB() {
-        String query = "SELECT * FROM nguoidung";
+        String query = "SELECT * FROM nguoidung where quyen = 0";
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
@@ -171,14 +171,14 @@ public class DAONguoiDung {
     }
  public static ResultSet LayNguoiDungChamCongNgay(String ngay) {
 
-        String query = "SELECT nguoidung.idnguoidung, nguoidung.tennguoidung,chamcong.songaytrongthang, chamcong.socachamcong,SUM(chamcong.tongsocachamcong) FROM `chamcong` INNER JOIN nguoidung ON nguoidung.idnguoidung = chamcong.idnguoidung WHERE nguoidung.quyen = 0 and ngaychamcong = '"+ngay+"' GROUP BY chamcong.socachamcong";
+        String query = "SELECT nguoidung.idnguoidung, nguoidung.tennguoidung,chamcong.songaytrongthang, chamcong.socachamcong,SUM(chamcong.tongsocachamcong) FROM `chamcong` INNER JOIN nguoidung ON nguoidung.idnguoidung = chamcong.idnguoidung WHERE nguoidung.quyen = 0 and ngaychamcong = '"+ngay+"' GROUP BY chamcong.idnguoidung";
         ResultSet rs = DBConection.GetData(query);
         return rs;
 
     }
- public static ResultSet LayNguoiDungChamCongThangNam(int thang, int nam) {
+  public static ResultSet LayNguoiDungChamCongThangNam(int thang, int nam) {
 
-        String query = "SELECT nguoidung.idnguoidung, nguoidung.tennguoidung,chamcong.songaytrongthang, chamcong.socachamcong,SUM(chamcong.tongsocachamcong) FROM `chamcong` INNER JOIN nguoidung ON nguoidung.idnguoidung = chamcong.idnguoidung WHERE nguoidung.quyen = 0 and MONTH(ngaychamcong)= '"+thang+"' && YEAR(ngaychamcong)='"+nam+"'  GROUP BY chamcong.idnguoidung,  chamcong.socachamcong, chamcong.songaytrongthang";
+        String query = "SELECT nguoidung.idnguoidung, nguoidung.tennguoidung,chamcong.songaytrongthang, chamcong.socachamcong,SUM(chamcong.tongsocachamcong) FROM `chamcong` INNER JOIN nguoidung ON nguoidung.idnguoidung = chamcong.idnguoidung WHERE nguoidung.quyen = 0 and MONTH(ngaychamcong)= '"+thang+"' && YEAR(ngaychamcong)='"+nam+"'  GROUP BY chamcong.idnguoidung";
         ResultSet rs = DBConection.GetData(query);
         return rs;
 

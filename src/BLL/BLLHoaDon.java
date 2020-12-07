@@ -12,6 +12,7 @@ import DTO.DTOSanPham;
 import GUI.ThongBaoCanhBao;
 import GUI.pnlChitiethoadon;
 import GUI.pnlbanhang;
+import GUI.pnldonbanhang;
 import GUI.pnlsanpham;
 import java.awt.Component;
 import java.awt.Image;
@@ -75,6 +76,7 @@ public class BLLHoaDon {
 
     public static void HienThiChiTietHoaDon(JTable tbl, int MaHD) {
         pnlChitiethoadon.tblChiTietHoaDon.getColumn("Ảnh").setCellRenderer(new BLLSanPham.mytable());
+        
         ResultSet rs = DAO.DAOHoaDon.LayCTHDTheoMaHD(MaHD);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
@@ -193,6 +195,8 @@ public class BLLHoaDon {
 
     public static void DoSanPhamLenLaiHoaDon(JTable tb, int MaHoaDon) {
         pnlbanhang.tblChiTietHoaDon.getColumn("Ảnh").setCellRenderer(new BLLSanPham.mytable());
+       
+        
         DefaultTableModel tableModel = (DefaultTableModel) tb.getModel();
         ResultSet rs = DAO.DAOChiTietHoaDon.LayCTHDTheoMaHD(MaHoaDon);
         Object obj[] = new Object[10];
@@ -252,6 +256,7 @@ public class BLLHoaDon {
 
     public static double NhapSanPhamVaoChiTietHoaDon(JTable tb, DTOSanPham sp, int SoLuong, double UuDai) {
         pnlbanhang.tblChiTietHoaDon.getColumn("Ảnh").setCellRenderer(new BLLSanPham.mytable());
+        
         DefaultTableModel tableModel = (DefaultTableModel) tb.getModel();
         Object obj[] = new Object[10];
         try {
@@ -296,6 +301,7 @@ public class BLLHoaDon {
 
     public static double NhapSanPhamVaoChiTietHoaDonTrung(JTable tb, DTOSanPham sp, int SoLuong, double UuDai) {
         pnlbanhang.tblChiTietHoaDon.getColumn("Ảnh").setCellRenderer(new BLLSanPham.mytable());
+      
         DefaultTableModel tableModel = (DefaultTableModel) tb.getModel();
         Object obj[] = new Object[10];
         try {
@@ -348,6 +354,7 @@ public class BLLHoaDon {
 
     public static double SuaSanPhamVaoChiTietHoaDon(JTable tb, DTOSanPham sp, int SoLuong, double UuDai) {
         pnlbanhang.tblChiTietHoaDon.getColumn("Ảnh").setCellRenderer(new BLLSanPham.mytable());
+        
         DefaultTableModel tableModel = (DefaultTableModel) tb.getModel();
         Object obj[] = new Object[10];
         try {

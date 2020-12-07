@@ -299,6 +299,7 @@ public final class pnlkhachhang extends javax.swing.JPanel {
         pnldanhsach.setBackground(new java.awt.Color(255, 255, 255));
         pnldanhsach.setForeground(new java.awt.Color(255, 255, 255));
         pnldanhsach.setPreferredSize(new java.awt.Dimension(980, 618));
+        pnldanhsach.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cbbloaikhachhang.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         cbbloaikhachhang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lọc khách hàng" }));
@@ -310,6 +311,8 @@ public final class pnlkhachhang extends javax.swing.JPanel {
                 cbbloaikhachhangActionPerformed(evt);
             }
         });
+        pnldanhsach.add(cbbloaikhachhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 180, 30));
+        cbbloaikhachhang.getAccessibleContext().setAccessibleParent(cbbloaikhachhang);
 
         tblkhachhang.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tblkhachhang.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
@@ -376,6 +379,8 @@ public final class pnlkhachhang extends javax.swing.JPanel {
         });
         srcdanhsach.setViewportView(tblkhachhang);
 
+        pnldanhsach.add(srcdanhsach, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 36, 800, 550));
+
         txtTimKiem.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -388,15 +393,18 @@ public final class pnlkhachhang extends javax.swing.JPanel {
                 txtTimKiemKeyTyped(evt);
             }
         });
+        pnldanhsach.add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(356, 0, 619, 30));
 
         pnlloaikhachhang.setBackground(new java.awt.Color(255, 255, 255));
         pnlloaikhachhang.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnldanhsach.add(pnlloaikhachhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 170, 385));
 
         lblloaikhachhang.setBackground(new java.awt.Color(255, 255, 255));
         lblloaikhachhang.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         lblloaikhachhang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblloaikhachhang.setText("Loại khách hàng");
         lblloaikhachhang.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnldanhsach.add(lblloaikhachhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 30));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/delete_20px_1.png"))); // NOI18N
         jButton1.setText("Xóa K.Hàng");
@@ -405,9 +413,12 @@ public final class pnlkhachhang extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        pnldanhsach.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 545, 151, 30));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/maintenance_20px.png"))); // NOI18N
         jButton2.setText("Sửa K.Hàng");
+        pnldanhsach.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 508, 151, 31));
+        pnldanhsach.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 151, -1));
 
         jButton3.setText("Thêm loại KH");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -415,6 +426,7 @@ public final class pnlkhachhang extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
+        pnldanhsach.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 463, 151, 31));
 
         jButton4.setText("Chi Tiết Khách Hàng");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -422,58 +434,7 @@ public final class pnlkhachhang extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout pnldanhsachLayout = new javax.swing.GroupLayout(pnldanhsach);
-        pnldanhsach.setLayout(pnldanhsachLayout);
-        pnldanhsachLayout.setHorizontalGroup(
-            pnldanhsachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnldanhsachLayout.createSequentialGroup()
-                .addComponent(lblloaikhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(cbbloaikhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTimKiem))
-            .addGroup(pnldanhsachLayout.createSequentialGroup()
-                .addGroup(pnldanhsachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnldanhsachLayout.createSequentialGroup()
-                        .addComponent(pnlloaikhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 1, Short.MAX_VALUE))
-                    .addGroup(pnldanhsachLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnldanhsachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                            .addComponent(jSeparator4)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(srcdanhsach, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE))
-        );
-        pnldanhsachLayout.setVerticalGroup(
-            pnldanhsachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnldanhsachLayout.createSequentialGroup()
-                .addGroup(pnldanhsachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblloaikhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbbloaikhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(pnldanhsachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnldanhsachLayout.createSequentialGroup()
-                        .addComponent(pnlloaikhachhang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addComponent(srcdanhsach, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)))
-        );
-
-        cbbloaikhachhang.getAccessibleContext().setAccessibleParent(cbbloaikhachhang);
+        pnldanhsach.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 426, 151, 31));
 
         jPanel2.add(pnldanhsach, java.awt.BorderLayout.CENTER);
 

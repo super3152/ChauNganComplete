@@ -12,6 +12,7 @@ import DTO.DTOChamCong;
 import DTO.DTONguoidung;
 import DTO.DTOPhatLuong;
 import DTO.MyCombobox;
+import static GUI.frmmain.panelcam;
 import static GUI.pnlkhachhang.txtTimKiem;
 import java.awt.Color;
 import java.awt.Component;
@@ -60,6 +61,7 @@ public class pnlnhanvien extends javax.swing.JPanel {
   public Date currenTime = new Date();
     Timer updateTimer;
     int DELAY = 100;
+    
     private void FillNhanVien() {
 
         pnlChucVu.removeAll();
@@ -151,7 +153,7 @@ public class pnlnhanvien extends javax.swing.JPanel {
     public pnlnhanvien() {
 
         initComponents();
-        
+         
         
         
             
@@ -261,24 +263,33 @@ update.run();
          String formatedTimeStr5 = formatTime5.format(currenTime);
            for (int i = 2000; i <= 2050; i++) {
              jComboBox2.addItem(""+i);
+              jComboBox4.addItem(""+i);
+               jComboBox6.addItem(""+i);
 
         }
           jComboBox2.setSelectedItem(formatedTimeStr5);
+          jComboBox4.setSelectedItem(formatedTimeStr5);
+          jComboBox6.setSelectedItem(formatedTimeStr5);
          
           DateFormat formatTime6 = new SimpleDateFormat(formatTimeStr6);
          String formatedTimeStr6 = formatTime6.format(currenTime);
        
          for (int i = 1; i <= 12; i++) {
              jComboBox1.addItem(""+i);
+              jComboBox3.addItem(""+i);
+               jComboBox5.addItem(""+i);
 
         }
           jComboBox1.setSelectedItem(formatedTimeStr6);
+          jComboBox3.setSelectedItem(formatedTimeStr6);
+          jComboBox5.setSelectedItem(formatedTimeStr6);
+          
+          
        
           int thang = Integer.parseInt(jComboBox1.getSelectedItem().toString());
            int nam = Integer.parseInt(jComboBox2.getSelectedItem().toString());
        BLLNguoiDung.HienThiNguoiDungTheoChucVuChamCong(tblnhanvienchamcong, thang, nam);
-        System.out.println(thang);
-         System.out.println(nam);
+      
         
         
         
@@ -337,6 +348,9 @@ update.run();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable22 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        txtTong = new javax.swing.JTextField();
+        txtNgayPhat = new javax.swing.JTextField();
         tbpchuyentab = new javax.swing.JTabbedPane();
         pnldanhsach = new javax.swing.JPanel();
         cbbloaikhachhang = new javax.swing.JComboBox<>();
@@ -442,33 +456,40 @@ update.run();
         txtTienPhat = new javax.swing.JTextField();
         pnlemail2 = new javax.swing.JPanel();
         lblemail2 = new javax.swing.JLabel();
-        txtNgayPhat = new javax.swing.JTextField();
+        cbbNhanVienPL = new javax.swing.JComboBox<>();
         pnlnensodienthoai2 = new javax.swing.JPanel();
         lblsodienthoai2 = new javax.swing.JLabel();
         txtTienThuong = new javax.swing.JTextField();
         pnlnenhotenkhachhang2 = new javax.swing.JPanel();
         lblhotenkhachhang2 = new javax.swing.JLabel();
-        cbbNhanVienPL = new javax.swing.JComboBox<>();
+        jPanel22 = new javax.swing.JPanel();
+        jComboBox5 = new javax.swing.JComboBox<>();
+        jComboBox6 = new javax.swing.JComboBox<>();
         pnlnenmatkhau3 = new javax.swing.JPanel();
         lblmatkhau3 = new javax.swing.JLabel();
         cbbLuongPL = new javax.swing.JComboBox<>();
+        jButton7 = new javax.swing.JButton();
         pnlemail3 = new javax.swing.JPanel();
         lblemail3 = new javax.swing.JLabel();
-        txtSoNgayNghi = new javax.swing.JTextField();
+        txtSocavang = new javax.swing.JTextField();
         pnlnensodienthoai3 = new javax.swing.JPanel();
         lblsodienthoai3 = new javax.swing.JLabel();
         txtGhichuPL = new javax.swing.JTextField();
         pnlnenhotenkhachhang3 = new javax.swing.JPanel();
         lblhotenkhachhang3 = new javax.swing.JLabel();
-        txtSoNgayLam = new javax.swing.JTextField();
-        pnlnenhotenkhachhang4 = new javax.swing.JPanel();
-        lblhotenkhachhang4 = new javax.swing.JLabel();
-        txtTong = new javax.swing.JTextField();
-        btnPhatluong = new javax.swing.JButton();
+        txtSocadilam = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
+        pnlemail4 = new javax.swing.JPanel();
+        lblemail4 = new javax.swing.JLabel();
+        jPanel21 = new javax.swing.JPanel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        pnlnenmatkhau4 = new javax.swing.JPanel();
+        lblmatkhau4 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        txtTongtienluong = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -568,6 +589,15 @@ update.run();
         jScrollPane6.setViewportView(jTable22);
 
         jTextField1.setText("jTextField1");
+
+        jTextField2.setText("jTextField2");
+
+        txtTong.setEditable(false);
+        txtTong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTongActionPerformed(evt);
+            }
+        });
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -1284,24 +1314,24 @@ update.run();
 
         tblPhatluong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Tên nhân viên", "Mức lương", "Ngày phát", "Số ngày đi làm", "Số ngày nghỉ", "Tiền thưởng", "Tiền phạt", "Lương", "Ghi chú"
+                "ID", "Tên nhân viên", "Lương tháng", "Mức lương", "Ngày phát", "Số ca đi làm", "Số ca nghỉ", "Tiền thưởng", "Tiền phạt", "Tổng Lương", "Ghi chú"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblPhatluong.setRowHeight(40);
+        tblPhatluong.setRowHeight(30);
         tblPhatluong.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblPhatluongMouseClicked(evt);
@@ -1332,10 +1362,12 @@ update.run();
         pnlemail2.setLayout(new java.awt.BorderLayout());
 
         lblemail2.setBackground(new java.awt.Color(255, 255, 255));
-        lblemail2.setText("Ngày phát");
+        lblemail2.setText("Nhân viên chưa phát lương");
         lblemail2.setPreferredSize(new java.awt.Dimension(31, 20));
         pnlemail2.add(lblemail2, java.awt.BorderLayout.PAGE_START);
-        pnlemail2.add(txtNgayPhat, java.awt.BorderLayout.CENTER);
+
+        cbbNhanVienPL.setToolTipText("");
+        pnlemail2.add(cbbNhanVienPL, java.awt.BorderLayout.CENTER);
 
         pnlnensodienthoai2.setBackground(new java.awt.Color(255, 255, 255));
         pnlnensodienthoai2.setLayout(new java.awt.BorderLayout());
@@ -1356,12 +1388,27 @@ update.run();
         pnlnenhotenkhachhang2.setLayout(new java.awt.BorderLayout());
 
         lblhotenkhachhang2.setBackground(new java.awt.Color(255, 255, 255));
-        lblhotenkhachhang2.setText("Nhân viên");
+        lblhotenkhachhang2.setText("Chọn tháng trả lương");
         lblhotenkhachhang2.setPreferredSize(new java.awt.Dimension(106, 20));
         pnlnenhotenkhachhang2.add(lblhotenkhachhang2, java.awt.BorderLayout.PAGE_START);
 
-        cbbNhanVienPL.setToolTipText("");
-        pnlnenhotenkhachhang2.add(cbbNhanVienPL, java.awt.BorderLayout.CENTER);
+        jPanel22.setLayout(new javax.swing.BoxLayout(jPanel22, javax.swing.BoxLayout.LINE_AXIS));
+
+        jComboBox5.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox5ItemStateChanged(evt);
+            }
+        });
+        jPanel22.add(jComboBox5);
+
+        jComboBox6.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox6ItemStateChanged(evt);
+            }
+        });
+        jPanel22.add(jComboBox6);
+
+        pnlnenhotenkhachhang2.add(jPanel22, java.awt.BorderLayout.CENTER);
 
         pnlnenmatkhau3.setBackground(new java.awt.Color(255, 255, 255));
         pnlnenmatkhau3.setLayout(new java.awt.BorderLayout());
@@ -1371,23 +1418,36 @@ update.run();
         lblmatkhau3.setPreferredSize(new java.awt.Dimension(52, 20));
         pnlnenmatkhau3.add(lblmatkhau3, java.awt.BorderLayout.PAGE_START);
 
+        cbbLuongPL.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbLuongPLItemStateChanged(evt);
+            }
+        });
         pnlnenmatkhau3.add(cbbLuongPL, java.awt.BorderLayout.CENTER);
+
+        jButton7.setText("Thêm tiền lương");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        pnlnenmatkhau3.add(jButton7, java.awt.BorderLayout.LINE_END);
 
         pnlemail3.setBackground(new java.awt.Color(255, 255, 255));
         pnlemail3.setLayout(new java.awt.BorderLayout());
 
         lblemail3.setBackground(new java.awt.Color(255, 255, 255));
-        lblemail3.setText("Số ngày nghỉ");
+        lblemail3.setText("Số ca vắng");
         lblemail3.setPreferredSize(new java.awt.Dimension(31, 20));
         pnlemail3.add(lblemail3, java.awt.BorderLayout.PAGE_START);
 
-        txtSoNgayNghi.setText("0");
-        txtSoNgayNghi.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSocavang.setText("1");
+        txtSocavang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSoNgayNghiKeyReleased(evt);
+                txtSocavangKeyReleased(evt);
             }
         });
-        pnlemail3.add(txtSoNgayNghi, java.awt.BorderLayout.CENTER);
+        pnlemail3.add(txtSocavang, java.awt.BorderLayout.CENTER);
 
         pnlnensodienthoai3.setBackground(new java.awt.Color(255, 255, 255));
         pnlnensodienthoai3.setLayout(new java.awt.BorderLayout());
@@ -1402,48 +1462,66 @@ update.run();
         pnlnenhotenkhachhang3.setLayout(new java.awt.BorderLayout());
 
         lblhotenkhachhang3.setBackground(new java.awt.Color(255, 255, 255));
-        lblhotenkhachhang3.setText("Số ngày đi làm");
+        lblhotenkhachhang3.setText("Số ca đi làm");
         lblhotenkhachhang3.setPreferredSize(new java.awt.Dimension(106, 20));
         pnlnenhotenkhachhang3.add(lblhotenkhachhang3, java.awt.BorderLayout.PAGE_START);
 
-        txtSoNgayLam.setText("30");
-        txtSoNgayLam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSoNgayLamActionPerformed(evt);
+        txtSocadilam.setText("92");
+        txtSocadilam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                txtSocadilamMouseReleased(evt);
             }
         });
-        pnlnenhotenkhachhang3.add(txtSoNgayLam, java.awt.BorderLayout.CENTER);
-
-        pnlnenhotenkhachhang4.setBackground(new java.awt.Color(255, 255, 255));
-        pnlnenhotenkhachhang4.setLayout(new java.awt.BorderLayout());
-
-        lblhotenkhachhang4.setBackground(new java.awt.Color(255, 255, 255));
-        lblhotenkhachhang4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        lblhotenkhachhang4.setForeground(new java.awt.Color(255, 0, 0));
-        lblhotenkhachhang4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblhotenkhachhang4.setText("Tổng tiền lương:");
-        lblhotenkhachhang4.setPreferredSize(new java.awt.Dimension(106, 20));
-        pnlnenhotenkhachhang4.add(lblhotenkhachhang4, java.awt.BorderLayout.PAGE_START);
-
-        txtTong.addActionListener(new java.awt.event.ActionListener() {
+        txtSocadilam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTongActionPerformed(evt);
+                txtSocadilamActionPerformed(evt);
             }
         });
-        pnlnenhotenkhachhang4.add(txtTong, java.awt.BorderLayout.CENTER);
+        pnlnenhotenkhachhang3.add(txtSocadilam, java.awt.BorderLayout.CENTER);
 
-        btnPhatluong.setText("Phát lương");
-        btnPhatluong.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText(" Số tiền 1 ca: 150,000đ/ Ca/ 4h ");
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlnenhotenkhachhang3.add(jLabel2, java.awt.BorderLayout.LINE_END);
+
+        pnlemail4.setBackground(new java.awt.Color(255, 255, 255));
+        pnlemail4.setLayout(new java.awt.BorderLayout());
+
+        lblemail4.setBackground(new java.awt.Color(255, 255, 255));
+        lblemail4.setText("Lọc phát lương theo tháng");
+        lblemail4.setPreferredSize(new java.awt.Dimension(31, 20));
+        pnlemail4.add(lblemail4, java.awt.BorderLayout.PAGE_START);
+
+        jPanel21.setLayout(new javax.swing.BoxLayout(jPanel21, javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanel21.add(jComboBox3);
+
+        jPanel21.add(jComboBox4);
+
+        pnlemail4.add(jPanel21, java.awt.BorderLayout.CENTER);
+
+        pnlnenmatkhau4.setBackground(new java.awt.Color(255, 255, 255));
+        pnlnenmatkhau4.setLayout(new java.awt.BorderLayout());
+
+        lblmatkhau4.setBackground(new java.awt.Color(255, 255, 255));
+        lblmatkhau4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblmatkhau4.setForeground(new java.awt.Color(255, 0, 0));
+        lblmatkhau4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblmatkhau4.setText("Tổng tiền lương nhận");
+        lblmatkhau4.setPreferredSize(new java.awt.Dimension(52, 20));
+        pnlnenmatkhau4.add(lblmatkhau4, java.awt.BorderLayout.PAGE_START);
+
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 0, 0));
+        jButton8.setText(" Phát lương ");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPhatluongActionPerformed(evt);
+                jButton8ActionPerformed(evt);
             }
         });
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("jLabel2");
-
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("jLabel3");
+        pnlnenmatkhau4.add(jButton8, java.awt.BorderLayout.LINE_END);
+        pnlnenmatkhau4.add(txtTongtienluong, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout pnlnenthongtin1Layout = new javax.swing.GroupLayout(pnlnenthongtin1);
         pnlnenthongtin1.setLayout(pnlnenthongtin1Layout);
@@ -1471,24 +1549,20 @@ update.run();
                                 .addGap(16, 16, 16)
                                 .addComponent(pnlnensodienthoai3, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE))))
                     .addGroup(pnlnenthongtin1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator5))
+                    .addGroup(pnlnenthongtin1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator6))
+                    .addGroup(pnlnenthongtin1Layout.createSequentialGroup()
                         .addGap(466, 466, 466)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlnenthongtin1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlnenhotenkhachhang4, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPhatluong, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlnenthongtin1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator5))
-                    .addGroup(pnlnenthongtin1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator6)))
+                        .addComponent(pnlemail4, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                        .addGap(16, 16, 16)
+                        .addComponent(pnlnenmatkhau4, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlnenthongtin1Layout.createSequentialGroup()
@@ -1517,17 +1591,14 @@ update.run();
                     .addComponent(pnlemail3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addGroup(pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPhatluong, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(pnlnenhotenkhachhang4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14)
+                .addGap(9, 9, 9)
+                .addGroup(pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlnenmatkhau4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlemail4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(125, 125, 125)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlnenthongtin1Layout.createSequentialGroup()
@@ -1603,8 +1674,8 @@ update.run();
         jLabel37.setPreferredSize(new java.awt.Dimension(106, 20));
         jPanel59.add(jLabel37, java.awt.BorderLayout.PAGE_START);
 
+        txtIDnhanvien.setEditable(false);
         txtIDnhanvien.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtIDnhanvien.setText("4");
         jPanel59.add(txtIDnhanvien, java.awt.BorderLayout.CENTER);
 
         jPanel60.setBackground(new java.awt.Color(255, 255, 255));
@@ -1687,25 +1758,14 @@ update.run();
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Quét mã QR điểm danh", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        jPanel14.setPreferredSize(new java.awt.Dimension(237, 230));
+        jPanel14.setPreferredSize(new java.awt.Dimension(237, 240));
 
         jPanel63.setBackground(new java.awt.Color(255, 255, 255));
         jPanel63.setLayout(new java.awt.BorderLayout());
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 201, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel63.add(jPanel7, java.awt.BorderLayout.CENTER);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -1797,7 +1857,7 @@ update.run();
         );
         pnlnenngoaithongtinkhac12Layout.setVerticalGroup(
             pnlnenngoaithongtinkhac12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlnenngoaithongtinkhac13, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+            .addComponent(pnlnenngoaithongtinkhac13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pnlnenngoaianhdaidienvathongtinkhac9.add(pnlnenngoaithongtinkhac12, java.awt.BorderLayout.CENTER);
@@ -2155,9 +2215,9 @@ update.run();
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSoNgayLamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoNgayLamActionPerformed
+    private void txtSocadilamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSocadilamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSoNgayLamActionPerformed
+    }//GEN-LAST:event_txtSocadilamActionPerformed
 
     private void FileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileChooserActionPerformed
         // TODO add your handling code here:
@@ -2326,7 +2386,7 @@ update.run();
     }//GEN-LAST:event_txttimkiemActionPerformed
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:for
     }//GEN-LAST:event_txtIdActionPerformed
 
     private void mniXoaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniXoaNhanVienActionPerformed
@@ -2405,25 +2465,25 @@ update.run();
       
     }//GEN-LAST:event_tblPhatluongMouseClicked
 
-    private void txtSoNgayNghiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoNgayNghiKeyReleased
+    private void txtSocavangKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSocavangKeyReleased
         int NgayLam, NgayNghi;
        
-        NgayNghi =  BLL.ChuyenDoi.ChuyenSo(txtSoNgayNghi.getText());
+        NgayNghi =  BLL.ChuyenDoi.ChuyenSo(txtSocavang.getText());
         NgayLam = 30 - NgayNghi;
-         txtSoNgayNghi.setText(BLL.ChuyenDoi.DinhDangSo(NgayNghi));
-        txtSoNgayLam.setText(ChuyenDoi.doubleToString(NgayLam));
+         txtSocavang.setText(BLL.ChuyenDoi.DinhDangSo(NgayNghi));
+        txtSocadilam.setText(ChuyenDoi.doubleToString(NgayLam));
         if (NgayNghi > 30) {
-            txtSoNgayLam.setText("30");
-             txtSoNgayNghi.setText("0");
+            txtSocadilam.setText("30");
+             txtSocavang.setText("0");
         }
-    }//GEN-LAST:event_txtSoNgayNghiKeyReleased
+    }//GEN-LAST:event_txtSocavangKeyReleased
  double Luong,tienThuong ,tongLuong;
     private void txtTienThuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienThuongKeyReleased
          Luong = BLL.ChuyenDoi.ChuyenTien(cbbLuong.getSelectedItem().toString());
         tienThuong = BLL.ChuyenDoi.ChuyenTien(txtTienThuong.getText());
         txtTienThuong.setText(BLL.ChuyenDoi.DinhDangTien(tienThuong));
         tongLuong = Luong + tienThuong;
-        txtTong.setText(BLL.ChuyenDoi.DinhDangTien(tongLuong));
+        txtTongtienluong.setText(BLL.ChuyenDoi.DinhDangTien(tongLuong));
     }//GEN-LAST:event_txtTienThuongKeyReleased
 
     private void txtTienPhatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienPhatKeyReleased
@@ -2436,122 +2496,19 @@ update.run();
 
         tongLuong1 = tongLuong - tienPhat;
 
-        txtTong.setText(BLL.ChuyenDoi.DinhDangTien(tongLuong1));
+        txtTongtienluong.setText(BLL.ChuyenDoi.DinhDangTien(tongLuong1));
     }//GEN-LAST:event_txtTienPhatKeyReleased
-
-    private void btnPhatluongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhatluongActionPerformed
-         MyCombobox mb = (MyCombobox) cbbNhanVienPL.getSelectedItem();
-        int MaLoaiNV =Integer.parseInt(mb.Value.toString());
-        
-         String NgayPhat=txtNgayPhat.getText();
-        String SoNgayDiLam = txtSoNgayLam.getText();
-        String SoNgayNghi = txtSoNgayNghi.getText();
-        double TT =ChuyenDoi.ChuyenSangSo(txtTienThuong.getText());
-        double TP =ChuyenDoi.ChuyenSangSo(txtTienPhat.getText());
-        DecimalFormat formatter = new DecimalFormat("#########");
-        String TienThuong = formatter.format(TT);       
-        String TienPhat = formatter.format(TP);
-         String GhiChu = txtGhichuPL.getText();
-         MyCombobox mb1 = (MyCombobox) cbbLuong.getSelectedItem();
-        int MaLuong =Integer.parseInt(mb1.Value.toString());
-        double T =ChuyenDoi.ChuyenSangSo(txtTong.getText());
-        String Tong = formatter.format(T);
-        if (BLL.BLLNguoiDung.KiemTraPhatLuong(MaLoaiNV, NgayPhat, SoNgayDiLam, SoNgayNghi, TienThuong, TienPhat, GhiChu, MaLuong,Tong)) {
-            DTO.DTOPhatLuong pl = new DTO.DTOPhatLuong(MaLoaiNV, NgayPhat, SoNgayDiLam, SoNgayNghi, TienThuong, TienPhat, GhiChu, MaLuong, Tong);
-            BLL.BLLNguoiDung.PhatLuong(pl);
-            ThongBaoCanhBao.ThongBao("Phát lương thành công", "Thông Báo");
-             BLL.BLLPhatLuong.Hienthiphatluong(tblPhatluong);
-        }
-    }//GEN-LAST:event_btnPhatluongActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-        DTOChamCong cc = BLL.BLLChamCong.GetCC(Integer.parseInt( txtIDnhanvien.getText()));
-        int Socachamcong1 =  cc.getSocachamcong();
-        jTextField1.setText(Socachamcong1+"");
-
-        String formatTimeStr = "HH:ss";
-        String formatTimeStrH = "HHss";
-        DateFormat formatTime = new SimpleDateFormat(formatTimeStr);
-        DateFormat formatTimeH = new SimpleDateFormat(formatTimeStrH);
-        String formatedTimeStr = formatTime.format(currenTime);
-        String formatedTimeStH = formatTimeH.format(currenTime);
-        int giohientai = Integer.parseInt(txtTrangthai.getText());
-        System.out.println(giohientai);
-
-        if (giohientai < 715) {
-            ThongBaoCanhBao.ThongBao("Thời gian nghỉ", "Thông báo");
-        }
-        else if (giohientai >=715 && giohientai <= 730
-        ) {
-
-            if (Socachamcong1 == 1) {
-                ThongBaoCanhBao.ThongBao("Bạn đã điểm danh ca này rồi", "Thông báo");
-            }else{
-
-                int idnhanvien = Integer.parseInt(txtIDnhanvien.getText());
-                if (BLL.BLLChamCong.KiemTraSuaChamCong(1, 1, idnhanvien)) {
-                    DTOChamCong scc = new DTOChamCong(1, 1, idnhanvien);
-                    BLL.BLLChamCong.SuaChamCong(scc);
-                    ThongBaoCanhBao.ThongBao("Điểm danh ca sáng thành công", "Thông báo");
-                    BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
-                    String formatTimeStr5 = "yyyy";
-                    String formatTimeStr6 = "MM";
-                    DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
-                    DateFormat formatTime6 = new SimpleDateFormat(formatTimeStr6);
-                    String formatedTimeStr5 = formatTime5.format(currenTime);
-                    String formatedTimeStr6 = formatTime6.format(currenTime);
-                    jComboBox1.setSelectedItem(formatedTimeStr6);
-                    jComboBox2.setSelectedItem(formatedTimeStr5);
-
-                    int thang = Integer.parseInt(jComboBox1.getSelectedItem().toString());
-                    int nam = Integer.parseInt(jComboBox2.getSelectedItem().toString());
-                    BLLNguoiDung.HienThiNguoiDungTheoChucVuChamCong(tblnhanvienchamcong, thang, nam);
-                }
-            }
-
-        }
-
-        else if(giohientai >0730 && giohientai <1130){
-            ThongBaoCanhBao.ThongBao("Hết thời gian điểm danh ca Sáng", "Thông báo");
-        }
-
-        else if (giohientai >=1300 && giohientai <= 1315
-        ) {
-
-            if (Socachamcong1 == 1) {
-                //4
-            }else if(Socachamcong1 == 2){
-                //0
-            }else{
-                //2
-            }
-            ///
-
-        }else if(giohientai >1315 && giohientai < 1700){
-            ThongBaoCanhBao.ThongBao("Hết thời gian điểm danh ca Chiều", "Thông báo");
-        }
-
-        else if (giohientai >=1700 && giohientai <= 1715
-        ) {
-
-            ////
-        }else if(giohientai >1700 && giohientai <= 2100){
-            ThongBaoCanhBao.ThongBao("Hết thời gian điểm danh ca Tối", "Thông báo");
-        }
-
-        else{
-            ThongBaoCanhBao.ThongBao("Thời gian nghỉ", "Thông báo");
-        }
-
+        frmmain.webcam.open();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
+  frmmain.webcam.close();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -2611,6 +2568,57 @@ update.run();
     private void FileChooser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileChooser2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FileChooser2ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+         jdlthemluong luong = new jdlthemluong(new javax.swing.JFrame(), true);
+       luong.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+       MyCombobox mb = (MyCombobox) cbbNhanVienPL.getSelectedItem();
+        int MaLoaiNV =Integer.parseInt(mb.Value.toString());
+        
+         String NgayPhat=txtNgayPhat.getText();
+         
+        String SoNgayDiLam = txtSocadilam.getText();
+        String SoNgayNghi = txtSocavang.getText();
+        
+        double TT =ChuyenDoi.ChuyenSangSo(txtTienThuong.getText());
+        double TP =ChuyenDoi.ChuyenSangSo(txtTienPhat.getText());
+        DecimalFormat formatter = new DecimalFormat("#########");
+        String TienThuong = formatter.format(TT);       
+        String TienPhat = formatter.format(TP);
+         String GhiChu = txtGhichuPL.getText();
+         MyCombobox mb1 = (MyCombobox) cbbLuong.getSelectedItem();
+        int MaLuong =Integer.parseInt(mb1.Value.toString());
+        double T =ChuyenDoi.ChuyenSangSo(txtTongtienluong.getText());
+        String Tong = formatter.format(T);
+        if (BLL.BLLNguoiDung.KiemTraPhatLuong(MaLoaiNV, NgayPhat, SoNgayDiLam, SoNgayNghi, TienThuong, TienPhat, GhiChu, MaLuong,Tong)) {
+            DTO.DTOPhatLuong pl = new DTO.DTOPhatLuong(MaLoaiNV, NgayPhat, SoNgayDiLam, SoNgayNghi, TienThuong, TienPhat, GhiChu, MaLuong, Tong);
+            BLL.BLLNguoiDung.PhatLuong(pl);
+            ThongBaoCanhBao.ThongBao("Phát lương thành công", "Thông Báo");
+             BLL.BLLPhatLuong.Hienthiphatluong(tblPhatluong);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void txtSocadilamMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSocadilamMouseReleased
+      
+    }//GEN-LAST:event_txtSocadilamMouseReleased
+
+    private void cbbLuongPLItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbLuongPLItemStateChanged
+        try {
+            System.out.println(cbbLuongPL.getSelectedItem());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_cbbLuongPLItemStateChanged
+
+    private void jComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox5ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox5ItemStateChanged
+
+    private void jComboBox6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox6ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox6ItemStateChanged
     private void LamMoiNhanVien() {
         txtHoTen.setText("");
         txtsodienthoai.setText("");
@@ -2633,15 +2641,14 @@ update.run();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser FileChooser;
     private javax.swing.JFileChooser FileChooser2;
-    private javax.swing.JButton btnPhatluong;
     private javax.swing.JButton btnlammoi;
     private javax.swing.JButton btnsua;
     private javax.swing.JButton btnthem;
     private javax.swing.JComboBox<String> cbbChucVu;
     private javax.swing.JComboBox<String> cbbGioiTinh;
     private javax.swing.JComboBox<String> cbbLuong;
-    private javax.swing.JComboBox<String> cbbLuongPL;
-    private javax.swing.JComboBox<String> cbbNguoidung;
+    public static javax.swing.JComboBox<String> cbbLuongPL;
+    public static javax.swing.JComboBox<String> cbbNguoidung;
     private javax.swing.JComboBox<String> cbbNhanVienPL;
     private javax.swing.JComboBox<String> cbbTrangThai;
     private javax.swing.JComboBox<String> cbbloaikhachhang;
@@ -2650,9 +2657,15 @@ update.run();
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    public static javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    public static javax.swing.JComboBox<String> jComboBox1;
+    public static javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2662,7 +2675,6 @@ update.run();
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
@@ -2686,6 +2698,8 @@ update.run();
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
@@ -2697,7 +2711,7 @@ update.run();
     private javax.swing.JPanel jPanel61;
     private javax.swing.JPanel jPanel62;
     private javax.swing.JPanel jPanel63;
-    private javax.swing.JPanel jPanel7;
+    public static javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -2715,8 +2729,9 @@ update.run();
     private javax.swing.JTable jTable11;
     private javax.swing.JTable jTable22;
     public static javax.swing.JTextField jTextField1;
+    public static javax.swing.JTextField jTextField2;
     private com.toedter.calendar.JDateChooser jdcNgaySinh;
-    private com.toedter.calendar.JDateChooser jdcNgaySinh1;
+    public static com.toedter.calendar.JDateChooser jdcNgaySinh1;
     private com.toedter.calendar.JDateChooser jdcNgayVaoLam;
     private javax.swing.JLabel lblAnhDaiDien;
     private javax.swing.JLabel lblanhdaidien;
@@ -2724,17 +2739,18 @@ update.run();
     private javax.swing.JLabel lblemail;
     private javax.swing.JLabel lblemail2;
     private javax.swing.JLabel lblemail3;
+    private javax.swing.JLabel lblemail4;
     private javax.swing.JLabel lblgioitinh;
     private javax.swing.JLabel lblhotenkhachhang;
     private javax.swing.JLabel lblhotenkhachhang2;
     private javax.swing.JLabel lblhotenkhachhang3;
-    private javax.swing.JLabel lblhotenkhachhang4;
     private javax.swing.JLabel lblid;
     private javax.swing.JLabel lblloaikhachhang;
     private javax.swing.JLabel lblmangxahoi;
     private javax.swing.JLabel lblmatkhau;
     private javax.swing.JLabel lblmatkhau2;
     private javax.swing.JLabel lblmatkhau3;
+    private javax.swing.JLabel lblmatkhau4;
     private javax.swing.JLabel lblmota;
     private javax.swing.JLabel lblngaysinh;
     private javax.swing.JLabel lblnhanvienphutrach;
@@ -2755,6 +2771,7 @@ update.run();
     private javax.swing.JPanel pnlemail;
     private javax.swing.JPanel pnlemail2;
     private javax.swing.JPanel pnlemail3;
+    private javax.swing.JPanel pnlemail4;
     private javax.swing.JPanel pnlnenanhdaidien;
     private javax.swing.JPanel pnlnenbtn;
     private javax.swing.JPanel pnlnendiachi;
@@ -2762,7 +2779,6 @@ update.run();
     private javax.swing.JPanel pnlnenhotenkhachhang;
     private javax.swing.JPanel pnlnenhotenkhachhang2;
     private javax.swing.JPanel pnlnenhotenkhachhang3;
-    private javax.swing.JPanel pnlnenhotenkhachhang4;
     private javax.swing.JPanel pnlnenid;
     private javax.swing.JPanel pnlnenlonngoaithongtin;
     private javax.swing.JPanel pnlnenlonngoaithongtin1;
@@ -2774,6 +2790,7 @@ update.run();
     private javax.swing.JPanel pnlnenmatkhau;
     private javax.swing.JPanel pnlnenmatkhau2;
     private javax.swing.JPanel pnlnenmatkhau3;
+    private javax.swing.JPanel pnlnenmatkhau4;
     private javax.swing.JPanel pnlnenmota;
     private javax.swing.JPanel pnlnenngaysinh;
     private javax.swing.JPanel pnlnenngoaianhdaidien;
@@ -2811,8 +2828,8 @@ update.run();
     private javax.swing.JScrollPane srcdanhsach;
     private javax.swing.JTable tblNguoiDung;
     private javax.swing.JTable tblPhatluong;
-    private javax.swing.JTable tbllichsuchamcong;
-    private javax.swing.JTable tblnhanvienchamcong;
+    public static javax.swing.JTable tbllichsuchamcong;
+    public static javax.swing.JTable tblnhanvienchamcong;
     private javax.swing.JTabbedPane tbpchuyentab;
     private javax.swing.JTextField txtCMND;
     private javax.swing.JTextField txtDiaChi;
@@ -2825,13 +2842,14 @@ update.run();
     private javax.swing.JTextPane txtMoTa;
     private javax.swing.JTextField txtNgayPhat;
     public static javax.swing.JTextField txtNgayhomnay;
-    private javax.swing.JTextField txtSoNgayLam;
-    private javax.swing.JTextField txtSoNgayNghi;
+    private javax.swing.JTextField txtSocadilam;
+    private javax.swing.JTextField txtSocavang;
     private javax.swing.JTextField txtTenDangNhap;
     private javax.swing.JTextField txtTienPhat;
     private javax.swing.JTextField txtTienThuong;
     public static javax.swing.JTextField txtTimKiemNV;
     private javax.swing.JTextField txtTong;
+    private javax.swing.JTextField txtTongtienluong;
     public static javax.swing.JTextField txtTrangthai;
     public static javax.swing.JTextField txtUudai1;
     private javax.swing.JTextField txtsodienthoai;

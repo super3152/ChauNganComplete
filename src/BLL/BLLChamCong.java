@@ -111,6 +111,7 @@ public class BLLChamCong {
             if (rs.next()) {
                 DTOChamCong cc = new DTOChamCong();
                 cc.setSocachamcong(rs.getInt(1));
+                 cc.setTennguoidung(rs.getString(2));
                
 
                 return cc;

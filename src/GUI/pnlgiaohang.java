@@ -63,7 +63,7 @@ public class pnlgiaohang extends javax.swing.JPanel {
         } catch (Exception ex) {
         }
         initComponents();
-        DBConection db = new DBConection();
+        
          tblDonHang1.getColumnModel().getColumn(0).setPreferredWidth(7);
            tblDonHang1.getColumnModel().getColumn(1).setPreferredWidth(7);
             tblDonHang1.getColumnModel().getColumn(9).setPreferredWidth(7);

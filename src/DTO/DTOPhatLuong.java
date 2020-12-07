@@ -13,20 +13,20 @@ public class DTOPhatLuong {
     int MaPhatLuong;
     int MaNV;   
     String NgayPhat;
-    String SoNgayDiLam;
-    String SoNgayNghi;
+    String SoCaDiLam;
+    String SoCaNghi;
     String TienThuong;
     String TienPhat;   
     String GhiChu;
     int MaLuong;
     String TongLuong;
 
-    public DTOPhatLuong(int MaPhatLuong, int MaNV, String NgayPhat, String SoNgayDiLam, String SoNgayNghi, String TienThuong, String TienPhat, String GhiChu, int MaLuong, String TongLuong) {
+    public DTOPhatLuong(int MaPhatLuong, int MaNV, String NgayPhat, String SoCaDiLam, String SoCaNghi, String TienThuong, String TienPhat, String GhiChu, int MaLuong, String TongLuong) {
         this.MaPhatLuong = MaPhatLuong;
         this.MaNV = MaNV;
         this.NgayPhat = NgayPhat;
-        this.SoNgayDiLam = SoNgayDiLam;
-        this.SoNgayNghi = SoNgayNghi;
+        this.SoCaDiLam = SoCaDiLam;
+        this.SoCaNghi = SoCaNghi;
         this.TienThuong = TienThuong;
         this.TienPhat = TienPhat;
         this.GhiChu = GhiChu;
@@ -34,11 +34,11 @@ public class DTOPhatLuong {
         this.TongLuong = TongLuong;
     }
 
-    public DTOPhatLuong(int MaNV, String NgayPhat, String SoNgayDiLam, String SoNgayNghi, String TienThuong, String TienPhat, String GhiChu, int MaLuong, String TongLuong) {
+    public DTOPhatLuong(int MaNV, String NgayPhat, String SoCaDiLam, String SoCaNghi, String TienThuong, String TienPhat, String GhiChu, int MaLuong, String TongLuong) {
         this.MaNV = MaNV;
         this.NgayPhat = NgayPhat;
-        this.SoNgayDiLam = SoNgayDiLam;
-        this.SoNgayNghi = SoNgayNghi;
+        this.SoCaDiLam = SoCaDiLam;
+        this.SoCaNghi = SoCaNghi;
         this.TienThuong = TienThuong;
         this.TienPhat = TienPhat;
         this.GhiChu = GhiChu;
@@ -73,20 +73,20 @@ public class DTOPhatLuong {
         this.NgayPhat = NgayPhat;
     }
 
-    public String getSoNgayDiLam() {
-        return SoNgayDiLam;
+    public String getSoCaDiLam() {
+        return SoCaDiLam;
     }
 
-    public void setSoNgayDiLam(String SoNgayDiLam) {
-        this.SoNgayDiLam = SoNgayDiLam;
+    public void setSoCaDiLam(String SoCaDiLam) {
+        this.SoCaDiLam = SoCaDiLam;
     }
 
-    public String getSoNgayNghi() {
-        return SoNgayNghi;
+    public String getSoCaNghi() {
+        return SoCaNghi;
     }
 
-    public void setSoNgayNghi(String SoNgayNghi) {
-        this.SoNgayNghi = SoNgayNghi;
+    public void setSoCaNghi(String SoCaNghi) {
+        this.SoCaNghi = SoCaNghi;
     }
 
     public String getTienThuong() {

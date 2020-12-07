@@ -5,8 +5,10 @@
  */
 package BLL;
 
+import DTO.DTOLuong;
 import DTO.DTONguoidung;
 import DTO.DTOPhatLuong;
+import DTO.DTOSize;
 import GUI.ThongBaoCanhBao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,8 +39,8 @@ public class BLLPhatLuong {
                     obj[2]= ChuyenDoi.DinhDangTien(rsluong.getDouble("mucluong"));
                 }
                 obj[3]=ChuyenDoi.GetDate(rs.getString("ngayphat"));
-                obj[4] = rs.getInt("songaydilam");
-                obj[5]= rs.getInt("songaynghi");
+                obj[4] = rs.getInt("socadilam");
+                obj[5]= rs.getInt("socanghi");
                 obj[6]=ChuyenDoi.DinhDangTien(rs.getDouble("tienthuong"));
                 obj[7] = ChuyenDoi.DinhDangTien(rs.getDouble("tienphat"));
                 obj[8]= ChuyenDoi.DinhDangTien(rs.getDouble("tongluong"));
@@ -48,6 +50,20 @@ public class BLLPhatLuong {
         } catch (SQLException e) {
                 ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng phát lương", "Thông báo");
         }
+    }
+    
+    
+     public static void ThemLuong(DTOLuong Luong) {
+        DAO.DAOPhatLuong.ThemLuong(Luong);
+    }
+
+    public static boolean KiemTraThemLuong(Double TienLuong, String mota) {
+        if (TienLuong == null) {
+            ThongBaoCanhBao.ThongBao("Tiền lương không được bỏ trống!"
+                    + "\nVui lòng nhập lại tiền lương! ", "Thông báo");
+            return false;
+        }
+        return true;
     }
     
 }

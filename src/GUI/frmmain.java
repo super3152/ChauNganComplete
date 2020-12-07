@@ -5,12 +5,23 @@
  */
 package GUI;
 
+import BLL.BLLChamCong;
+import BLL.BLLNguoiDung;
 import BLL.ChuyenDoi;
+import DTO.DTOChamCong;
 import static GUI.jdlCameraScanners.jTextField13;
 import static GUI.pnlbanhang.tblChiTietHoaDon;
 import static GUI.pnlbanhang.txtSoHoaDon;
 import static GUI.pnlbanhang.txtTongTien;
 import static GUI.pnlbanhang.txtUuDai;
+import static GUI.pnlnhanvien.jComboBox1;
+import static GUI.pnlnhanvien.jComboBox2;
+import static GUI.pnlnhanvien.jPanel7;
+import static GUI.pnlnhanvien.jTextField1;
+import static GUI.pnlnhanvien.tbllichsuchamcong;
+import static GUI.pnlnhanvien.tblnhanvienchamcong;
+import static GUI.pnlnhanvien.txtIDnhanvien;
+import static GUI.pnlnhanvien.txtTrangthai;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
@@ -74,30 +85,31 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
     int DELAY = 100;
 
     public static WebcamPanel panelcam = null;
-    private Webcam webcam = null;
+    public static Webcam webcam = null;
 
     private static final long serialVersionUID = 6441489157408381878L;
     private Executor executor = Executors.newSingleThreadExecutor(this);
-
+ public Date currenTime = new Date();
+   
     public frmmain() {
 
         initComponents();
-       
-        lbltenuser.setText(BLL.BLLlogin.nguoidung.getTenNguoiDung());
-        updateTimer = new Timer(DELAY, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Date currenTime = new Date();
-                String formatTimeStr = "dd/MM/yy" + " - " + "hh:mm:ss";
-                DateFormat formatTime = new SimpleDateFormat(formatTimeStr);
-                String formatedTimeStr = formatTime.format(currenTime);
-
-                lbltime.setText(formatedTimeStr);
-
-            }
-
-        });
-        updateTimer.start();
+//       
+//        lbltenuser.setText(BLL.BLLlogin.nguoidung.getTenNguoiDung());
+//        updateTimer = new Timer(DELAY, new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                Date currenTime = new Date();
+//                String formatTimeStr = "dd/MM/yy" + " - " + "hh:mm:ss";
+//                DateFormat formatTime = new SimpleDateFormat(formatTimeStr);
+//                String formatedTimeStr = formatTime.format(currenTime);
+//
+//                lbltime.setText(formatedTimeStr);
+//
+//            }
+//
+//        });
+//        updateTimer.start();
 
         btntongquan.addActionListener(this);
         btnbanhang.addActionListener(this);
@@ -176,9 +188,6 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
         lbllogo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lbltieude = new javax.swing.JLabel();
-        lblthongbao = new javax.swing.JLabel();
-        lblchat = new javax.swing.JLabel();
-        lbltime = new javax.swing.JLabel();
         lbluser = new javax.swing.JLabel();
         lbltenuser = new javax.swing.JLabel();
 
@@ -525,24 +534,13 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
         lbltieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/chevron_right_20px.png"))); // NOI18N
         lbltieude.setText("TỔNG QUAN");
 
-        lblthongbao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblthongbao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/bell_24px.png"))); // NOI18N
-
-        lblchat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblchat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/chat_22px.png"))); // NOI18N
-
-        lbltime.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        lbltime.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbltime.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/clock_22px.png"))); // NOI18N
-        lbltime.setText("TIME");
-
         lbluser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbluser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/user_male_22px.png"))); // NOI18N
 
         lbltenuser.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbltenuser.setForeground(new java.awt.Color(255, 0, 0));
         lbltenuser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbltenuser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/chevron_down_15px.png"))); // NOI18N
-        lbltenuser.setText("TRUNG NGUYEN");
+        lbltenuser.setText("ĐĂNG NHẬP");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -551,13 +549,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbltieude)
-                .addGap(225, 225, 225)
-                .addComponent(lbltime, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                .addGap(80, 80, 80)
-                .addComponent(lblthongbao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(lblchat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(614, 614, 614)
                 .addComponent(lbltenuser, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbluser)
@@ -568,10 +560,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblthongbao, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(lblchat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbluser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbltime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbluser, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                     .addComponent(lbltieude, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbltenuser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -843,6 +832,11 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             nut();
 
         } else if (evt.equals(btnbanhang)) {
+             if (webcam == null) {
+                
+            }else{
+                 webcam.close();
+            }
             tq.setVisible(false);
             bh.setVisible(true);
             sp.setVisible(false);
@@ -962,10 +956,18 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             tg.setVisible(true);
             tk.setVisible(false);
 
-            lbltieude.setText("TRẢ GÓP");
+            lbltieude.setText("NHÂN VIÊN");
             jPanel2.add(tg);
             jPanel2.validate();
             nut();
+              Dimension size = WebcamResolution.QVGA.getSize();
+            webcam = Webcam.getWebcams().get(0);
+            webcam.setViewSize(size);
+            panelcam = new WebcamPanel(webcam);
+            panelcam.setPreferredSize(size);
+            panelcam.setFPSDisplayed(true);
+            executor.execute(this);
+             jPanel7.add(panelcam, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 201, 144));
         } else if (evt.equals(btnthongke)) {
             
             if (webcam == null) {
@@ -1028,13 +1030,10 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     public static javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel lblchat;
     private javax.swing.JLabel lbldangxuat2;
     private javax.swing.JLabel lbllogo;
     public static javax.swing.JLabel lbltenuser;
-    private javax.swing.JLabel lblthongbao;
     private javax.swing.JLabel lbltieude;
-    private javax.swing.JLabel lbltime;
     private javax.swing.JLabel lbluser;
     private javax.swing.JPanel pnlnen;
     private javax.swing.JPanel pnlnendangxuat2;
@@ -1046,7 +1045,10 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
     @Override
     public void run() {
-        do {
+        
+        if (lbltieude.getText().equals("BÁN HÀNG")) {
+            System.out.println("bán hàng");
+                    do {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -1170,6 +1172,324 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
             }
         } while (true);
+        }else if(lbltieude.getText().equals("NHÂN VIÊN")){
+            System.out.println("nhân viên");
+            
+            
+         do {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }catch(NullPointerException ex){
+                
+            }
+
+            Result result = null;
+            BufferedImage image = null;
+
+            
+                
+            if (webcam.isOpen()) {
+                if ((image = webcam.getImage()) == null) {
+                    continue;
+                }
+            }
+
+            LuminanceSource source = new BufferedImageLuminanceSource(image);
+            BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+            try {
+                result = new MultiFormatReader().decode(bitmap);
+            } catch (NotFoundException e) {
+                //No result...
+            }catch(NullPointerException ex){
+                
+            }
+
+            if (result != null) {
+                txtIDnhanvien.setText(result.getText());
+              
+                       try{
+                
+                
+        DTOChamCong cc = BLL.BLLChamCong.GetCC(Integer.parseInt(result.getText() ));
+        int Socachamcong1 =  cc.getSocachamcong();
+        String tennguoidung = cc.getTennguoidung();
+        txtIDnhanvien.setText(tennguoidung);
+        jTextField1.setText(Socachamcong1+"");
+      
+        String formatTimeStr = "HH:ss";
+        String formatTimeStrH = "HHss";
+        DateFormat formatTime = new SimpleDateFormat(formatTimeStr);
+        DateFormat formatTimeH = new SimpleDateFormat(formatTimeStrH);
+        String formatedTimeStr = formatTime.format(currenTime);
+        String formatedTimeStH = formatTimeH.format(currenTime);
+        int giohientai = Integer.parseInt(formatedTimeStH);
+        System.out.println(giohientai);
+
+        if (giohientai < 715) {
+            ThongBaoCanhBao.ThongBao("Thời gian nghỉ", "Thông báo");
+        }
+        else if (giohientai >=715 && giohientai <= 730
+        ) {
+
+            if (Socachamcong1 == 1) {
+                ThongBaoCanhBao.ThongBao("Bạn đã điểm danh ca này rồi", "Thông báo");
+            }else{
+
+                int idnhanvien = Integer.parseInt(txtIDnhanvien.getText());
+                
+                if (BLL.BLLChamCong.KiemTraSuaChamCong(1, 1, idnhanvien)) {
+                    DTOChamCong scc = new DTOChamCong(1, 1, idnhanvien);
+                    BLL.BLLChamCong.SuaChamCong(scc);
+                    ThongBaoCanhBao.ThongBao("Điểm danh ca sáng thành công"+"\n"+"Nhân viên: "+tennguoidung , "Thông báo");
+                    BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+                    String formatTimeStr5 = "yyyy";
+                    String formatTimeStr6 = "MM";
+                    DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
+                    DateFormat formatTime6 = new SimpleDateFormat(formatTimeStr6);
+                    String formatedTimeStr5 = formatTime5.format(currenTime);
+                    String formatedTimeStr6 = formatTime6.format(currenTime);
+                    jComboBox1.setSelectedItem(formatedTimeStr6);
+                    jComboBox2.setSelectedItem(formatedTimeStr5);
+
+                    int thang = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+                    int nam = Integer.parseInt(jComboBox2.getSelectedItem().toString());
+                    BLLNguoiDung.HienThiNguoiDungTheoChucVuChamCong(tblnhanvienchamcong, thang, nam);
+                }
+            }
+
+        }
+
+        else if(giohientai >0730 && giohientai <1130){
+            ThongBaoCanhBao.ThongBao("Hết thời gian điểm danh ca Sáng", "Thông báo");
+        }
+
+        else if (giohientai >=1300 && giohientai <= 1315
+        ) {
+
+            if (Socachamcong1 == 1) {
+                        
+         int idnhanvien = Integer.parseInt(txtIDnhanvien.getText());
+         if (BLL.BLLChamCong.KiemTraSuaChamCong(4, 1, idnhanvien)) {
+            DTOChamCong scc = new DTOChamCong(4, 1, idnhanvien);
+            BLL.BLLChamCong.SuaChamCong(scc);
+            ThongBaoCanhBao.ThongBao("Điểm danh ca Chiều và ca Sáng thành công"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+            String formatTimeStr5 = "yyyy";
+             String formatTimeStr6 = "MM";
+         DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
+           DateFormat formatTime6 = new SimpleDateFormat(formatTimeStr6);
+         String formatedTimeStr5 = formatTime5.format(currenTime);
+          String formatedTimeStr6 = formatTime6.format(currenTime);
+                   jComboBox1.setSelectedItem(formatedTimeStr6);
+                    jComboBox2.setSelectedItem(formatedTimeStr5);
+
+                 
+                  int thang = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+           int nam = Integer.parseInt(jComboBox2.getSelectedItem().toString());
+       BLLNguoiDung.HienThiNguoiDungTheoChucVuChamCong(tblnhanvienchamcong, thang, nam);
+}
+            }else if(Socachamcong1 == 2){
+                ThongBaoThongTin.ThongBao("Bạn đã điểm danh ca chiều, nhưng vắng ca sáng"+"\n"+"Nhân viên: "+tennguoidung, formatTimeStr);
+            }else if(Socachamcong1 == 4){
+                ThongBaoThongTin.ThongBao("Bạn đã điểm danh ca Sáng và ca Chiều rồi"+"\n"+"Nhân viên: "+tennguoidung, formatTimeStr);
+            }
+            else{
+                       
+         int idnhanvien = Integer.parseInt(txtIDnhanvien.getText());
+         if (BLL.BLLChamCong.KiemTraSuaChamCong(2, 1, idnhanvien)) {
+            DTOChamCong scc = new DTOChamCong(2, 1, idnhanvien);
+            BLL.BLLChamCong.SuaChamCong(scc);
+            ThongBaoCanhBao.ThongBao("Điểm danh ca chiều thành công"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+            String formatTimeStr5 = "yyyy";
+             String formatTimeStr6 = "MM";
+         DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
+           DateFormat formatTime6 = new SimpleDateFormat(formatTimeStr6);
+         String formatedTimeStr5 = formatTime5.format(currenTime);
+          String formatedTimeStr6 = formatTime6.format(currenTime);
+                   jComboBox1.setSelectedItem(formatedTimeStr6);
+                    jComboBox2.setSelectedItem(formatedTimeStr5);
+
+                 
+                  int thang = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+           int nam = Integer.parseInt(jComboBox2.getSelectedItem().toString());
+       BLLNguoiDung.HienThiNguoiDungTheoChucVuChamCong(tblnhanvienchamcong, thang, nam);
+}
+            }
+            ///
+
+        }else if(giohientai >1315 && giohientai < 1700){
+            ThongBaoCanhBao.ThongBao("Hết thời gian điểm danh ca Chiều"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
+        }
+
+        else if (giohientai >=1700 && giohientai <= 1715
+        ) {
+            if (Socachamcong1 == 1) {
+                // ca 1 ok, ca 2 vắng => 6
+                 int idnhanvien = Integer.parseInt(txtIDnhanvien.getText());
+         if (BLL.BLLChamCong.KiemTraSuaChamCong(6, 1, idnhanvien)) {
+            DTOChamCong scc = new DTOChamCong(6, 1, idnhanvien);
+            BLL.BLLChamCong.SuaChamCong(scc);
+            ThongBaoCanhBao.ThongBao("Điểm danh ca Tối thành công"+"\n"+"Hôm nay ca Chiều chưa điểm danh"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+            String formatTimeStr5 = "yyyy";
+             String formatTimeStr6 = "MM";
+         DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
+           DateFormat formatTime6 = new SimpleDateFormat(formatTimeStr6);
+         String formatedTimeStr5 = formatTime5.format(currenTime);
+          String formatedTimeStr6 = formatTime6.format(currenTime);
+                   jComboBox1.setSelectedItem(formatedTimeStr6);
+                    jComboBox2.setSelectedItem(formatedTimeStr5);
+
+                 
+                  int thang = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+           int nam = Integer.parseInt(jComboBox2.getSelectedItem().toString());
+       BLLNguoiDung.HienThiNguoiDungTheoChucVuChamCong(tblnhanvienchamcong, thang, nam);
+}
+            }else if(Socachamcong1 == 2){
+                // ca 1 vắng, ca 2 ok => 5
+                 int idnhanvien = Integer.parseInt(txtIDnhanvien.getText());
+         if (BLL.BLLChamCong.KiemTraSuaChamCong(5, 1, idnhanvien)) {
+            DTOChamCong scc = new DTOChamCong(5, 1, idnhanvien);
+            BLL.BLLChamCong.SuaChamCong(scc);
+            ThongBaoCanhBao.ThongBao("Điểm danh ca Tối thành công"+"\n"+"Hôm nay ca Sáng chưa điểm danh"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+            String formatTimeStr5 = "yyyy";
+             String formatTimeStr6 = "MM";
+         DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
+           DateFormat formatTime6 = new SimpleDateFormat(formatTimeStr6);
+         String formatedTimeStr5 = formatTime5.format(currenTime);
+          String formatedTimeStr6 = formatTime6.format(currenTime);
+                   jComboBox1.setSelectedItem(formatedTimeStr6);
+                    jComboBox2.setSelectedItem(formatedTimeStr5);
+
+                 
+                  int thang = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+           int nam = Integer.parseInt(jComboBox2.getSelectedItem().toString());
+       BLLNguoiDung.HienThiNguoiDungTheoChucVuChamCong(tblnhanvienchamcong, thang, nam);
+}
+                
+                
+            }else if(Socachamcong1 == 3){
+                // đã điểm danh ca 3 nhứng vắng ca 1,2 => null3
+                 ThongBaoCanhBao.ThongBao("Bạn đã điểm danh ca chiều rồi"+"\n"+" Bạn vắng ca Sáng + Ca chiều"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
+            }else if(Socachamcong1 == 4){
+                // ca 1 ok, ca 2 ok => full ngày = 7
+                 int idnhanvien = Integer.parseInt(txtIDnhanvien.getText());
+         if (BLL.BLLChamCong.KiemTraSuaChamCong(7, 1, idnhanvien)) {
+            DTOChamCong scc = new DTOChamCong(7, 1, idnhanvien);
+            BLL.BLLChamCong.SuaChamCong(scc);
+            ThongBaoCanhBao.ThongBao("Điểm danh ca Tối thành công"+"\n"+"Hôm nay đã điểm danh Full Ngày"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+            String formatTimeStr5 = "yyyy";
+             String formatTimeStr6 = "MM";
+         DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
+           DateFormat formatTime6 = new SimpleDateFormat(formatTimeStr6);
+         String formatedTimeStr5 = formatTime5.format(currenTime);
+          String formatedTimeStr6 = formatTime6.format(currenTime);
+                   jComboBox1.setSelectedItem(formatedTimeStr6);
+                    jComboBox2.setSelectedItem(formatedTimeStr5);
+
+                 
+                  int thang = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+           int nam = Integer.parseInt(jComboBox2.getSelectedItem().toString());
+       BLLNguoiDung.HienThiNguoiDungTheoChucVuChamCong(tblnhanvienchamcong, thang, nam);
+}
+                
+            }else if(Socachamcong1 == 5){
+                // bạn đã diểm danh ca 2,3 nhưng vắng ca 1 = null5
+                  ThongBaoCanhBao.ThongBao("Bạn đã điểm danh ca Chiều + ca Tối rồi"+"\n"+" Bạn vắng ca Sáng"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
+            }else if(Socachamcong1 == 6){
+                // bạn đã điểm danh ca 1,3 nhưng vắng ca 2 = null6
+                  ThongBaoCanhBao.ThongBao("Bạn đã điểm danh ca Sáng + ca Tối rồi"+"\n"+" Bạn vắng ca Chiều"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
+            }else{
+                // ca 1 vắng, ca 2 vắng => 3 - điểm danh ca 3 thành công
+                 int idnhanvien = Integer.parseInt(txtIDnhanvien.getText());
+         if (BLL.BLLChamCong.KiemTraSuaChamCong(3, 1, idnhanvien)) {
+            DTOChamCong scc = new DTOChamCong(3, 1, idnhanvien);
+            BLL.BLLChamCong.SuaChamCong(scc);
+            ThongBaoCanhBao.ThongBao("Điểm danh ca tối thành công"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+            String formatTimeStr5 = "yyyy";
+             String formatTimeStr6 = "MM";
+         DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
+           DateFormat formatTime6 = new SimpleDateFormat(formatTimeStr6);
+         String formatedTimeStr5 = formatTime5.format(currenTime);
+          String formatedTimeStr6 = formatTime6.format(currenTime);
+                   jComboBox1.setSelectedItem(formatedTimeStr6);
+                    jComboBox2.setSelectedItem(formatedTimeStr5);
+
+                 
+                  int thang = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+           int nam = Integer.parseInt(jComboBox2.getSelectedItem().toString());
+       BLLNguoiDung.HienThiNguoiDungTheoChucVuChamCong(tblnhanvienchamcong, thang, nam);
+}
+            }
+          
+        }else if(giohientai >1700 && giohientai <= 2100){
+            ThongBaoCanhBao.ThongBao("Hết thời gian điểm danh ca Tối"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
+        }
+
+        else{
+            ThongBaoCanhBao.ThongBao("Thời gian nghỉ", "Thông báo");
+        }
+
+                
+                
+                
+                
+                
+                
+                
+                /////////
+                 try {
+                      
+         // Open an audio input stream.
+         URL url = this.getClass().getClassLoader().getResource("MP3/beep.wav");
+         AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+         // Get a sound clip resource.
+         Clip clip = AudioSystem.getClip();
+         // Open audio clip and load samples from the audio input stream.
+         clip.open(audioIn);
+         clip.start();
+      } catch (UnsupportedAudioFileException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      } catch (LineUnavailableException e) {
+         e.printStackTrace();
+      }     
+              
+                 
+                System.out.println(result);
+                
+              
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(pnlkhachhang.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
+                } catch (Exception e) {
+                     ThongBaoCanhBao.ThongBao("Không tồn tại nhân viên này", "Thông báo");
+                }
+            }
+            
+            
+            
+            
+        } while (true);
+            
+            
+            
+            
+        }else{
+        
+        }
+
     }
 
     @Override

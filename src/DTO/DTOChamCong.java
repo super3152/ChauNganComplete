@@ -18,6 +18,7 @@ public class DTOChamCong {
     int socachamcong;
     int tongsocachamcong;
     int songaytrongthang;
+    String tennguoidung;
 
     
       public DTOChamCong() {
@@ -93,6 +94,14 @@ public class DTOChamCong {
 
     public void setSongaytrongthang(int songaytrongthang) {
         this.songaytrongthang = songaytrongthang;
+    }
+
+    public String getTennguoidung() {
+        return tennguoidung;
+    }
+
+    public void setTennguoidung(String tennguoidung) {
+        this.tennguoidung = tennguoidung;
     }
     
     

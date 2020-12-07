@@ -27,7 +27,7 @@ public class DAOChamCong {
      
        public static ResultSet LayThongTinCaChamCong(int idnguoidung) {
 
-        String query = "SELECT socachamcong FROM `chamcong` WHERE idnguoidung = '"+idnguoidung+"' and ngaychamcong = CURDATE()";
+        String query = "SELECT chamcong.socachamcong,nguoidung.tennguoidung FROM `chamcong` INNER JOIN nguoidung on nguoidung.idnguoidung = chamcong.idnguoidung WHERE ngaychamcong = CURDATE() and nguoidung.idnguoidung = '"+idnguoidung+"'";
         ResultSet rs = DBConection.GetData(query);
         return rs;
 

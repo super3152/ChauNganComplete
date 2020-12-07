@@ -564,13 +564,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="lbltieude" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
-                          <Component id="lbltime" pref="227" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                          <Component id="lblthongbao" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblchat" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="614" max="-2" attributes="0"/>
                           <Component id="lbltenuser" pref="204" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="lbluser" min="-2" max="-2" attributes="0"/>
@@ -583,10 +577,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblthongbao" alignment="0" pref="39" max="32767" attributes="0"/>
-                              <Component id="lblchat" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lbluser" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lbltime" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lbluser" alignment="0" pref="39" max="32767" attributes="0"/>
                               <Component id="lbltieude" alignment="0" max="32767" attributes="0"/>
                               <Component id="lbltenuser" alignment="1" max="32767" attributes="0"/>
                           </Group>
@@ -614,34 +605,6 @@
                     <Property name="text" type="java.lang.String" value="T&#x1ed4;NG QUAN"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblthongbao">
-                  <Properties>
-                    <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/IMAGE/bell_24px.png"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lblchat">
-                  <Properties>
-                    <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/IMAGE/chat_22px.png"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lbltime">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial" size="14" style="1"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/IMAGE/clock_22px.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="TIME"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="lbluser">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="2"/>
@@ -655,11 +618,11 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="1"/>
                     </Property>
-                    <Property name="horizontalAlignment" type="int" value="4"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/IMAGE/chevron_down_15px.png"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="TRUNG NGUYEN"/>
+                    <Property name="horizontalAlignment" type="int" value="4"/>
+                    <Property name="text" type="java.lang.String" value="&#x110;&#x102;NG NH&#x1eac;P"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

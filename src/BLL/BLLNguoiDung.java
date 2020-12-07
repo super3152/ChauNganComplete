@@ -431,7 +431,7 @@ public class BLLNguoiDung {
         public static void SuaNguoiDung(DTONguoidung nd) {
         DAO.DAONguoiDung.SuaNhanVien(nd);
     }
-          public static boolean KiemTraPhatLuong(int MaNV, String NgayPhat, String SoNgayDiLam, String SoNgayNghi, String TienThuong, String TienPhat, String GhiChu, int MaLuong, String Tong) {
+          public static boolean KiemTraPhatLuong(int MaNV, String NgayPhat, String SoCaDiLam, String SoCaNghi, String TienThuong, String TienPhat, String GhiChu, int MaLuong, String Tong) {
         if (TienThuong.length() == 1) {
             ThongBaoCanhBao.ThongBao("Vui lòng phập tiền thưởng!", "Thông báo");
             return false;
@@ -483,7 +483,7 @@ public class BLLNguoiDung {
         }
 
 }
-               public static void HienThiNguoiDungTheoChucVuChamCong(JTable tbl, int thang, int nam) {
+             public static void HienThiNguoiDungTheoChucVuChamCong(JTable tbl, int thang, int nam) {
         ResultSet rs = DAO.DAONguoiDung.LayNguoiDungChamCongThangNam(thang, nam);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
@@ -521,7 +521,6 @@ public class BLLNguoiDung {
         
         
     }
-         
                
                
                public static void LayNhanVien(JTable tbl) {

@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import DTO.DTOLuong;
 import java.sql.ResultSet;
 
 /**
@@ -34,13 +35,13 @@ public class DAOPhatLuong {
         }
          public static int PhatLuong(DTO.DTOPhatLuong pl) {
         String cauTruyVan = "INSERT INTO `phatluong`"
-                + "(`idnguoidung`, `idluong`, `ngayphat`, `songaydilam`, `songaynghi`, `tienthuong`, `tienphat`, `tongluong`, `ghichu`)"
+                + "(`idnguoidung`, `idluong`, `ngayphat`, `socadilam`, `socanghi`, `tienthuong`, `tienphat`, `tongluong`, `ghichu`)"
                 + " VALUES "
                 + "('"+pl.getMaNV()+"',"
                 + "'"+pl.getMaLuong()+"',"
                 + "'"+pl.getNgayPhat()+"',"
-                + "'"+pl.getSoNgayDiLam()+"',"
-                + "'"+pl.getSoNgayNghi()+"',"
+                + "'"+pl.getSoCaDiLam()+"',"
+                + "'"+pl.getSoCaNghi()+"',"
                 + "'"+pl.getTienThuong()+"',"
                 + "'"+pl.getTienPhat()+"',"
                 + "'"+pl.getTongLuong()+"',"
@@ -49,4 +50,33 @@ public class DAOPhatLuong {
          return  DBConection.ExcuteTruyVan(cauTruyVan);
        
     }
+         
+         
+         public static int XoaLuong(int IDLuong) {
+        String query = "DELETE FROM `luong` WHERE `idluong` = '" + IDLuong + "'";
+        int kq = DBConection.ExcuteTruyVan(query);
+        return kq;
+    }
+          public static ResultSet HienThiLuong() {
+        String query = "SELECT * FROM `luong`";
+        ResultSet rs = DBConection.GetData(query);
+        return rs;
+    }
+    public static ResultSet LayLuong(String maluong) {
+        String query = "SELECT * FROM `luong` WHERE `idluong` like '%" + maluong + "%'";
+        ResultSet rs = DBConection.GetData(query);
+        return rs;
+    }
+    public static ResultSet LayLuongTheoID(String maluong) {
+        String query = "SELECT * FROM `luong` WHERE `idluong` = '" + maluong + "'";
+        ResultSet rs = DBConection.GetData(query);
+        return rs;
+    }
+      public static int ThemLuong(DTOLuong luong) {
+        String cauTruyVan = "INSERT INTO `luong`(`mucluong`,`mota`) VALUES ('"+luong.getTienluong()+"','"+luong.getMoTa()+"')";
+        System.out.println(cauTruyVan);
+        return DBConection.ExcuteTruyVan(cauTruyVan);
+    }
+         
+         
 }

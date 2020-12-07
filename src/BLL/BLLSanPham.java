@@ -27,10 +27,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Hashtable;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
@@ -194,7 +198,7 @@ public class BLLSanPham {
         try {
             while (rs.next()) {
                 obj[0] = rs.getString("masanpham");
-                obj[1] = rs.getString("tensanpham");
+                obj[1] = rs.getString("tensanpham")+" - "+rs.getString("masanpham");
                 int MaLoaiSanPham = rs.getInt("idloaisanpham");
                 ResultSet rsLSP = DAO.DAOSanPham.LayLoaiSanPham(MaLoaiSanPham);
                 if (rsLSP.next()) {
@@ -252,6 +256,38 @@ public class BLLSanPham {
             ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng Sản Phẩm", "Thông báo");
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     public static void HienThiSanPhamBanHang(JTable tbl, String tensp) {
+
+      
+        ResultSet rs = DAO.DAOSanPham.LayTenSanPham2(tensp);
+        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
+        tbModel.setRowCount(0);
+        Object obj[] = new Object[1];
+        try {
+            while (rs.next()) {
+                obj[0] = rs.getString("tensanpham");
+                tbModel.addRow(obj);
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu", "Thông báo");
+        }
+    }
+    
+    
+    
+    
+    
+    
 
     public static class mytable implements TableCellRenderer {
 
@@ -402,20 +438,27 @@ public class BLLSanPham {
 
     public static void DoDuLieucbbMauSanPham(JComboBox cbbMauSanPham) {
         ResultSet rs = DAO.DAOMauSanPham.LayMauSanPham("");
+     
         DefaultComboBoxModel cbbModel = (DefaultComboBoxModel) cbbMauSanPham.getModel();
         cbbModel.removeAllElements();
         try {
             while (rs.next()) {
-                Object IdMau = rs.getString("idmausanpham");
-                Object TenMau = rs.getString("tenmausanpham");
-                MyCombobox mb = new MyCombobox(TenMau, IdMau);
+                Object idmau = rs.getString("idmausanpham");
+                Object tenmau = rs.getString("tenmausanpham");
+                MyCombobox mb = new MyCombobox(tenmau, idmau);
                 cbbModel.addElement(mb);
             }
         } catch (SQLException ex) {
-            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu cbb Màu sản phẩm", "Thông Báo");
-            
+            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu cbb màu sản phẩm", "Thông Báo");           
         }
     }
+    
+    
+//    private void searchfil(String serach){
+//        DefaultListModel filitem = new DefaultListModel();
+//        String 
+//        cbbMauSanPham.setModel(listModel);
+//    }
 
     public static void DoDuLieucbbKeSanPham(JComboBox cbbKeSanPham) {
         ResultSet rs = DAO.DAOKe.LayKe("");
@@ -548,30 +591,33 @@ public class BLLSanPham {
         }
     }
 
-    public static boolean SuaSP(String TenSP, String NgayTao, String MoTa,
-            String MaSP, String GiaBanLe, String GiaBanBuon, String GiaNhap,
-            String KhoiLuong, String DonViTinh, String TonKho,
-            int IDLoaiSP, int IDHangSP, String ThuocTinhKhachHang,
-            int IDSize, int IDMau, int IDKe , int IDSanPham ) {
+    public static boolean suaSP( String tenSP, String ngayTao, String moTa,
+            String MaSP, String giaBanLe, String giaBanBuon, String giaNhap,
+            String khoiLuong, String donViTinh, String tonKho,
+            int idLoaiSP, int idHangSP, 
+             int idSize, int idMau, int idKe, int IDsanpham) {
 
-        sp.setTenSanPham(TenSP);
-        sp.setNgayTao(NgayTao);
-        sp.setMoTaSanPham(MoTa);
+        
+        sp.setTenSanPham(tenSP);
+        sp.setNgayTao(ngayTao);
+        sp.setMoTaSanPham(moTa);
         sp.setMaSanPham(MaSP);
-        sp.setGiaBanLe(Double.parseDouble(GiaBanLe));
-        sp.setGiaBanBuon(Double.parseDouble(GiaBanBuon));
-        sp.setGiaNhap(Double.parseDouble(GiaNhap));
-        sp.setKhoiLuong(Integer.parseInt(KhoiLuong));
-        sp.setDonViTinh(DonViTinh);
-        sp.setTonKho(Integer.parseInt(TonKho));
-        sp.setIDLoaiSanPham(IDLoaiSP);
-        sp.setIDHangSanPham(IDHangSP);
-        sp.setThuocTinhKhachHang(ThuocTinhKhachHang);
-        sp.setIDSize(IDSize);
-        sp.setIDMauSanPham(IDMau);
-        sp.setIDKe(IDKe);
-        sp.setIDSanPham(IDSanPham);
+        sp.setGiaBanLe(Double.parseDouble(giaBanLe));
+        sp.setGiaBanBuon(Double.parseDouble(giaBanBuon));
+        sp.setGiaNhap(Double.parseDouble(giaNhap));
+        sp.setKhoiLuong(Integer.parseInt(khoiLuong));
+        sp.setDonViTinh(donViTinh);
+        sp.setTonKho(Integer.parseInt(tonKho));
+        sp.setIDLoaiSanPham(idLoaiSP);
+        sp.setIDHangSanPham(idHangSP);
+        sp.setIDSize(idSize);
+        sp.setIDMauSanPham(idMau);
+        sp.setIDKe(idKe);
+        sp.setIDSanPham(IDsanpham);
+          System.out.println(sp);
         DAO.DAOSanPham.suaSP(sp);
+          System.out.println(sp);
+        System.out.println(sp);
         return true;
     }
 
@@ -594,6 +640,7 @@ public class BLLSanPham {
         }
 
     }
+    
 
     public static void HienThiMau(JTable tbl) {
 
@@ -612,5 +659,26 @@ public class BLLSanPham {
         } catch (SQLException ex) {
             ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng màu", "Thông báo");
         }
+    }
+    
+    
+    public static void HienThiLuong(JTable tbl) {
+
+        ResultSet rs = DAO.DAOPhatLuong.HienThiLuong();
+        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
+        tbModel.setRowCount(0);
+        Object obj[] = new Object[3];
+        try {
+            while (rs.next()) {
+                obj[0] = rs.getInt("idluong");
+                obj[1] = ChuyenDoi.DinhDangTien(rs.getDouble("mucluong"));
+                obj[2] = rs.getString("mota");
+                tbModel.addRow(obj);
+
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng lương", "Thông báo");
+        }
+
     }
 }

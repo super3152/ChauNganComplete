@@ -30,7 +30,7 @@ public class jdlSizeColor extends javax.swing.JDialog {
 
         }
         initComponents();
-        DBConection db = new DBConection();
+      
          BLL.BLLSanPham.DoDuLieucbbMauSanPham(cbbMau);
         
         BLL.BLLSanPham.DoDuLieucbbSizeSanPham(cbbSize);

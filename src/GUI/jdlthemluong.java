@@ -5,8 +5,10 @@
  */
 package GUI;
 
+import DAO.DBConection;
+import DTO.DTOLuong;
 import DTO.DTOSize;
-import static GUI.jdlSizeColor.cbbSize;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -14,15 +16,16 @@ import javax.swing.JOptionPane;
  *
  * @author KMB1604
  */
-public class jdlthemsize extends javax.swing.JDialog {
+public class jdlthemluong extends javax.swing.JDialog {
 
     /**
      * Creates new form jdlthemsize
      */
-    public jdlthemsize(java.awt.Frame parent, boolean modal) {
+    public jdlthemluong(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        BLL.BLLSanPham.HienThiSize(tblsize);
+      
+        BLL.BLLSanPham.HienThiLuong(tblluong);
     }
 
     /**
@@ -40,13 +43,13 @@ public class jdlthemsize extends javax.swing.JDialog {
         jSeparator2 = new javax.swing.JSeparator();
         jPanel38 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        txtTenSize = new javax.swing.JTextField();
+        txtTienluong = new javax.swing.JTextField();
         jButton24 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblsize = new javax.swing.JTable();
+        tblluong = new javax.swing.JTable();
         jButton26 = new javax.swing.JButton();
         jButton27 = new javax.swing.JButton();
         jPanel39 = new javax.swing.JPanel();
@@ -64,17 +67,17 @@ public class jdlthemsize extends javax.swing.JDialog {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Thêm Size");
+        jLabel4.setText("Thêm Tiền Lương");
         jLabel4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         jPanel38.setBackground(new java.awt.Color(255, 255, 255));
         jPanel38.setLayout(new java.awt.BorderLayout());
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Tên Size");
+        jLabel14.setText("Số tiền");
         jLabel14.setPreferredSize(new java.awt.Dimension(106, 20));
         jPanel38.add(jLabel14, java.awt.BorderLayout.PAGE_START);
-        jPanel38.add(txtTenSize, java.awt.BorderLayout.CENTER);
+        jPanel38.add(txtTienluong, java.awt.BorderLayout.CENTER);
 
         jButton24.setText("Thêm");
         jButton24.addActionListener(new java.awt.event.ActionListener() {
@@ -92,10 +95,10 @@ public class jdlthemsize extends javax.swing.JDialog {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("BẢNG SIZE");
+        jLabel6.setText("BẢNG TIỀN LƯƠNG");
         jLabel6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        tblsize.setModel(new javax.swing.table.DefaultTableModel(
+        tblluong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -103,7 +106,7 @@ public class jdlthemsize extends javax.swing.JDialog {
                 {null, null, null}
             },
             new String [] {
-                "ID Size", "Tên Size", "Mô tả"
+                "ID", "Tiền lương", "Mô tả"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -114,9 +117,9 @@ public class jdlthemsize extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tblsize);
+        jScrollPane2.setViewportView(tblluong);
 
-        jButton26.setText("Xóa size");
+        jButton26.setText("Xóa lương");
         jButton26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton26ActionPerformed(evt);
@@ -134,7 +137,7 @@ public class jdlthemsize extends javax.swing.JDialog {
         jPanel39.setLayout(new java.awt.BorderLayout());
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Mô tả size");
+        jLabel15.setText("Mô tả ");
         jLabel15.setPreferredSize(new java.awt.Dimension(106, 20));
         jPanel39.add(jLabel15, java.awt.BorderLayout.PAGE_START);
         jPanel39.add(txtMoTa, java.awt.BorderLayout.CENTER);
@@ -146,22 +149,20 @@ public class jdlthemsize extends javax.swing.JDialog {
             .addGroup(jPanel37Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator2)
                     .addComponent(jPanel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel37Layout.createSequentialGroup()
-                        .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel37Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel37Layout.createSequentialGroup()
-                        .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton27, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
                     .addComponent(jPanel39, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -185,7 +186,7 @@ public class jdlthemsize extends javax.swing.JDialog {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton26, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(jButton27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -207,7 +208,9 @@ public class jdlthemsize extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,14 +222,15 @@ public class jdlthemsize extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-           String TenSize = txtTenSize.getText();
+           Double TenLuong = Double.parseDouble(txtTienluong.getText()) ;
             String mota = txtMoTa.getText();
-        if (BLL.BLLSanPham.KiemTraThemSize(TenSize,mota)){
-            DTOSize size = new DTOSize(TenSize);
-            BLL.BLLSanPham.ThemSize(size);
-            ThongBaoCanhBao.ThongBao("Thêm size thành công", "Thông báo");
-             BLL.BLLSanPham.DoDuLieucbbSizeSanPham(GUI.pnlsanpham.cbbsize);
-            this.dispose();
+        if (BLL.BLLPhatLuong.KiemTraThemLuong(TenLuong,mota)){
+            DTOLuong TienLuong = new DTOLuong(TenLuong, mota);
+            BLL.BLLPhatLuong.ThemLuong(TienLuong);
+            ThongBaoCanhBao.ThongBao("Thêm tiền lương thành công", "Thông báo");
+            BLL.BLLSanPham.HienThiLuong(tblluong);
+           BLL.BLLNguoiDung.DoDuLieuVaoCBBLuong(pnlnhanvien.cbbLuongPL);
+          
         }
     }//GEN-LAST:event_jButton24ActionPerformed
 
@@ -238,16 +242,17 @@ public class jdlthemsize extends javax.swing.JDialog {
       
          
          
-          int kq = JOptionPane.showConfirmDialog(new JFrame(), "Xác nhận xóa size này không?",
+          int kq = JOptionPane.showConfirmDialog(new JFrame(), "Xác nhận xóa luơng này không?",
                 "Thông báo xác nhận", JOptionPane.YES_NO_OPTION);
         if (kq == JOptionPane.YES_OPTION) {
-          int cacDong[] = tblsize.getSelectedRows();
+          int cacDong[] = tblluong.getSelectedRows();
             for (int i = 0; i < cacDong.length; i++) {
-                int XoaSize = Integer.parseInt(tblsize.getValueAt(cacDong[i], 0).toString());
-                DAO.DAOSanPham.XoaSize(XoaSize);
+                int XoaLuong = Integer.parseInt(tblluong.getValueAt(cacDong[i], 0).toString());
+                DAO.DAOPhatLuong.XoaLuong(XoaLuong);
             }
         }
-       BLL.BLLSanPham.HienThiSize(tblsize);
+         BLL.BLLSanPham.HienThiLuong(tblluong);
+       BLL.BLLNguoiDung.DoDuLieuVaoCBBLuong(pnlnhanvien.cbbLuongPL);
          
          
          
@@ -275,20 +280,21 @@ public class jdlthemsize extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jdlthemsize.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jdlthemluong.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jdlthemsize.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jdlthemluong.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jdlthemsize.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jdlthemluong.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jdlthemsize.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jdlthemluong.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                jdlthemsize dialog = new jdlthemsize(new javax.swing.JFrame(), true);
+                jdlthemluong dialog = new jdlthemluong(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -316,8 +322,8 @@ public class jdlthemsize extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable tblsize;
+    private javax.swing.JTable tblluong;
     private javax.swing.JTextField txtMoTa;
-    private javax.swing.JTextField txtTenSize;
+    private javax.swing.JTextField txtTienluong;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.DTOSanPham;
+import GUI.pnlsanpham;
 import static GUI.pnlsanpham.tblThemThuocTinh;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
@@ -60,6 +61,11 @@ public class DAOSanPham {
     }
     public static ResultSet LayTenSanPham() {
         String query = "SELECT DISTINCT tensanpham FROM sanpham";
+        ResultSet rs = DBConection.GetData(query);
+        return rs;
+    }
+     public static ResultSet LayTenSanPham2(String tensp) {
+        String query = "SELECT DISTINCT tensanpham FROM sanpham where tensanpham like '%" + tensp + "%' ";
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
@@ -212,10 +218,40 @@ public class DAOSanPham {
         return rs;
     }
 
+   
     public static void suaSP(DTO.DTOSanPham sp) {
-         if(ImagePast == null){
+         if(ImagePast2 == null){
         try {  
-           pst = DBConection.conn.prepareStatement ("UPDATE sanpham SET tensanpham = ?,ngaytao = ?,masanpham = ?,motasanpham = ?,giabanle = ?,giabanbuon = ?,gianhap = ?,khoiluong = ?,donvitinh = ?,tonkho = ?,idloaisanpham = ?,idhangsanpham = ?,thuoctinhkhachhang = ?,idsizesanpham = ?,idmausanpham = ?,idke = ?"+ " WHERE idsanpham = ?");
+           pst = DBConection.conn.prepareStatement ("UPDATE sanpham SET tensanpham = ?,ngaytao = ?,masanpham = ?,motasanpham = ?,giabanle = ?,giabanbuon = ?,gianhap = ?,khoiluong = ?,donvitinh = ?,tonkho = ?,idloaisanpham = ?,idhangsanpham = ?,idsizesanpham = ?,idmausanpham = ?,idke = ?"+ " WHERE idsanpham = ?");
+           
+               pst.setString(1, sp.getTenSanPham());
+              pst.setString(2, sp.getNgayTao());
+              pst.setString(3, sp.getMaSanPham());
+              pst.setString(4, sp.getMoTaSanPham());
+              pst.setDouble(5, sp.getGiaBanLe());
+              pst.setDouble(6, sp.getGiaBanBuon());
+              pst.setDouble(7, sp.getGiaNhap());
+              pst.setInt(8, sp.getKhoiLuong());
+              pst.setString(9, sp.getDonViTinh());
+              pst.setInt(10, sp.getTonKho());
+              pst.setInt(11, sp.getIDLoaiSanPham());
+              pst.setInt(12, sp.getIDHangSanPham());
+            
+             
+               pst.setInt(13, sp.getIDSize());
+              pst.setInt(14, sp.getIDMauSanPham());
+              pst.setInt(15, sp.getIDKe());
+               pst.setInt(16, sp.getIDSanPham());
+           
+            pst.executeUpdate();
+            System.out.println(pst);
+        } catch (SQLException ex) {
+             System.out.println(pst);
+            System.out.println("Lỗi lấy dữ liệu 1");
+        }  
+         }else{
+              try {  
+           pst = DBConection.conn.prepareStatement ("UPDATE sanpham SET tensanpham = ?,ngaytao = ?,masanpham = ?,motasanpham = ?,giabanle = ?,giabanbuon = ?,gianhap = ?,khoiluong = ?,donvitinh = ?,tonkho = ?,idloaisanpham = ?,idhangsanpham = ?,anhsanpham = ?,idsizesanpham = ?,idmausanpham = ?,idke = ?"+ " WHERE idsanpham = ?");
            
               pst.setString(1, sp.getTenSanPham());
               pst.setString(2, sp.getNgayTao());
@@ -229,8 +265,9 @@ public class DAOSanPham {
               pst.setInt(10, sp.getTonKho());
               pst.setInt(11, sp.getIDLoaiSanPham());
               pst.setInt(12, sp.getIDHangSanPham());
-              pst.setString(13, sp.getThuocTinhKhachHang());
              
+             InputStream img = new FileInputStream(new File(ImagePast2));
+              pst.setBlob(13, img);
               pst.setInt(14, sp.getIDSize());
               pst.setInt(15, sp.getIDMauSanPham());
               pst.setInt(16, sp.getIDKe());
@@ -240,39 +277,9 @@ public class DAOSanPham {
             System.out.println(pst);
         } catch (SQLException ex) {
              System.out.println(pst);
-            System.out.println("Lỗi lấy dữ liệu");
-        }  
-         }else{
-              try {  
-           pst = DBConection.conn.prepareStatement ("UPDATE sanpham SET tensanpham = ?,ngaytao = ?,masanpham = ?,motasanpham = ?,giabanle = ?,giabanbuon = ?,gianhap = ?,khoiluong = ?,donvitinh = ?,tonkho = ?,idloaisanpham = ?,idhangsanpham = ?,thuoctinhkhachhang = ?,anhsanpham = ?,idsizesanpham = ?,idmausanpham = ?,idke = ?"+ " WHERE idsanpham = ?");
-           
-              pst.setString(1, sp.getTenSanPham());
-              pst.setString(2, sp.getNgayTao());
-              pst.setString(3, sp.getMaSanPham());
-              pst.setString(4, sp.getMoTaSanPham());
-              pst.setDouble(5, sp.getGiaBanLe());
-              pst.setDouble(6, sp.getGiaBanBuon());
-              pst.setDouble(7, sp.getGiaNhap());
-              pst.setInt(8, sp.getKhoiLuong());
-              pst.setString(9, sp.getDonViTinh());
-              pst.setInt(10, sp.getTonKho());
-              pst.setInt(11, sp.getIDLoaiSanPham());
-              pst.setInt(12, sp.getIDHangSanPham());
-              pst.setString(13, sp.getThuocTinhKhachHang());
-             InputStream img = new FileInputStream(new File(ImagePast));
-              pst.setBlob(14, img);
-              pst.setInt(15, sp.getIDSize());
-              pst.setInt(16, sp.getIDMauSanPham());
-              pst.setInt(17, sp.getIDKe());
-               pst.setInt(18, sp.getIDSanPham());
-           
-            pst.executeUpdate();
-            System.out.println(pst);
-        } catch (SQLException ex) {
-             System.out.println(pst);
-            System.out.println("Lỗi lấy dữ liệu");
+            System.out.println("Lỗi lấy dữ liệu 2");
         }  catch(FileNotFoundException e){
-            System.out.println("Fail");
+            System.out.println("fail");
         }
          }
         return;
@@ -292,6 +299,20 @@ public class DAOSanPham {
         ImageIcon image = new ImageIcon(img2);
         return image;   
     }
+     public static  String ImagePast2=null;
+     public static ImageIcon ResizeImage2(String imagePath,byte[] pic){
+        ImageIcon myImage = null;
+        if(imagePath != null){
+            myImage = new ImageIcon(imagePath);
+        }else{
+            myImage = new ImageIcon(pic);
+        }
+        Image img = myImage.getImage();
+        Image img2 = img.getScaledInstance(pnlsanpham.lblAnhsanphamsua.getWidth(), pnlsanpham.lblAnhsanphamsua.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(img2);
+        return image;   
+    }
+    
     
 //
 //public static void clickrun2(){

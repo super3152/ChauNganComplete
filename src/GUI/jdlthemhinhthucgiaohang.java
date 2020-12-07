@@ -36,7 +36,7 @@ public class jdlthemhinhthucgiaohang extends javax.swing.JDialog {
         } catch (Exception ex) {
         }
         initComponents();
-        DBConection db = new DBConection();
+       
             HienThiHinhThucGH(tblHinhthuc);
     }
 
