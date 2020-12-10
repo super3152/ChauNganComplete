@@ -200,7 +200,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
         btntongquan.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btntongquan.setForeground(new java.awt.Color(255, 255, 255));
-        btntongquan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/home.jpg"))); // NOI18N
+        btntongquan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/home.jpg"))); // NOI18N
         btntongquan.setText("  TỔNG QUAN");
         btntongquan.setToolTipText("");
         btntongquan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -220,7 +220,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
         btnbanhang.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnbanhang.setForeground(new java.awt.Color(255, 255, 255));
-        btnbanhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/banhang.jpg"))); // NOI18N
+        btnbanhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/banhang.jpg"))); // NOI18N
         btnbanhang.setText("BÁN HÀNG");
         btnbanhang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnbanhang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -239,7 +239,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
         btnsanpham.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnsanpham.setForeground(new java.awt.Color(255, 255, 255));
-        btnsanpham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/sanpham.jpg"))); // NOI18N
+        btnsanpham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/sanpham.jpg"))); // NOI18N
         btnsanpham.setText("SẢN PHẨM");
         btnsanpham.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnsanpham.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -253,7 +253,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
         btndonhang.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btndonhang.setForeground(new java.awt.Color(255, 255, 255));
-        btndonhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/donhang.jpg"))); // NOI18N
+        btndonhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/donhang.jpg"))); // NOI18N
         btndonhang.setText(" ĐƠN HÀNG");
         btndonhang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btndonhang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -272,7 +272,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
         btnkhachhang.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnkhachhang.setForeground(new java.awt.Color(255, 255, 255));
-        btnkhachhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/khachhang.jpg"))); // NOI18N
+        btnkhachhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/khachhang.jpg"))); // NOI18N
         btnkhachhang.setText("     KHÁCH HÀNG");
         btnkhachhang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnkhachhang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -286,7 +286,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
         btnhanghoa.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnhanghoa.setForeground(new java.awt.Color(255, 255, 255));
-        btnhanghoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/hanghoa.jpg"))); // NOI18N
+        btnhanghoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/hanghoa.jpg"))); // NOI18N
         btnhanghoa.setText("HÀNG HÓA");
         btnhanghoa.setToolTipText("");
         btnhanghoa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -301,7 +301,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
         btntragop.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btntragop.setForeground(new java.awt.Color(255, 255, 255));
-        btntragop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/tragop.jpg"))); // NOI18N
+        btntragop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/tragop.jpg"))); // NOI18N
         btntragop.setText("NHÂN VIÊN");
         btntragop.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btntragop.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -320,7 +320,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
         btnthongke.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnthongke.setForeground(new java.awt.Color(255, 255, 255));
-        btnthongke.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/thongke.jpg"))); // NOI18N
+        btnthongke.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/thongke.jpg"))); // NOI18N
         btnthongke.setText("THỐNG KÊ ");
         btnthongke.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnthongke.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -334,7 +334,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
         btnwebsite.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnwebsite.setForeground(new java.awt.Color(255, 255, 255));
-        btnwebsite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/web.jpg"))); // NOI18N
+        btnwebsite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/web.jpg"))); // NOI18N
         btnwebsite.setText("WEBSITE   ");
         btnwebsite.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnwebsite.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -353,7 +353,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
         btnfanpage.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnfanpage.setForeground(new java.awt.Color(255, 255, 255));
-        btnfanpage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/fb.jpg"))); // NOI18N
+        btnfanpage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/fb.jpg"))); // NOI18N
         btnfanpage.setText("FANPAGE  ");
         btnfanpage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnfanpage.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1185,11 +1185,8 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             }
 
             if (result != null) {
-                txtIDnhanvien.setText(result.getText());
-              
-                       try{
-                
-                
+                txtIDnhanvien.setText(result.getText());              
+                       try{       
         DTOChamCong cc = BLL.BLLChamCong.GetCC(Integer.parseInt(result.getText() ));
         int Socachamcong1 =  cc.getSocachamcong();
         String tennguoidung = cc.getTennguoidung();
@@ -1204,7 +1201,6 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
         String formatedTimeStH = formatTimeH.format(currenTime);
         int giohientai = Integer.parseInt(formatedTimeStH);
         System.out.println(giohientai);
-
         if (giohientai < 715) {
             ThongBaoCanhBao.ThongBao("Thời gian nghỉ", "Thông báo");
         }

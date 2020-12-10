@@ -145,7 +145,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/button/home.jpg"/>
+                  <Image iconType="3" name="/IMAGE/home.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="  T&#x1ed4;NG QUAN"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -166,7 +166,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/button/banhang.jpg"/>
+                  <Image iconType="3" name="/IMAGE/banhang.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B&#xc1;N H&#xc0;NG"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -186,7 +186,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/button/sanpham.jpg"/>
+                  <Image iconType="3" name="/IMAGE/sanpham.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="S&#x1ea2;N PH&#x1ea8;M"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -205,7 +205,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/button/donhang.jpg"/>
+                  <Image iconType="3" name="/IMAGE/donhang.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value=" &#x110;&#x1a0;N H&#xc0;NG"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -225,7 +225,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/button/khachhang.jpg"/>
+                  <Image iconType="3" name="/IMAGE/khachhang.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="     KH&#xc1;CH H&#xc0;NG"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -244,7 +244,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/button/hanghoa.jpg"/>
+                  <Image iconType="3" name="/IMAGE/hanghoa.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="H&#xc0;NG H&#xd3;A"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -264,7 +264,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/button/tragop.jpg"/>
+                  <Image iconType="3" name="/IMAGE/tragop.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="NH&#xc2;N VI&#xca;N"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -284,7 +284,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/button/thongke.jpg"/>
+                  <Image iconType="3" name="/IMAGE/thongke.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="TH&#x1ed0;NG K&#xca; "/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -303,7 +303,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/button/web.jpg"/>
+                  <Image iconType="3" name="/IMAGE/web.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="WEBSITE   "/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -323,7 +323,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/button/fb.jpg"/>
+                  <Image iconType="3" name="/IMAGE/fb.jpg"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="FANPAGE  "/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
