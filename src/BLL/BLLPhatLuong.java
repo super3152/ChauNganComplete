@@ -24,7 +24,7 @@ public class BLLPhatLuong {
         ResultSet rs = DAO.DAOPhatLuong.Layphatluong();
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
            tbModel.setRowCount(0);
-        Object obj[] = new Object[10];
+        Object obj[] = new Object[11];
         try {
             while(rs.next()){
                 obj[0]= rs.getInt("idphatluong");
@@ -33,22 +33,28 @@ public class BLLPhatLuong {
                 if (rsnv.next()) {
                      obj[1]= rsnv.getString("tennguoidung");
                 }
+                
+                obj[2]= rs.getInt("thangphatluong")+" - "+rs.getInt("namphatluong"); 
+                 
                 int MaLuong = rs.getInt("idluong");
                 ResultSet rsluong = DAO.DAOPhatLuong.Layluong(MaLuong);
                 if (rsluong.next()) {
-                    obj[2]= ChuyenDoi.DinhDangTien(rsluong.getDouble("mucluong"));
+                    obj[3]= ChuyenDoi.DinhDangTien(rsluong.getDouble("mucluong"));
                 }
-                obj[3]=ChuyenDoi.GetDate(rs.getString("ngayphat"));
-                obj[4] = rs.getInt("socadilam");
-                obj[5]= rs.getInt("socanghi");
-                obj[6]=ChuyenDoi.DinhDangTien(rs.getDouble("tienthuong"));
-                obj[7] = ChuyenDoi.DinhDangTien(rs.getDouble("tienphat"));
-                obj[8]= ChuyenDoi.DinhDangTien(rs.getDouble("tongluong"));
-                obj[9]= rs.getString("ghichu");
+                
+                
+                obj[4]=ChuyenDoi.DinhDangNgay(rs.getDate("ngayphat"));
+                obj[5] = rs.getInt("socadilam");
+                obj[6]= rs.getInt("socanghi");
+                obj[7]=ChuyenDoi.DinhDangTien(rs.getDouble("tienthuong"));
+                obj[8] = ChuyenDoi.DinhDangTien(rs.getDouble("tienphat"));
+                obj[9]= ChuyenDoi.DinhDangTien(rs.getDouble("tongluong"));
+                obj[10]= rs.getString("ghichu");
               tbModel.addRow(obj);
             }
         } catch (SQLException e) {
                 ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng phát lương", "Thông báo");
+                System.out.println(e);
         }
     }
     
@@ -65,5 +71,24 @@ public class BLLPhatLuong {
         }
         return true;
     }
+    
+    
+      public static void CheckPhatLuong(JTable tbl, int idnhanvien, int thang, int nam){
+        ResultSet rs = DAO.DAONguoiDung.LayNhanVienCBBDaPhat(idnhanvien, thang, nam);
+        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
+           tbModel.setRowCount(0);
+        Object obj[] = new Object[1];
+        try {
+            while(rs.next()){
+                obj[0]= rs.getInt(1);
+              tbModel.addRow(obj);
+            }
+        } catch (SQLException e) {
+                ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng phát lương", "Thông báo");
+                System.out.println(e);
+        }
+    }
+      
+     
     
 }

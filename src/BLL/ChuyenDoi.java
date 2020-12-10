@@ -49,7 +49,9 @@ public class ChuyenDoi {
         try {
             return NumberFormat.getNumberInstance().parse(tien).doubleValue();
         } catch (ParseException ex) {
-            ThongBaoCanhBao.ThongBao("Sai định dạng tiền","Thông báo");
+            if (tien.equals("")) {
+                tien = "0";
+            }
         }
         return 0 ;
     }
@@ -57,7 +59,9 @@ public class ChuyenDoi {
         try {
             return NumberFormat.getNumberInstance().parse(so).intValue();
         } catch (ParseException ex) {
-            ThongBaoCanhBao.ThongBao("Sai định dạng số","Thông báo");
+            if (so.equals("")) {
+                so = "0";
+            }
         }
         return 0 ;
     }

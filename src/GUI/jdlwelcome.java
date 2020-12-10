@@ -21,8 +21,13 @@ import javax.swing.UIManager;
  *
  * @author ADMIN
  */
+
 public class jdlwelcome extends javax.swing.JFrame {
-int index;
+    
+ 
+    
+    int index;
+
     /**
      * Creates new form login
      */
@@ -44,7 +49,11 @@ int index;
    
      
     }
-   
+    public static void open(){
+        
+    }
+  
+  
   
        
   
@@ -59,11 +68,8 @@ public void Start(){
                 pgbLoading.setValue(index);
                 if (index == 150) {
                     ((Timer) e.getSource()).stop();
-                     
-                     DBConection db = new DBConection();
-                     
-                  
                    
+                     
                     showjdlDangNhap();
                   
                 }
@@ -73,13 +79,11 @@ public void Start(){
         t.start();
     }
 
-void showjdlDangNhap(){
+public void showjdlDangNhap(){
      
        while (true) {            
         if (DBConection.conn != null) {
-           
-         this.dispose();
-        
+            this.dispose();   
            jdllogin jdl = new jdllogin();
            jdl.setVisible(true);
            
@@ -142,8 +146,8 @@ void showjdlDangNhap(){
         lblLoad.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblLoad.setForeground(new java.awt.Color(255, 255, 255));
         lblLoad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLoad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/Infinity-1s-40px.gif"))); // NOI18N
-        lblLoad.setText("Đang kết nối . . .");
+        lblLoad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/download_from_ftp_25px.png"))); // NOI18N
+        lblLoad.setText(" Đang load dữ liệu, vui lòng đợi ít giây . . .");
         pnlNenChao.add(lblLoad);
         lblLoad.setBounds(0, 360, 600, 30);
 
@@ -213,11 +217,12 @@ void showjdlDangNhap(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-     
+      
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-     
+           DBConection db = new DBConection();
+        LoadDatabase db2 = new LoadDatabase();
     }//GEN-LAST:event_formWindowOpened
 
         

@@ -100,7 +100,6 @@
                   <Component id="btnthongke" min="-2" pref="200" max="-2" attributes="0"/>
                   <Component id="btnwebsite" min="-2" pref="200" max="-2" attributes="0"/>
                   <Component id="btnfanpage" min="-2" pref="200" max="-2" attributes="0"/>
-                  <Component id="btncauhinh" min="-2" pref="200" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="200" max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -128,9 +127,7 @@
                       <Component id="btnwebsite" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                       <Component id="btnfanpage" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                      <Component id="btncauhinh" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                       <Component id="jLabel2" pref="19" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" pref="60" max="-2" attributes="0"/>
@@ -139,25 +136,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btncauhinh">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="14" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/button/caidat.jpg"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="C&#x1ea4;U H&#xcc;NH  "/>
-                <Property name="horizontalTextPosition" type="int" value="0"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btncauhinhMouseEntered"/>
-                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btncauhinhMouseExited"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="btntongquan">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -430,6 +408,7 @@
                         <Property name="text" type="java.lang.String" value="  &#x110;&#x102;NG XU&#x1ea4;T"/>
                       </Properties>
                       <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbldangxuat2MouseClicked"/>
                         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbldangxuat2lbldangxuatMouseEntered"/>
                         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbldangxuat2lbldangxuatMouseExited"/>
                       </Events>

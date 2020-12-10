@@ -1304,7 +1304,8 @@ public static int MaHD2;
  public static int so = 1;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-           
+
+        
    so++;
    
       JPanel  buttonPanel = new JPanel();
@@ -1360,7 +1361,11 @@ buttonPanel.setSize(new Dimension(974, 587));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnChonSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonSPActionPerformed
-         if (cbbSize.getSelectedItem().equals("Size")) {
+        if (jTable1.getSelectedRow() < 1) {
+          ThongBaoCanhBao.ThongBao("Vui lòng chọn sản phẩm", "Thông báo");
+
+        }else{
+               if (cbbSize.getSelectedItem().equals("Size")) {
             ThongBaoCanhBao.ThongBao("Vui lòng chọn size sản phẩm để mua hàng", "Thông Báo");
             return;
         }
@@ -1427,7 +1432,8 @@ buttonPanel.setSize(new Dimension(974, 587));
         cbbMau.removeAllItems();
         cbbMau.addItem("Màu");
 
-
+        }
+       
 
     }//GEN-LAST:event_btnChonSPActionPerformed
 
@@ -1571,7 +1577,7 @@ buttonPanel.setSize(new Dimension(974, 587));
                 if (pageIndex > 0) {
                     return Printable.NO_SUCH_PAGE;
                 }
-                    String s = new Date().toString();
+                   
                 // Make 2D Graphics to map content
                 Graphics2D graphics2D = (Graphics2D) graphics;
                 // Set Graphics Translations
@@ -1579,10 +1585,7 @@ buttonPanel.setSize(new Dimension(974, 587));
                 graphics2D.translate(pageFormat.getImageableX() + 10, pageFormat.getImageableY() + 10);
                 // This is a page scale. Default should be 0.3 I am using 0.5
                 graphics2D.scale(0.4, 0.4);
-                Rectangle r = graphics2D.getClipBounds();
-            int dw = graphics2D.getFontMetrics().stringWidth(s);
-            int dh = graphics2D.getFontMetrics().getHeight();
-                graphics2D.drawString(s, r.x + r.width - dw, r.y + r.height - dh);
+              
                 // Now paint panel as graphics2D
                 label.paint(graphics2D);
 

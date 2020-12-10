@@ -19,21 +19,21 @@ public class BLLlogin {
     public static boolean Checklogin(String username, String password) {
             if (username.trim().length() < 5) {
             //Thông báo
-            ThongBaoCanhBao.ThongBao("Tên đăng nhập chưa hợp lệ", "Thông báo đăng nhập");
+            ThongBaoCanhBao.ThongBao("Tên đăng nhập chưa hợp lệ, vui lòng kiểm tra"+"\n"+" thông tin và đăng nhập lại sau 5 giây", "Thông báo đăng nhập");
             return false;
         }
         if (password.trim().length() < 5) {
-            ThongBaoCanhBao.ThongBao("Mật khẩu chưa hợp lệ", "Thông báo đăng nhập");
+            ThongBaoCanhBao.ThongBao("Mật khẩu chưa hợp lệ, vui lòng kiểm tra"+"\n"+" thông tin và đăng nhập lại sau 5 giây", "Thông báo đăng nhập");
             return false;
         }
         ResultSet rs = DAO.DAONguoiDung.DangNhap(username);
         try {
             if (!rs.next()) {
-                ThongBaoCanhBao.ThongBao("Tên đăng nhập không đúng", "Thông báo");
+                ThongBaoCanhBao.ThongBao("Tên đăng nhập không đúng, vui lòng kiểm tra"+"\n"+" thông tin và đăng nhập lại sau 5 giây", "Thông báo");
                 return false;
             } else {
                 if (!rs.getString("matkhau").equals(password)) {
-                    ThongBaoCanhBao.ThongBao("Mật khẩu không đúng", "Thông báo");
+                    ThongBaoCanhBao.ThongBao("Mật khẩu không đúng, vui lòng kiểm tra"+"\n"+" thông tin và đăng nhập lại sau 5 giây", "Thông báo");
                     return false;
                 } else {
                     nguoidung.setAnhDaiDien(rs.getString("anhdaidien"));

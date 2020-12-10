@@ -20,10 +20,18 @@ public class TestDemo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
        DBConection db = new DBConection();
-        pnlbanhang sp = new pnlbanhang();
+//         pnlhanghoa gh = new pnlhanghoa();
+         pnlsanpham sp = new pnlsanpham();
+//       pnltongquan tq = new pnltongquan();
+//    pnlbanhang bh = new pnlbanhang();
+//    
+//  
+//    pnlkhachhang kh = new pnlkhachhang();
+//    pnlgiaohang dh = new pnlgiaohang();
+//    pnlnhanvien tg = new pnlnhanvien();
+//    pnlthongke tk = new pnlthongke();
+        
         jPanel1.add(sp);
-        
-        
     }
 
     /**

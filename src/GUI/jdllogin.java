@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -86,7 +87,7 @@ jPanel3.setVisible(false);
         btnThuNho = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        bttLogin = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
@@ -344,25 +345,28 @@ jPanel3.setVisible(false);
         jPanel6.setBackground(new java.awt.Color(33, 36, 51));
         jPanel6.setToolTipText("ĐĂNG NHẬP");
 
-        jLabel9.setBackground(new java.awt.Color(9, 122, 192));
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("ĐĂNG NHẬP");
-        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+        bttLogin.setBackground(new java.awt.Color(33, 36, 51));
+        bttLogin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        bttLogin.setForeground(new java.awt.Color(255, 255, 255));
+        bttLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/New folder/nenbutton_1.jpg"))); // NOI18N
+        bttLogin.setText("ĐĂNG NHẬP");
+        bttLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        bttLogin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bttLogin.setOpaque(false);
+        bttLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+                bttLoginMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel9MouseEntered(evt);
+                bttLoginMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel9MouseExited(evt);
+                bttLoginMouseExited(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel9MousePressed(evt);
+        });
+        bttLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttLoginActionPerformed(evt);
             }
         });
 
@@ -370,13 +374,15 @@ jPanel3.setVisible(false);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(bttLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(bttLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 373, 160, 40));
@@ -595,60 +601,19 @@ jPanel3.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
 
-    private void jLabel9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MousePressed
-
-    }//GEN-LAST:event_jLabel9MousePressed
-
-    private void jLabel9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseEntered
-        setcolorbutton(jPanel6);
-    }//GEN-LAST:event_jLabel9MouseEntered
-
-    private void jLabel9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseExited
-        resetcolorbutton(jPanel6);
-    }//GEN-LAST:event_jLabel9MouseExited
-
     private void jLabel6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MousePressed
         jLabel6.setBackground(Color.red);
     }//GEN-LAST:event_jLabel6MousePressed
-public LoadData db = new LoadData(new javax.swing.JFrame(), true);
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-    String TenDangNhap = txtUser.getText();
-        String MatKhau =String.valueOf(txtPass.getPassword());
-        if (BLLlogin.Checklogin(TenDangNhap, MatKhau) == true) {
-          
-            ThongBaoThongTin.ThongBao("Đăng nhập thành công", "Thông báo");
-            int idhoatdong = 1;
-            int idnguoidung;
-             idnguoidung = BLL.BLLlogin.nguoidung.getIdNguoiDung(); 
-            DTOHoatDong nd = new DTOHoatDong(idhoatdong, idnguoidung);
-            
-            BLL.BLLHoatDong.ThemHoatDong(nd);
-           jLabel9.setText("Đang load dữ liệu");
-          
-               
-             this.dispose();
-             
-               db.setVisible(true);
-                
-           
-        }
+
+    
+    
         
         
-        
-        
-     
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jLabel9MouseClicked
-void showMain(){
+    
+
+    
+    
+    void showMain(){
     
    
        final JOptionPane optionPane = new JOptionPane("Vui lòng đợi giây lát", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null, new Object[]{}, null);
@@ -848,14 +813,66 @@ dialog.setVisible(true);
         jPanel7.setVisible(true);
     }//GEN-LAST:event_jLabel11MouseEntered
 
-        void setcolorbutton(JPanel panel){
-   panel.setBackground(Color.WHITE);
-   jLabel9.setForeground(new Color(33,36,51));
+    private void bttLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttLoginMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bttLoginMouseClicked
+
+    private void bttLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttLoginMouseEntered
+        setcolorbutton(bttLogin);
+    }//GEN-LAST:event_bttLoginMouseEntered
+
+    private void bttLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttLoginMouseExited
+          resetcolorbutton(bttLogin);
+    }//GEN-LAST:event_bttLoginMouseExited
+
+    private void bttLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLoginActionPerformed
+     String TenDangNhap = txtUser.getText();
+        String MatKhau =String.valueOf(txtPass.getPassword());
+        if (BLLlogin.Checklogin(TenDangNhap, MatKhau) == true) {
+          
+            ThongBaoThongTin.ThongBao("Đăng nhập thành công", "Thông báo");
+            int idhoatdong = 1;
+            int idnguoidung;
+             idnguoidung = BLL.BLLlogin.nguoidung.getIdNguoiDung(); 
+            DTOHoatDong nd = new DTOHoatDong(idhoatdong, idnguoidung);
+            BLL.BLLHoatDong.ThemHoatDong(nd);
+              this.dispose();
+            frmmain frm = new frmmain();
+            frm.setVisible(true);
+        }else{
+            bttLogin.setEnabled(false);
+              java.util.Timer timer = new java.util.Timer();
+        timer.schedule(new App(), 0, 1000);
+        }
+    }//GEN-LAST:event_bttLoginActionPerformed
+
+    class App extends TimerTask {
+
+    int countdown = 5;
+
+    public void run() {
+      
+       if(countdown != 0){ countdown = countdown - 1; 
+       
+       bttLogin.setText("Đăng nhập lại sau "+countdown+"s");
+           if (countdown == 0) {
+                 bttLogin.setEnabled(true);
+                  bttLogin.setText("ĐĂNG NHẬP");
+           }
+     
+       } 
+    }
+} 
+    
+    
+       void setcolorbutton(JButton panel){
+   bttLogin.setBackground(Color.WHITE);
+   bttLogin.setForeground(new Color(33,36,51));
 }
         
-          void resetcolorbutton(JPanel panel){
-    panel.setBackground(new Color(33,36,51));
-    jLabel9.setForeground(Color.WHITE);
+          void resetcolorbutton(JButton panel){
+    bttLogin.setBackground(new Color(33,36,51));
+    bttLogin.setForeground(Color.WHITE);
 }
     /**
     /**
@@ -904,6 +921,7 @@ dialog.setVisible(true);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnThuNho;
+    private javax.swing.JButton bttLogin;
     private javax.swing.JLabel hide;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -923,7 +941,6 @@ dialog.setVisible(true);
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    public static javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;

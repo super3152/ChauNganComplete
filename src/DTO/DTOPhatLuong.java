@@ -20,7 +20,20 @@ public class DTOPhatLuong {
     String GhiChu;
     int MaLuong;
     String TongLuong;
+    int trangthai;
+    int thang;
+    int nam;
 
+    public DTOPhatLuong(int MaNV, int thang, int nam) {
+        this.MaNV = MaNV;
+    
+        this.thang = thang;
+        this.nam = nam;
+    }
+    
+
+    
+    
     public DTOPhatLuong(int MaPhatLuong, int MaNV, String NgayPhat, String SoCaDiLam, String SoCaNghi, String TienThuong, String TienPhat, String GhiChu, int MaLuong, String TongLuong) {
         this.MaPhatLuong = MaPhatLuong;
         this.MaNV = MaNV;
@@ -46,9 +59,38 @@ public class DTOPhatLuong {
         this.TongLuong = TongLuong;
     }
 
+    
+    
     public DTOPhatLuong() {
     }
 
+    public int getTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(int trangthai) {
+        this.trangthai = trangthai;
+    }
+
+    public int getThang() {
+        return thang;
+    }
+
+    public void setThang(int thang) {
+        this.thang = thang;
+    }
+
+    public int getNam() {
+        return nam;
+    }
+
+    public void setNam(int nam) {
+        this.nam = nam;
+    }
+
+    
+    
+    
     public int getMaPhatLuong() {
         return MaPhatLuong;
     }

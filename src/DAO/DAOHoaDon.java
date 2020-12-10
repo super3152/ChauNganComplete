@@ -35,7 +35,7 @@ public class DAOHoaDon {
     }
     public static int ThemHoaDon(DTOHoaDon hd) {
         String query = "INSERT INTO `hoadon`"
-                + "( `sohoadon`, `ngaytaohoadon`, `idnguoidung`, `tinhtrang`, `tongtien`, `idkhachhang`, `trahang`, `congno`)"
+                + "( `sohoadon`, `ngaytaohoadon`, `idnguoidung`, `tinhtrang`, `tongtien`, `idkhachhang`, `trahang`, `congno`, `loaihoadon`)"
                 + " VALUES "
                 + "('" + hd.getSoHoaDon() + "',"
                 + "'" + hd.getNgayTaoHoaDon() + "',"
@@ -44,7 +44,8 @@ public class DAOHoaDon {
                 + "'" + hd.getTongTien() + "',"
                 + "'" + hd.getMaKhachHang() + "',"
                 + "'" + hd.getTraHang() + "',"
-                + "'" + hd.getCongNo() + "')";
+                + "'" + hd.getCongNo() + "',"
+                + "0')";
         System.out.println(query);
         return DBConection.ExcuteTruyVan(query);
 

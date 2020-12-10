@@ -17,6 +17,9 @@ import java.util.GregorianCalendar;
  */
 public class DAOChamCong {
     
+    
+    
+    
       public static ResultSet LayLichSuChamCong(String idnguoidung) {
 
         String query = "SELECT * FROM chamcong where idnguoidung = '" + idnguoidung + "' ORDER BY idchamcong DESC";

@@ -222,7 +222,7 @@ public class DAOSanPham {
     public static void suaSP(DTO.DTOSanPham sp) {
          if(ImagePast2 == null){
         try {  
-           pst = DBConection.conn.prepareStatement ("UPDATE sanpham SET tensanpham = ?,ngaytao = ?,masanpham = ?,motasanpham = ?,giabanle = ?,giabanbuon = ?,gianhap = ?,khoiluong = ?,donvitinh = ?,tonkho = ?,idloaisanpham = ?,idhangsanpham = ?,idsizesanpham = ?,idmausanpham = ?,idke = ?"+ " WHERE idsanpham = ?");
+           pst = DBConection.conn.prepareStatement ("UPDATE sanpham SET tensanpham = ?,ngaytao = ?,masanpham = ?,motasanpham = ?,giabanle = ?,giabanbuon = ?,gianhap = ?,khoiluong = ?,donvitinh = ?,tonkho = ?,idloaisanpham = ?,idhangsanpham = ?,idsizesanpham = ?,idmausanpham = ?,idke = ?, thuoctinhkhachhang = ?"+ " WHERE idsanpham = ?");
            
                pst.setString(1, sp.getTenSanPham());
               pst.setString(2, sp.getNgayTao());
@@ -241,8 +241,9 @@ public class DAOSanPham {
                pst.setInt(13, sp.getIDSize());
               pst.setInt(14, sp.getIDMauSanPham());
               pst.setInt(15, sp.getIDKe());
-               pst.setInt(16, sp.getIDSanPham());
-           
+               pst.setString(16, sp.getThuocTinhKhachHang());
+               pst.setInt(17, sp.getIDSanPham());
+          
             pst.executeUpdate();
             System.out.println(pst);
         } catch (SQLException ex) {
@@ -251,7 +252,7 @@ public class DAOSanPham {
         }  
          }else{
               try {  
-           pst = DBConection.conn.prepareStatement ("UPDATE sanpham SET tensanpham = ?,ngaytao = ?,masanpham = ?,motasanpham = ?,giabanle = ?,giabanbuon = ?,gianhap = ?,khoiluong = ?,donvitinh = ?,tonkho = ?,idloaisanpham = ?,idhangsanpham = ?,anhsanpham = ?,idsizesanpham = ?,idmausanpham = ?,idke = ?"+ " WHERE idsanpham = ?");
+           pst = DBConection.conn.prepareStatement ("UPDATE sanpham SET tensanpham = ?,ngaytao = ?,masanpham = ?,motasanpham = ?,giabanle = ?,giabanbuon = ?,gianhap = ?,khoiluong = ?,donvitinh = ?,tonkho = ?,idloaisanpham = ?,idhangsanpham = ?,anhsanpham = ?,idsizesanpham = ?,idmausanpham = ?,idke = ?, thuoctinhkhachhang = ?"+ " WHERE idsanpham = ?");
            
               pst.setString(1, sp.getTenSanPham());
               pst.setString(2, sp.getNgayTao());
@@ -271,7 +272,8 @@ public class DAOSanPham {
               pst.setInt(14, sp.getIDSize());
               pst.setInt(15, sp.getIDMauSanPham());
               pst.setInt(16, sp.getIDKe());
-               pst.setInt(17, sp.getIDSanPham());
+               pst.setString(17, sp.getThuocTinhKhachHang());
+               pst.setInt(18, sp.getIDSanPham());
            
             pst.executeUpdate();
             System.out.println(pst);

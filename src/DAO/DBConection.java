@@ -48,7 +48,7 @@ public class DBConection {
             // conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(cauTruyVan);
-           
+            System.out.println("getdata");
             return rs;
         } catch (SQLException ex) {
             System.out.println("lỗi lấy dữ liệu " + ex);
@@ -59,7 +59,7 @@ public class DBConection {
         try {
          //    conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
             Statement stm = conn.createStatement();
-            
+            System.out.println("getexecute");
             return stm.executeUpdate(cauTruyVan);
  
         } catch (SQLException ex) {

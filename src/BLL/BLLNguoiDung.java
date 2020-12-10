@@ -521,6 +521,34 @@ public class BLLNguoiDung {
         
         
     }
+             
+                  public static void CheckHienThiNguoiDungTheoChucVuChamCong(JTable tbl,int id, int thang, int nam) {
+        ResultSet rs = DAO.DAONguoiDung.CheckLayNguoiDungChamCongThangNam(id,thang, nam);
+        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
+        tbModel.setRowCount(0);
+       
+        Object obj[] = new Object[3];
+        try {
+             while (rs.next()) {
+                
+                obj[0] = (rs.getInt(1)*3)-rs.getInt(2);
+                
+                obj[1] = rs.getInt(2);
+                
+                 obj[2] = rs.getInt(1);
+                tbModel.addRow(obj);
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng người dùng", "Thông báo");
+        }
+
+        
+        
+        
+        
+        
+        
+    }
                
                
                public static void LayNhanVien(JTable tbl) {

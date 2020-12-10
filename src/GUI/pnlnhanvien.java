@@ -7,6 +7,8 @@ package GUI;
 
 import BLL.BLLChamCong;
 import BLL.BLLNguoiDung;
+import static BLL.BLLNguoiDung.CheckHienThiNguoiDungTheoChucVuChamCong;
+import BLL.BLLPhatLuong;
 import BLL.ChuyenDoi;
 import DTO.DTOChamCong;
 import DTO.DTONguoidung;
@@ -49,6 +51,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
@@ -151,7 +154,16 @@ public class pnlnhanvien extends javax.swing.JPanel {
     }
 
     public pnlnhanvien() {
+  try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception ex) {
 
+        }
         initComponents();
          
         
@@ -264,12 +276,12 @@ update.run();
            for (int i = 2000; i <= 2050; i++) {
              jComboBox2.addItem(""+i);
               jComboBox4.addItem(""+i);
-               jComboBox6.addItem(""+i);
+               cbbNam.addItem(""+i);
 
         }
           jComboBox2.setSelectedItem(formatedTimeStr5);
           jComboBox4.setSelectedItem(formatedTimeStr5);
-          jComboBox6.setSelectedItem(formatedTimeStr5);
+          cbbNam.setSelectedItem(formatedTimeStr5);
          
           DateFormat formatTime6 = new SimpleDateFormat(formatTimeStr6);
          String formatedTimeStr6 = formatTime6.format(currenTime);
@@ -277,12 +289,12 @@ update.run();
          for (int i = 1; i <= 12; i++) {
              jComboBox1.addItem(""+i);
               jComboBox3.addItem(""+i);
-               jComboBox5.addItem(""+i);
+               cbbThang.addItem(""+i);
 
         }
           jComboBox1.setSelectedItem(formatedTimeStr6);
           jComboBox3.setSelectedItem(formatedTimeStr6);
-          jComboBox5.setSelectedItem(formatedTimeStr6);
+          cbbThang.setSelectedItem(formatedTimeStr6);
           
           
        
@@ -351,6 +363,8 @@ update.run();
         jTextField2 = new javax.swing.JTextField();
         txtTong = new javax.swing.JTextField();
         txtNgayPhat = new javax.swing.JTextField();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblCheckPL = new javax.swing.JTable();
         tbpchuyentab = new javax.swing.JTabbedPane();
         pnldanhsach = new javax.swing.JPanel();
         cbbloaikhachhang = new javax.swing.JComboBox<>();
@@ -463,18 +477,19 @@ update.run();
         pnlnenhotenkhachhang2 = new javax.swing.JPanel();
         lblhotenkhachhang2 = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        cbbThang = new javax.swing.JComboBox<>();
+        cbbNam = new javax.swing.JComboBox<>();
         pnlnenmatkhau3 = new javax.swing.JPanel();
         lblmatkhau3 = new javax.swing.JLabel();
-        cbbLuongPL = new javax.swing.JComboBox<>();
-        jButton7 = new javax.swing.JButton();
+        txtGhichuPL = new javax.swing.JTextField();
+        txtNoPL = new javax.swing.JTextField();
         pnlemail3 = new javax.swing.JPanel();
         lblemail3 = new javax.swing.JLabel();
         txtSocavang = new javax.swing.JTextField();
         pnlnensodienthoai3 = new javax.swing.JPanel();
         lblsodienthoai3 = new javax.swing.JLabel();
-        txtGhichuPL = new javax.swing.JTextField();
+        cbbLuongPL = new javax.swing.JComboBox<>();
+        jButton7 = new javax.swing.JButton();
         pnlnenhotenkhachhang3 = new javax.swing.JPanel();
         lblhotenkhachhang3 = new javax.swing.JLabel();
         txtSocadilam = new javax.swing.JTextField();
@@ -490,6 +505,8 @@ update.run();
         lblmatkhau4 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         txtTongtienluong = new javax.swing.JTextField();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tblCheckPL1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -598,6 +615,24 @@ update.run();
                 txtTongActionPerformed(evt);
             }
         });
+
+        tblCheckPL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(tblCheckPL);
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -756,7 +791,7 @@ update.run();
                     .addComponent(txtTimKiemNV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(pnldanhsachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnldanhsachLayout.createSequentialGroup()
-                        .addComponent(pnlChucVu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlChucVu, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -764,9 +799,11 @@ update.run();
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addComponent(srcdanhsach, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnldanhsachLayout.createSequentialGroup()
+                        .addComponent(srcdanhsach)
+                        .addGap(26, 26, 26)))
+                .addContainerGap())
         );
 
         tbpchuyentab.addTab("Danh sách nhân viên", new javax.swing.ImageIcon(getClass().getResource("/IMAGE/list_20px.png")), pnldanhsach); // NOI18N
@@ -1351,6 +1388,7 @@ update.run();
         lblmatkhau2.setPreferredSize(new java.awt.Dimension(52, 20));
         pnlnenmatkhau2.add(lblmatkhau2, java.awt.BorderLayout.PAGE_START);
 
+        txtTienPhat.setText("0");
         txtTienPhat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTienPhatKeyReleased(evt);
@@ -1367,6 +1405,11 @@ update.run();
         pnlemail2.add(lblemail2, java.awt.BorderLayout.PAGE_START);
 
         cbbNhanVienPL.setToolTipText("");
+        cbbNhanVienPL.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbNhanVienPLItemStateChanged(evt);
+            }
+        });
         pnlemail2.add(cbbNhanVienPL, java.awt.BorderLayout.CENTER);
 
         pnlnensodienthoai2.setBackground(new java.awt.Color(255, 255, 255));
@@ -1377,6 +1420,7 @@ update.run();
         lblsodienthoai2.setPreferredSize(new java.awt.Dimension(75, 20));
         pnlnensodienthoai2.add(lblsodienthoai2, java.awt.BorderLayout.PAGE_START);
 
+        txtTienThuong.setText("0");
         txtTienThuong.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTienThuongKeyReleased(evt);
@@ -1394,19 +1438,23 @@ update.run();
 
         jPanel22.setLayout(new javax.swing.BoxLayout(jPanel22, javax.swing.BoxLayout.LINE_AXIS));
 
-        jComboBox5.addItemListener(new java.awt.event.ItemListener() {
+        cbbThang.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbbThang.setForeground(new java.awt.Color(255, 0, 0));
+        cbbThang.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox5ItemStateChanged(evt);
+                cbbThangItemStateChanged(evt);
             }
         });
-        jPanel22.add(jComboBox5);
+        jPanel22.add(cbbThang);
 
-        jComboBox6.addItemListener(new java.awt.event.ItemListener() {
+        cbbNam.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbbNam.setForeground(new java.awt.Color(255, 0, 0));
+        cbbNam.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox6ItemStateChanged(evt);
+                cbbNamItemStateChanged(evt);
             }
         });
-        jPanel22.add(jComboBox6);
+        jPanel22.add(cbbNam);
 
         pnlnenhotenkhachhang2.add(jPanel22, java.awt.BorderLayout.CENTER);
 
@@ -1414,24 +1462,15 @@ update.run();
         pnlnenmatkhau3.setLayout(new java.awt.BorderLayout());
 
         lblmatkhau3.setBackground(new java.awt.Color(255, 255, 255));
-        lblmatkhau3.setText("Lương");
+        lblmatkhau3.setText("Ghi chú");
         lblmatkhau3.setPreferredSize(new java.awt.Dimension(52, 20));
         pnlnenmatkhau3.add(lblmatkhau3, java.awt.BorderLayout.PAGE_START);
+        pnlnenmatkhau3.add(txtGhichuPL, java.awt.BorderLayout.CENTER);
 
-        cbbLuongPL.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbbLuongPLItemStateChanged(evt);
-            }
-        });
-        pnlnenmatkhau3.add(cbbLuongPL, java.awt.BorderLayout.CENTER);
-
-        jButton7.setText("Thêm tiền lương");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        pnlnenmatkhau3.add(jButton7, java.awt.BorderLayout.LINE_END);
+        txtNoPL.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtNoPL.setForeground(new java.awt.Color(255, 0, 0));
+        txtNoPL.setText("   Nợ:                                       ");
+        pnlnenmatkhau3.add(txtNoPL, java.awt.BorderLayout.LINE_END);
 
         pnlemail3.setBackground(new java.awt.Color(255, 255, 255));
         pnlemail3.setLayout(new java.awt.BorderLayout());
@@ -1442,6 +1481,11 @@ update.run();
         pnlemail3.add(lblemail3, java.awt.BorderLayout.PAGE_START);
 
         txtSocavang.setText("1");
+        txtSocavang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtSocavangMouseClicked(evt);
+            }
+        });
         txtSocavang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSocavangKeyReleased(evt);
@@ -1453,10 +1497,24 @@ update.run();
         pnlnensodienthoai3.setLayout(new java.awt.BorderLayout());
 
         lblsodienthoai3.setBackground(new java.awt.Color(255, 255, 255));
-        lblsodienthoai3.setText("Ghi chú");
+        lblsodienthoai3.setText("Lương");
         lblsodienthoai3.setPreferredSize(new java.awt.Dimension(75, 20));
         pnlnensodienthoai3.add(lblsodienthoai3, java.awt.BorderLayout.PAGE_START);
-        pnlnensodienthoai3.add(txtGhichuPL, java.awt.BorderLayout.CENTER);
+
+        cbbLuongPL.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbLuongPLItemStateChanged(evt);
+            }
+        });
+        pnlnensodienthoai3.add(cbbLuongPL, java.awt.BorderLayout.CENTER);
+
+        jButton7.setText("Thêm tiền lương");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        pnlnensodienthoai3.add(jButton7, java.awt.BorderLayout.LINE_END);
 
         pnlnenhotenkhachhang3.setBackground(new java.awt.Color(255, 255, 255));
         pnlnenhotenkhachhang3.setLayout(new java.awt.BorderLayout());
@@ -1495,8 +1553,12 @@ update.run();
 
         jPanel21.setLayout(new javax.swing.BoxLayout(jPanel21, javax.swing.BoxLayout.LINE_AXIS));
 
+        jComboBox3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox3.setForeground(new java.awt.Color(255, 0, 0));
         jPanel21.add(jComboBox3);
 
+        jComboBox4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox4.setForeground(new java.awt.Color(255, 0, 0));
         jPanel21.add(jComboBox4);
 
         pnlemail4.add(jPanel21, java.awt.BorderLayout.CENTER);
@@ -1521,7 +1583,28 @@ update.run();
             }
         });
         pnlnenmatkhau4.add(jButton8, java.awt.BorderLayout.LINE_END);
+
+        txtTongtienluong.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTongtienluong.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         pnlnenmatkhau4.add(txtTongtienluong, java.awt.BorderLayout.CENTER);
+
+        tblCheckPL1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Vắng", "Đi làm", "Ngày"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(tblCheckPL1);
 
         javax.swing.GroupLayout pnlnenthongtin1Layout = new javax.swing.GroupLayout(pnlnenthongtin1);
         pnlnenthongtin1.setLayout(pnlnenthongtin1Layout);
@@ -1567,8 +1650,13 @@ update.run();
             .addGroup(pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlnenthongtin1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(517, Short.MAX_VALUE)))
+            .addGroup(pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlnenthongtin1Layout.createSequentialGroup()
+                    .addContainerGap(573, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(248, Short.MAX_VALUE)))
         );
         pnlnenthongtin1Layout.setVerticalGroup(
             pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1605,6 +1693,11 @@ update.run();
                     .addGap(356, 356, 356)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                     .addContainerGap()))
+            .addGroup(pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlnenthongtin1Layout.createSequentialGroup()
+                    .addContainerGap(388, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(66, Short.MAX_VALUE)))
         );
 
         pnlnenngoaithongtin1.add(pnlnenthongtin1, java.awt.BorderLayout.CENTER);
@@ -2466,37 +2559,68 @@ update.run();
     }//GEN-LAST:event_tblPhatluongMouseClicked
 
     private void txtSocavangKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSocavangKeyReleased
-        int NgayLam, NgayNghi;
        
-        NgayNghi =  BLL.ChuyenDoi.ChuyenSo(txtSocavang.getText());
-        NgayLam = 30 - NgayNghi;
-         txtSocavang.setText(BLL.ChuyenDoi.DinhDangSo(NgayNghi));
-        txtSocadilam.setText(ChuyenDoi.doubleToString(NgayLam));
-        if (NgayNghi > 30) {
-            txtSocadilam.setText("30");
-             txtSocavang.setText("0");
-        }
+        
     }//GEN-LAST:event_txtSocavangKeyReleased
  double Luong,tienThuong ,tongLuong;
     private void txtTienThuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienThuongKeyReleased
-         Luong = BLL.ChuyenDoi.ChuyenTien(cbbLuong.getSelectedItem().toString());
-        tienThuong = BLL.ChuyenDoi.ChuyenTien(txtTienThuong.getText());
-        txtTienThuong.setText(BLL.ChuyenDoi.DinhDangTien(tienThuong));
-        tongLuong = Luong + tienThuong;
-        txtTongtienluong.setText(BLL.ChuyenDoi.DinhDangTien(tongLuong));
+      
+        try {
+             String luong = cbbLuongPL.getSelectedItem().toString();
+       Double luong1 = ChuyenDoi.ChuyenTien(luong);
+     int socadilam = Integer.parseInt(txtSocadilam.getText()) ;
+      int socadivang = Integer.parseInt(txtSocavang.getText()) ;
+        Double sotien1ca = luong1 / (socadilam+socadivang);
+        
+        
+        Double tienthuong = ChuyenDoi.ChuyenTien(txtTienThuong.getText());
+        Double tienphat = ChuyenDoi.ChuyenTien(txtTienPhat.getText());
+        
+            
+           jLabel2.setText(" Số tiền 1 ca: "+ChuyenDoi.DinhDangTien(sotien1ca)+"đ/ Ca/ 4h ");
+           
+           Double tongtien = ((sotien1ca*socadilam) +tienthuong)-tienphat;
+            txtTienPhat.setText(BLL.ChuyenDoi.DinhDangTien(tienphat));
+               txtTienThuong.setText(BLL.ChuyenDoi.DinhDangTien(tienthuong));
+           txtTongtienluong.setText(ChuyenDoi.DinhDangTien(tongtien));
+           
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_txtTienThuongKeyReleased
 
     private void txtTienPhatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienPhatKeyReleased
-         double Luong,tienPhat ,tongLuong1;
-
-        Luong = BLL.ChuyenDoi.ChuyenTien(cbbLuong.getSelectedItem().toString());
-        tienPhat = BLL.ChuyenDoi.ChuyenTien(txtTienPhat.getText());
-
-        txtTienPhat.setText(BLL.ChuyenDoi.DinhDangTien(tienPhat));
-
-        tongLuong1 = tongLuong - tienPhat;
-
-        txtTongtienluong.setText(BLL.ChuyenDoi.DinhDangTien(tongLuong1));
+         
+        try {
+            
+             String luong = cbbLuongPL.getSelectedItem().toString();
+       Double luong1 = ChuyenDoi.ChuyenTien(luong);
+     int socadilam = Integer.parseInt(txtSocadilam.getText()) ;
+      int socadivang = Integer.parseInt(txtSocavang.getText()) ;
+        Double sotien1ca = luong1 / (socadilam+socadivang);
+        
+        
+        Double tienthuong = ChuyenDoi.ChuyenTien(txtTienThuong.getText());
+        Double tienphat = ChuyenDoi.ChuyenTien(txtTienPhat.getText());
+        
+            
+           jLabel2.setText(" Số tiền 1 ca: "+ChuyenDoi.DinhDangTien(sotien1ca)+"đ/ Ca/ 4h ");
+           
+           Double tongtien = ((sotien1ca*socadilam) +tienthuong)-tienphat;
+             txtTienPhat.setText(BLL.ChuyenDoi.DinhDangTien(tienphat));
+               txtTienThuong.setText(BLL.ChuyenDoi.DinhDangTien(tienthuong));
+               
+               if (tongtien < 0) {
+                   txtNoPL.setText("   Nợ: "+ChuyenDoi.DinhDangTien(tongtien)+"  ");
+                  txtTongtienluong.setText("0");
+            }else{
+                     txtTongtienluong.setText(ChuyenDoi.DinhDangTien(tongtien));
+                       txtNoPL.setText("   Nợ: "+"0"+"  ");
+               }
+         
+           
+           
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_txtTienPhatKeyReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -2606,19 +2730,74 @@ update.run();
     }//GEN-LAST:event_txtSocadilamMouseReleased
 
     private void cbbLuongPLItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbLuongPLItemStateChanged
+      
+        
         try {
-            System.out.println(cbbLuongPL.getSelectedItem());
+             String luong = cbbLuongPL.getSelectedItem().toString();
+       Double luong1 = ChuyenDoi.ChuyenTien(luong);
+     int socadilam = Integer.parseInt(txtSocadilam.getText()) ;
+      int socadivang = Integer.parseInt(txtSocavang.getText()) ;
+        Double sotien1ca = luong1 / (socadilam+socadivang);
+        
+        
+        Double tienthuong = ChuyenDoi.ChuyenTien(txtTienThuong.getText());
+        Double tienphat = ChuyenDoi.ChuyenTien(txtTienPhat.getText());
+        
+            
+           jLabel2.setText(" Số tiền 1 ca: "+ChuyenDoi.DinhDangTien(sotien1ca)+"đ/ Ca/ 4h ");
+           
+           Double tongtien = ((sotien1ca*socadilam) +tienthuong)-tienphat;
+           
+           txtTongtienluong.setText(ChuyenDoi.DinhDangTien(tongtien));
+           
         } catch (Exception e) {
         }
     }//GEN-LAST:event_cbbLuongPLItemStateChanged
 
-    private void jComboBox5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox5ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ItemStateChanged
+    private void cbbThangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbThangItemStateChanged
+        try {
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_cbbThangItemStateChanged
 
-    private void jComboBox6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox6ItemStateChanged
+    private void cbbNamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbNamItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox6ItemStateChanged
+    }//GEN-LAST:event_cbbNamItemStateChanged
+
+    private void cbbNhanVienPLItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbNhanVienPLItemStateChanged
+              try {
+            MyCombobox mb = (MyCombobox) cbbNhanVienPL.getSelectedItem();
+        int MaLoaiNV =Integer.parseInt(mb.Value.toString());
+          
+        int thang = Integer.parseInt(cbbThang.getSelectedItem().toString());
+        int nam = Integer.parseInt(cbbNam.getSelectedItem().toString());
+      
+            BLLPhatLuong.CheckPhatLuong(tblCheckPL, MaLoaiNV, thang, nam);
+            if (tblCheckPL.getRowCount() == 0) {
+                txtGhichuPL.setText("chưa phát lương");
+                CheckHienThiNguoiDungTheoChucVuChamCong(tblCheckPL1,MaLoaiNV, thang, nam);
+                System.out.println(tblCheckPL1.getValueAt(1, 0).toString());
+                
+//                int dilam = Integer.parseInt(tblCheckPL1.getValueAt(1, 0).toString()) ;
+//                int vang = Integer.parseInt(tblCheckPL1.getValueAt(0, 0).toString()) ;
+//                System.out.println(dilam+"+"+vang);
+//                txtSocadilam.setText(dilam+"");
+//                txtSocavang.setText(vang+"");
+            }else{
+               txtGhichuPL.setText("đã phát lương");
+                 ThongBaoLoi.ThongBao("Nhân viên này đã phát lương tháng "+thang, "Thông báo");
+            }
+           
+           
+        } catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_cbbNhanVienPLItemStateChanged
+
+    private void txtSocavangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSocavangMouseClicked
+     
+    }//GEN-LAST:event_txtSocavangMouseClicked
     private void LamMoiNhanVien() {
         txtHoTen.setText("");
         txtsodienthoai.setText("");
@@ -2648,8 +2827,10 @@ update.run();
     private javax.swing.JComboBox<String> cbbGioiTinh;
     private javax.swing.JComboBox<String> cbbLuong;
     public static javax.swing.JComboBox<String> cbbLuongPL;
+    private javax.swing.JComboBox<String> cbbNam;
     public static javax.swing.JComboBox<String> cbbNguoidung;
     private javax.swing.JComboBox<String> cbbNhanVienPL;
+    private javax.swing.JComboBox<String> cbbThang;
     private javax.swing.JComboBox<String> cbbTrangThai;
     private javax.swing.JComboBox<String> cbbloaikhachhang;
     private javax.swing.JButton jButton1;
@@ -2664,8 +2845,6 @@ update.run();
     public static javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2720,6 +2899,8 @@ update.run();
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -2826,6 +3007,8 @@ update.run();
     private javax.swing.JPanel pnlthemsuakhachhang4;
     private javax.swing.JPopupMenu ppmNhanVien;
     private javax.swing.JScrollPane srcdanhsach;
+    public static javax.swing.JTable tblCheckPL;
+    public static javax.swing.JTable tblCheckPL1;
     private javax.swing.JTable tblNguoiDung;
     private javax.swing.JTable tblPhatluong;
     public static javax.swing.JTable tbllichsuchamcong;
@@ -2842,6 +3025,7 @@ update.run();
     private javax.swing.JTextPane txtMoTa;
     private javax.swing.JTextField txtNgayPhat;
     public static javax.swing.JTextField txtNgayhomnay;
+    private javax.swing.JTextField txtNoPL;
     private javax.swing.JTextField txtSocadilam;
     private javax.swing.JTextField txtSocavang;
     private javax.swing.JTextField txtTenDangNhap;

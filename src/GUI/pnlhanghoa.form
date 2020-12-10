@@ -280,6 +280,16 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton6" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton11" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton23" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton24" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jButton14" min="-2" pref="168" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -295,6 +305,13 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="btnTraNoHD" alignment="3" max="32767" attributes="0"/>
                                       <Component id="jButton14" alignment="3" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                          <Component id="jButton6" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton11" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton23" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton24" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jSeparator1" alignment="3" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                               </Group>
@@ -320,6 +337,31 @@
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14jButton10ActionPerformed"/>
                           </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton6">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="First"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton11">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Back"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton23">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Next"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton24">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Last"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JSeparator" name="jSeparator1">
+                          <Properties>
+                            <Property name="orientation" type="int" value="1"/>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -695,6 +737,16 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton8" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton25" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton26" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton27" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jButton15" min="-2" pref="168" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -717,6 +769,13 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="btnTraNoPN" alignment="3" max="32767" attributes="0"/>
                                       <Component id="jButton15" alignment="3" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                          <Component id="jButton8" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton25" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton26" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton27" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jSeparator2" alignment="3" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -757,6 +816,31 @@
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton13jButton10ActionPerformed"/>
                           </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton8">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="First"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton25">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Back"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton26">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Next"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton27">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Last"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JSeparator" name="jSeparator2">
+                          <Properties>
+                            <Property name="orientation" type="int" value="1"/>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1049,15 +1133,23 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel26" min="-2" pref="241" max="-2" attributes="0"/>
-                                  <EmptySpace pref="32" max="32767" attributes="0"/>
-                                  <Component id="jButton21" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <Component id="jButton9" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton28" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton29" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton30" min="-2" pref="84" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton20" min="-2" pref="168" max="-2" attributes="0"/>
+                                  <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="71" max="32767" attributes="0"/>
+                                  <Component id="jButton21" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton19" min="-2" pref="168" max="-2" attributes="0"/>
+                                  <Component id="jButton20" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton16" min="-2" pref="168" max="-2" attributes="0"/>
+                                  <Component id="jButton19" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton16" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1070,8 +1162,14 @@
                                       <Component id="jButton16" alignment="3" max="32767" attributes="0"/>
                                       <Component id="jButton19" alignment="3" max="32767" attributes="0"/>
                                       <Component id="jButton20" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jButton21" alignment="3" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                          <Component id="jButton9" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton28" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton29" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton30" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jSeparator3" alignment="3" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -1103,14 +1201,6 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton20jButton10ActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel26">
-                          <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="* Click 2 l&#x1ea7;n v&#xe0;o d&#xf2;ng &#x111;&#x1ec3; s&#x1eed;a nh&#xe0; cung c&#x1ea5;p"/>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JButton" name="jButton21">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -1121,6 +1211,31 @@
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton21jButton10ActionPerformed"/>
                           </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton9">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="First"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton28">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Back"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton29">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Next"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton30">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Last"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JSeparator" name="jSeparator3">
+                          <Properties>
+                            <Property name="orientation" type="int" value="1"/>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1236,6 +1351,16 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton10" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton31" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton32" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton33" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jSeparator4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnThemphieutrahang" min="-2" pref="168" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1246,7 +1371,16 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btnThemphieutrahang" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="btnThemphieutrahang" alignment="3" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                          <Component id="jButton10" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton31" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton32" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton33" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jSeparator4" alignment="3" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1260,6 +1394,31 @@
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemphieutrahangActionPerformed"/>
                           </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton10">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="First"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton31">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Back"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton32">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Next"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton33">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Last"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JSeparator" name="jSeparator4">
+                          <Properties>
+                            <Property name="orientation" type="int" value="1"/>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>

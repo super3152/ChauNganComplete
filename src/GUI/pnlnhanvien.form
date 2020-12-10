@@ -91,6 +91,39 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNgayPhat">
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="tblCheckPL">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="1" rowCount="0">
+                <Column editable="false" title="Title 1" type="java.lang.Object"/>
+              </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
   </NonVisualComponents>
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -201,8 +234,8 @@
                           <Component id="txtTimKiemNV" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="pnlChucVu" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="pnlChucVu" pref="422" max="32767" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton3" min="-2" pref="31" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -211,10 +244,13 @@
                               <Component id="jButton2" min="-2" pref="31" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" pref="30" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
-                          <Component id="srcdanhsach" alignment="0" pref="556" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="srcdanhsach" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2023,8 +2059,15 @@
                                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jScrollPane3" pref="927" max="32767" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jScrollPane3" min="-2" pref="420" max="-2" attributes="0"/>
+                                              <EmptySpace pref="517" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace pref="573" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane8" min="-2" pref="126" max="-2" attributes="0"/>
+                                              <EmptySpace pref="248" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -2069,7 +2112,14 @@
                                           <Group type="102" alignment="1" attributes="0">
                                               <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
                                               <Component id="jScrollPane3" pref="192" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace pref="388" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane8" min="-2" pref="104" max="-2" attributes="0"/>
+                                              <EmptySpace pref="66" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -2207,6 +2257,9 @@
                                       </Constraints>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="txtTienPhat">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="0"/>
+                                      </Properties>
                                       <Events>
                                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTienPhatKeyReleased"/>
                                       </Events>
@@ -2250,6 +2303,9 @@
                                         </Property>
                                         <Property name="toolTipText" type="java.lang.String" value=""/>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbbNhanVienPLItemStateChanged"/>
+                                      </Events>
                                       <AuxValues>
                                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                       </AuxValues>
@@ -2287,6 +2343,9 @@
                                       </Constraints>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="txtTienThuong">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="0"/>
+                                      </Properties>
                                       <Events>
                                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTienThuongKeyReleased"/>
                                       </Events>
@@ -2332,27 +2391,39 @@
 
                                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
                                       <SubComponents>
-                                        <Component class="javax.swing.JComboBox" name="jComboBox5">
+                                        <Component class="javax.swing.JComboBox" name="cbbThang">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="Tahoma" size="12" style="1"/>
+                                            </Property>
+                                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                              <Color blue="0" green="0" red="ff" type="rgb"/>
+                                            </Property>
                                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                               <StringArray count="0"/>
                                             </Property>
                                           </Properties>
                                           <Events>
-                                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBox5ItemStateChanged"/>
+                                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbbThangItemStateChanged"/>
                                           </Events>
                                           <AuxValues>
                                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                           </AuxValues>
                                         </Component>
-                                        <Component class="javax.swing.JComboBox" name="jComboBox6">
+                                        <Component class="javax.swing.JComboBox" name="cbbNam">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="Tahoma" size="12" style="1"/>
+                                            </Property>
+                                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                              <Color blue="0" green="0" red="ff" type="rgb"/>
+                                            </Property>
                                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                               <StringArray count="0"/>
                                             </Property>
                                           </Properties>
                                           <Events>
-                                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBox6ItemStateChanged"/>
+                                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbbNamItemStateChanged"/>
                                           </Events>
                                           <AuxValues>
                                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -2376,7 +2447,7 @@
                                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                         </Property>
-                                        <Property name="text" type="java.lang.String" value="L&#x1b0;&#x1a1;ng"/>
+                                        <Property name="text" type="java.lang.String" value="Ghi ch&#xfa;"/>
                                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                           <Dimension value="[52, 20]"/>
                                         </Property>
@@ -2387,32 +2458,23 @@
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JComboBox" name="cbbLuongPL">
-                                      <Properties>
-                                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                          <StringArray count="0"/>
-                                        </Property>
-                                      </Properties>
-                                      <Events>
-                                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbbLuongPLItemStateChanged"/>
-                                      </Events>
-                                      <AuxValues>
-                                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-                                      </AuxValues>
+                                    <Component class="javax.swing.JTextField" name="txtGhichuPL">
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                                           <BorderConstraints direction="Center"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JButton" name="jButton7">
+                                    <Component class="javax.swing.JTextField" name="txtNoPL">
                                       <Properties>
-                                        <Property name="text" type="java.lang.String" value="Th&#xea;m ti&#x1ec1;n l&#x1b0;&#x1a1;ng"/>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Tahoma" size="12" style="1"/>
+                                        </Property>
+                                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="0" green="0" red="ff" type="rgb"/>
+                                        </Property>
+                                        <Property name="text" type="java.lang.String" value="   N&#x1ee3;:                                       "/>
                                       </Properties>
-                                      <Events>
-                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
-                                      </Events>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                                           <BorderConstraints direction="After"/>
@@ -2451,6 +2513,7 @@
                                         <Property name="text" type="java.lang.String" value="1"/>
                                       </Properties>
                                       <Events>
+                                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtSocavangMouseClicked"/>
                                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSocavangKeyReleased"/>
                                       </Events>
                                       <Constraints>
@@ -2475,7 +2538,7 @@
                                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                         </Property>
-                                        <Property name="text" type="java.lang.String" value="Ghi ch&#xfa;"/>
+                                        <Property name="text" type="java.lang.String" value="L&#x1b0;&#x1a1;ng"/>
                                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                           <Dimension value="[75, 20]"/>
                                         </Property>
@@ -2486,10 +2549,35 @@
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JTextField" name="txtGhichuPL">
+                                    <Component class="javax.swing.JComboBox" name="cbbLuongPL">
+                                      <Properties>
+                                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                          <StringArray count="0"/>
+                                        </Property>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbbLuongPLItemStateChanged"/>
+                                      </Events>
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                                      </AuxValues>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                                           <BorderConstraints direction="Center"/>
+                                        </Constraint>
+                                      </Constraints>
+                                    </Component>
+                                    <Component class="javax.swing.JButton" name="jButton7">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Th&#xea;m ti&#x1ec1;n l&#x1b0;&#x1a1;ng"/>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+                                      </Events>
+                                      <Constraints>
+                                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                                          <BorderConstraints direction="After"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
@@ -2597,6 +2685,12 @@
                                       <SubComponents>
                                         <Component class="javax.swing.JComboBox" name="jComboBox3">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="Tahoma" size="12" style="1"/>
+                                            </Property>
+                                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                              <Color blue="0" green="0" red="ff" type="rgb"/>
+                                            </Property>
                                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                               <StringArray count="0"/>
                                             </Property>
@@ -2607,6 +2701,12 @@
                                         </Component>
                                         <Component class="javax.swing.JComboBox" name="jComboBox4">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="Tahoma" size="12" style="1"/>
+                                            </Property>
+                                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                              <Color blue="0" green="0" red="ff" type="rgb"/>
+                                            </Property>
                                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                               <StringArray count="0"/>
                                             </Property>
@@ -2671,11 +2771,62 @@
                                       </Constraints>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="txtTongtienluong">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Tahoma" size="12" style="1"/>
+                                        </Property>
+                                        <Property name="horizontalAlignment" type="int" value="0"/>
+                                      </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                                           <BorderConstraints direction="Center"/>
                                         </Constraint>
                                       </Constraints>
+                                    </Component>
+                                  </SubComponents>
+                                </Container>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane8">
+                                  <AuxValues>
+                                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                  </AuxValues>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Component class="javax.swing.JTable" name="tblCheckPL1">
+                                      <Properties>
+                                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                          <Table columnCount="3" rowCount="0">
+                                            <Column editable="false" title="V&#x1eaf;ng" type="java.lang.Object"/>
+                                            <Column editable="true" title="&#x110;i l&#xe0;m" type="java.lang.Object"/>
+                                            <Column editable="true" title="Ng&#xe0;y" type="java.lang.Object"/>
+                                          </Table>
+                                        </Property>
+                                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                          <TableColumnModel selectionModel="0">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                          </TableColumnModel>
+                                        </Property>
+                                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                        </Property>
+                                      </Properties>
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                                      </AuxValues>
                                     </Component>
                                   </SubComponents>
                                 </Container>

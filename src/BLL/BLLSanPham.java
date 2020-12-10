@@ -595,7 +595,7 @@ public class BLLSanPham {
             String MaSP, String giaBanLe, String giaBanBuon, String giaNhap,
             String khoiLuong, String donViTinh, String tonKho,
             int idLoaiSP, int idHangSP, 
-             int idSize, int idMau, int idKe, int IDsanpham) {
+             int idSize, int idMau, int idKe, int IDsanpham, String thuoctinhkhachhang) {
 
         
         sp.setTenSanPham(tenSP);
@@ -614,6 +614,7 @@ public class BLLSanPham {
         sp.setIDMauSanPham(idMau);
         sp.setIDKe(idKe);
         sp.setIDSanPham(IDsanpham);
+        sp.setThuocTinhKhachHang(thuoctinhkhachhang);
           System.out.println(sp);
         DAO.DAOSanPham.suaSP(sp);
           System.out.println(sp);

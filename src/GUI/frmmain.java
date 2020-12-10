@@ -66,20 +66,16 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
+
 /**
  *
  * @author Takemikazuchi
  */
 public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFactory, ActionListener {
 
-    pnltongquan tq = new pnltongquan();
-    pnlbanhang bh = new pnlbanhang();
-    pnlsanpham sp = new pnlsanpham();
-    pnlhanghoa gh = new pnlhanghoa();
-    pnlkhachhang kh = new pnlkhachhang();
-    pnlgiaohang dh = new pnlgiaohang();
-    pnlnhanvien tg = new pnlnhanvien();
-    pnlthongke tk = new pnlthongke();
+  
+   
+   
 
     Timer updateTimer;
     int DELAY = 100;
@@ -94,8 +90,8 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
     public frmmain() {
 
         initComponents();
-//       
-//        lbltenuser.setText(BLL.BLLlogin.nguoidung.getTenNguoiDung());
+       
+        lbltenuser.setText(BLL.BLLlogin.nguoidung.getTenNguoiDung());
 //        updateTimer = new Timer(DELAY, new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
@@ -132,23 +128,23 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
         btnthongke.setEnabled(true);
 
     }
-
+   
     public void nut() {
-        if (tq.isVisible()) {
+        if (LoadDatabase.tq.isVisible()) {
             dsnut();
-        } else if (bh.isVisible()) {
+        } else if (LoadDatabase.bh.isVisible()) {
             dsnut();
-        } else if (sp.isVisible()) {
+        } else if (LoadDatabase.sp.isVisible()) {
             dsnut();
-        } else if (dh.isVisible()) {
+        } else if (LoadDatabase.dh.isVisible()) {
             dsnut();
-        } else if (kh.isVisible()) {
+        } else if (LoadDatabase.kh.isVisible()) {
             dsnut();
-        } else if (gh.isVisible()) {
+        } else if (LoadDatabase.gh.isVisible()) {
             dsnut();
-        } else if (tg.isVisible()) {
+        } else if (LoadDatabase.tg.isVisible()) {
             dsnut();
-        } else if (tk.isVisible()) {
+        } else if (LoadDatabase.tk.isVisible()) {
             dsnut();
         }
     }
@@ -165,7 +161,6 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
         jTextField1 = new javax.swing.JTextField();
         pnlnen = new javax.swing.JPanel();
         pnlnenmenu = new javax.swing.JPanel();
-        btncauhinh = new javax.swing.JButton();
         btntongquan = new javax.swing.JButton();
         btnbanhang = new javax.swing.JButton();
         btnsanpham = new javax.swing.JButton();
@@ -202,20 +197,6 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
         });
 
         pnlnenmenu.setBackground(new java.awt.Color(102, 102, 102));
-
-        btncauhinh.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btncauhinh.setForeground(new java.awt.Color(255, 255, 255));
-        btncauhinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/caidat.jpg"))); // NOI18N
-        btncauhinh.setText("CẤU HÌNH  ");
-        btncauhinh.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btncauhinh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btncauhinhMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btncauhinhMouseExited(evt);
-            }
-        });
 
         btntongquan.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btntongquan.setForeground(new java.awt.Color(255, 255, 255));
@@ -407,6 +388,9 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
         lbldangxuat2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/shutdown_25px.png"))); // NOI18N
         lbldangxuat2.setText("  ĐĂNG XUẤT");
         lbldangxuat2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbldangxuat2MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lbldangxuat2lbldangxuatMouseEntered(evt);
             }
@@ -448,7 +432,6 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             .addComponent(btnthongke, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnwebsite, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btnfanpage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btncauhinh, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
@@ -475,9 +458,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
                 .addComponent(btnwebsite, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnfanpage, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btncauhinh, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addGap(53, 53, 53)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
                 .addGap(6, 6, 6)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -622,8 +603,9 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         jPanel2.removeAll();
-        jPanel2.add(tq);
+        jPanel2.add(LoadDatabase.tq);
         jPanel2.validate();
+        
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -754,16 +736,6 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
         btnthongke.setIcon(new ImageIcon(photo2));
     }//GEN-LAST:event_btnthongkeMouseExited
 
-    private void btncauhinhMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncauhinhMouseEntered
-        Image photo2 = new ImageIcon(this.getClass().getResource("/IMAGE/caidat2.jpg")).getImage();
-        btncauhinh.setIcon(new ImageIcon(photo2));
-    }//GEN-LAST:event_btncauhinhMouseEntered
-
-    private void btncauhinhMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncauhinhMouseExited
-        Image photo2 = new ImageIcon(this.getClass().getResource("/IMAGE/caidat.jpg")).getImage();
-        btncauhinh.setIcon(new ImageIcon(photo2));
-    }//GEN-LAST:event_btncauhinhMouseExited
-
     private void lbldangxuat2lbldangxuatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldangxuat2lbldangxuatMouseEntered
         // TODO add your handling code here:
         setcolorbutton(pnlnendangxuat2);
@@ -785,6 +757,12 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
     private void btnbanhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbanhangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnbanhangActionPerformed
+
+    private void lbldangxuat2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbldangxuat2MouseClicked
+       this.dispose();
+           jdllogin jdl = new jdllogin();
+           jdl.setVisible(true);
+    }//GEN-LAST:event_lbldangxuat2MouseClicked
 
     void setcolorbutton(JPanel panel) {
         panel.setBackground(Color.WHITE);
@@ -817,17 +795,17 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             }
             Image photo2 = new ImageIcon(this.getClass().getResource("/IMAGE/home2.jpg")).getImage();
             btntongquan.setIcon(new ImageIcon(photo2));
-            tq.setVisible(true);
-            bh.setVisible(false);
-            sp.setVisible(false);
-            dh.setVisible(false);
-            kh.setVisible(false);
-            gh.setVisible(false);
-            tg.setVisible(false);
-            tk.setVisible(false);
+             LoadDatabase.tq.setVisible(true);
+            LoadDatabase.bh.setVisible(false);
+            LoadDatabase.sp.setVisible(false);
+            LoadDatabase.dh.setVisible(false);
+            LoadDatabase.kh.setVisible(false);
+            LoadDatabase.gh.setVisible(false);
+            LoadDatabase.tg.setVisible(false);
+            LoadDatabase.tk.setVisible(false);
 
             lbltieude.setText("TỔNG QUAN");
-            jPanel2.add(tq);
+            jPanel2.add(LoadDatabase.tq);
             jPanel2.validate();
             nut();
 
@@ -837,17 +815,17 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             }else{
                  webcam.close();
             }
-            tq.setVisible(false);
-            bh.setVisible(true);
-            sp.setVisible(false);
-            dh.setVisible(false);
-            kh.setVisible(false);
-            gh.setVisible(false);
-            tg.setVisible(false);
-            tk.setVisible(false);
+            LoadDatabase.tq.setVisible(false);
+            LoadDatabase.bh.setVisible(true);
+            LoadDatabase.sp.setVisible(false);
+            LoadDatabase.dh.setVisible(false);
+            LoadDatabase.kh.setVisible(false);
+            LoadDatabase.gh.setVisible(false);
+            LoadDatabase.tg.setVisible(false);
+            LoadDatabase.tk.setVisible(false);
 
             lbltieude.setText("BÁN HÀNG");
-            jPanel2.add(bh);
+            jPanel2.add(LoadDatabase.bh);
             jPanel2.validate();
             
             
@@ -871,17 +849,17 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             }else{
                  webcam.close();
             }
-            tq.setVisible(false);
-            bh.setVisible(false);
-            sp.setVisible(true);
-            dh.setVisible(false);
-            kh.setVisible(false);
-            gh.setVisible(false);
-            tg.setVisible(false);
-            tk.setVisible(false);
+            LoadDatabase.tq.setVisible(false);
+            LoadDatabase.bh.setVisible(false);
+            LoadDatabase.sp.setVisible(true);
+            LoadDatabase.dh.setVisible(false);
+            LoadDatabase.kh.setVisible(false);
+            LoadDatabase.gh.setVisible(false);
+            LoadDatabase.tg.setVisible(false);
+            LoadDatabase.tk.setVisible(false);
 
             lbltieude.setText("SẢN PHẨM");
-            jPanel2.add(sp);
+            jPanel2.add(LoadDatabase.sp);
             jPanel2.validate();
             nut();
         } else if (evt.equals(btndonhang)) {
@@ -890,17 +868,17 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             }else{
                  webcam.close();
             }
-            tq.setVisible(false);
-            bh.setVisible(false);
-            sp.setVisible(false);
-            dh.setVisible(true);
-            kh.setVisible(false);
-            gh.setVisible(false);
-            tg.setVisible(false);
-            tk.setVisible(false);
+            LoadDatabase.tq.setVisible(false);
+            LoadDatabase.bh.setVisible(false);
+            LoadDatabase.sp.setVisible(false);
+            LoadDatabase.dh.setVisible(true);
+            LoadDatabase.kh.setVisible(false);
+            LoadDatabase.gh.setVisible(false);
+            LoadDatabase.tg.setVisible(false);
+            LoadDatabase.tk.setVisible(false);
 
             lbltieude.setText("ĐƠN HÀNG");
-            jPanel2.add(dh);
+            jPanel2.add(LoadDatabase.dh);
             jPanel2.validate();
             nut();
         } else if (evt.equals(btnkhachhang)) {
@@ -909,17 +887,17 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             }else{
                  webcam.close();
             }
-            tq.setVisible(false);
-            bh.setVisible(false);
-            sp.setVisible(false);
-            dh.setVisible(false);
-            kh.setVisible(true);
-            gh.setVisible(false);
-            tg.setVisible(false);
-            tk.setVisible(false);
+            LoadDatabase.tq.setVisible(false);
+            LoadDatabase.bh.setVisible(false);
+            LoadDatabase.sp.setVisible(false);
+            LoadDatabase.dh.setVisible(false);
+            LoadDatabase.kh.setVisible(true);
+            LoadDatabase.gh.setVisible(false);
+            LoadDatabase.tg.setVisible(false);
+            LoadDatabase.tk.setVisible(false);
 
             lbltieude.setText("KHÁCH HÀNG");
-            jPanel2.add(kh);
+            jPanel2.add(LoadDatabase.kh);
             jPanel2.validate();
             nut();
         } else if (evt.equals(btnhanghoa)) {
@@ -928,17 +906,17 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             }else{
                  webcam.close();
             }
-            tq.setVisible(false);
-            bh.setVisible(false);
-            sp.setVisible(false);
-            dh.setVisible(false);
-            kh.setVisible(false);
-            gh.setVisible(true);
-            tg.setVisible(false);
-            tk.setVisible(false);
+            LoadDatabase.tq.setVisible(false);
+            LoadDatabase.bh.setVisible(false);
+            LoadDatabase.sp.setVisible(false);
+            LoadDatabase.dh.setVisible(false);
+            LoadDatabase.kh.setVisible(false);
+            LoadDatabase.gh.setVisible(true);
+            LoadDatabase.tg.setVisible(false);
+            LoadDatabase.tk.setVisible(false);
 
             lbltieude.setText("HÀNG HÓA");
-            jPanel2.add(gh);
+            jPanel2.add(LoadDatabase.gh);
             jPanel2.validate();
             nut();
         } else if (evt.equals(btntragop)) {
@@ -947,17 +925,17 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             }else{
                  webcam.close();
             }
-            tq.setVisible(false);
-            bh.setVisible(false);
-            sp.setVisible(false);
-            dh.setVisible(false);
-            kh.setVisible(false);
-            gh.setVisible(false);
-            tg.setVisible(true);
-            tk.setVisible(false);
+            LoadDatabase.tq.setVisible(false);
+            LoadDatabase.bh.setVisible(false);
+            LoadDatabase.sp.setVisible(false);
+            LoadDatabase.dh.setVisible(false);
+            LoadDatabase.kh.setVisible(false);
+            LoadDatabase.gh.setVisible(false);
+            LoadDatabase.tg.setVisible(true);
+            LoadDatabase.tk.setVisible(false);
 
             lbltieude.setText("NHÂN VIÊN");
-            jPanel2.add(tg);
+            jPanel2.add(LoadDatabase.tg);
             jPanel2.validate();
             nut();
               Dimension size = WebcamResolution.QVGA.getSize();
@@ -976,17 +954,17 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
                  webcam.close();
             }
             
-            tq.setVisible(false);
-            bh.setVisible(false);
-            sp.setVisible(false);
-            dh.setVisible(false);
-            kh.setVisible(false);
-            gh.setVisible(false);
-            tg.setVisible(false);
-            tk.setVisible(true);
+            LoadDatabase.tq.setVisible(false);
+            LoadDatabase.bh.setVisible(false);
+            LoadDatabase.sp.setVisible(false);
+            LoadDatabase.dh.setVisible(false);
+            LoadDatabase.kh.setVisible(false);
+            LoadDatabase.gh.setVisible(false);
+            LoadDatabase.tg.setVisible(false);
+            LoadDatabase.tk.setVisible(true);
 
             lbltieude.setText("THỐNG KÊ");
-            jPanel2.add(tk);
+            jPanel2.add(LoadDatabase.tk);
             jPanel2.validate();
             nut();
         }
@@ -1014,7 +992,6 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbanhang;
-    private javax.swing.JButton btncauhinh;
     private javax.swing.JButton btndonhang;
     private javax.swing.JButton btnfanpage;
     private javax.swing.JButton btnhanghoa;

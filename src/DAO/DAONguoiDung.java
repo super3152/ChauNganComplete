@@ -24,6 +24,12 @@ public class DAONguoiDung {
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
+      public static ResultSet LayNhanVienCBBDaPhat(int idnguoidung, int thangphatluong, int namphatluong) {
+        String query = "SELECT trangthai FROM `phatluong` WHERE  idnguoidung = '"+idnguoidung+"' and thangphatluong = '"+thangphatluong+"' and namphatluong = '"+namphatluong+"'";
+        ResultSet rs = DBConection.GetData(query);
+          System.out.println(query);
+        return rs;
+    }
 
     public static ResultSet LayMucLuongCBB() {
         String query = "SELECT * FROM luong";
@@ -184,4 +190,11 @@ public class DAONguoiDung {
 
     }
     
+  public static ResultSet CheckLayNguoiDungChamCongThangNam(int id,int thang, int nam) {
+
+        String query = "SELECT chamcong.songaytrongthang,SUM(chamcong.tongsocachamcong) FROM `chamcong` INNER JOIN nguoidung ON nguoidung.idnguoidung = chamcong.idnguoidung WHERE nguoidung.quyen = 0 and nguoidung.idnguoidung ='"+id+"' and MONTH(ngaychamcong)= '"+thang+"' && YEAR(ngaychamcong)='"+nam+"'  GROUP BY chamcong.idnguoidung";
+        ResultSet rs = DBConection.GetData(query);
+        return rs;
+
+    }
 }
