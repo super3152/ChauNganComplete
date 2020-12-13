@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.DTOHoatDong;
+import static GUI.jdlChitiethoatdong.countHoatDong;
 import java.sql.ResultSet;
 
 /**
@@ -14,8 +15,31 @@ import java.sql.ResultSet;
  */
 public class DAOHoatDong {
     
-      public static ResultSet LayHoatDong() {
-        String query = "SELECT * FROM `hoatdong` ORDER BY thoigianhoatdong DESC";
+      public static ResultSet LayHoatDong(int trang) {
+        String query = "SELECT * FROM `hoatdong` ORDER BY thoigianhoatdong DESC limit "+trang+",13";
+        ResultSet rs = DBConection.GetData(query);
+          System.out.println(query);
+        return rs;
+    }
+      
+       public static ResultSet CountHoatDong() {
+        try {
+         String query = "Select count(*) from hoatdong";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countHoatDong = rs.getInt(1);
+            }
+            System.out.println(countHoatDong);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+      
+        public static ResultSet LayHoatDong2() {
+        String query = "SELECT * FROM `hoatdong` ORDER BY thoigianhoatdong DESC limit 0,13";
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }

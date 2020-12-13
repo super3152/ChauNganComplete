@@ -645,7 +645,7 @@ public class pnlChitiethoadon extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTraNoActionPerformed
 
     private void btnDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanhSachActionPerformed
-        BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText());
+        BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),0);
         jPanel22.remove(this);
         jPanel31.setVisible(true);
     }//GEN-LAST:event_btnDanhSachActionPerformed

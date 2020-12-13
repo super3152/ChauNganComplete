@@ -7,6 +7,8 @@ package GUI;
 
 import BLL.ChuyenDoi;
 import BLL.Excel;
+import DAO.DAOHoaDon;
+import DAO.DAOPhieuNhap;
 import DTO.DTONhaCungCap;
 import static GUI.pnlthemnhacungcap.btnthem;
 import static GUI.pnlthemnhacungcap.txtMancc;
@@ -20,15 +22,46 @@ import net.connectcode.Code128Auto;
  * @author Takemikazuchi
  */
 public class pnlhanghoa extends javax.swing.JPanel {
-
+public static int countHD, soTrangHD, trangHD = 1;
+public int trangHD1 = 1;
+public static int countPN, soTrangPN, trangPN = 1;
+public int trangPN1 = 1;
     /**
      * Creates new form pnldonhang
      */
     public pnlhanghoa() {
         initComponents();
-        BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText());
+        
+        
+        DAOHoaDon.CountHoaDon();
+        
+       
+        if (countHD % 13 == 0) {
+            soTrangHD = countHD / 13;
+        } else {
+            soTrangHD = countHD / 13 + 1;
+        }
+           BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),0);
+        lblCountPage.setText(trangHD1 +"/"+ soTrangHD+"");
+        lblNumberPage.setText(trangHD1+"");
+        
+       
          BLL.BLLNhaCungCap.HienThiNhaCungCap(tblnhacungcap, txttimkiem6.getText());
-            BLL.BLLPhieuNhap.HienThiPheuNhap(tblPhieuNhap, txtTimKiemPN.getText());
+         //
+          DAOPhieuNhap.CountPN();
+          
+             if (countPN % 13 == 0) {
+            soTrangPN = countPN / 13;
+        } else {
+            soTrangPN = countPN / 13 + 1;
+        }
+          BLL.BLLPhieuNhap.HienThiPhieuNhap(tblPhieuNhap, txtTimKiemPN.getText(),0);
+        lblCountPage1.setText(trangPN1 +"/"+ soTrangPN+"");
+        lblNumberPage1.setText(trangPN1+"");
+            
+            
+            //
+            
              BLL.BLLTraHang.HienThiTraHang(tblDSTraHang);
     }
 
@@ -51,11 +84,12 @@ public class pnlhanghoa extends javax.swing.JPanel {
         jPanel48 = new javax.swing.JPanel();
         btnTraNoHD = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
+        btnFirst = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
+        lblNumberPage = new javax.swing.JLabel();
+        lblCountPage = new javax.swing.JLabel();
         jButton17 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
@@ -67,11 +101,12 @@ public class pnlhanghoa extends javax.swing.JPanel {
         btnTraNoPN = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton25 = new javax.swing.JButton();
-        jButton26 = new javax.swing.JButton();
-        jButton27 = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
+        btnFirst1 = new javax.swing.JButton();
+        btnBack1 = new javax.swing.JButton();
+        lblNumberPage1 = new javax.swing.JLabel();
+        btnNext1 = new javax.swing.JButton();
+        btnLast1 = new javax.swing.JButton();
+        lblCountPage1 = new javax.swing.JLabel();
         jButton18 = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
         jPanel29 = new javax.swing.JPanel();
@@ -84,11 +119,12 @@ public class pnlhanghoa extends javax.swing.JPanel {
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton28 = new javax.swing.JButton();
-        jButton29 = new javax.swing.JButton();
-        jButton30 = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
+        btnFirst2 = new javax.swing.JButton();
+        btnBack2 = new javax.swing.JButton();
+        lblNumberPage2 = new javax.swing.JLabel();
+        btnNext2 = new javax.swing.JButton();
+        btnLast2 = new javax.swing.JButton();
+        lblCountPage2 = new javax.swing.JLabel();
         jButton22 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jPanel20 = new javax.swing.JPanel();
@@ -97,11 +133,12 @@ public class pnlhanghoa extends javax.swing.JPanel {
         txttimkiem4 = new javax.swing.JTextField();
         jPanel52 = new javax.swing.JPanel();
         btnThemphieutrahang = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton31 = new javax.swing.JButton();
-        jButton32 = new javax.swing.JButton();
-        jButton33 = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JSeparator();
+        btnFirst3 = new javax.swing.JButton();
+        btnBack3 = new javax.swing.JButton();
+        lblNumberPage3 = new javax.swing.JLabel();
+        btnNext3 = new javax.swing.JButton();
+        btnLast3 = new javax.swing.JButton();
+        lblCountPage3 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
         srcdanhsach5 = new javax.swing.JScrollPane();
         tblDSTraHang = new javax.swing.JTable();
@@ -202,15 +239,43 @@ public class pnlhanghoa extends javax.swing.JPanel {
             }
         });
 
-        jButton6.setText("First");
+        btnFirst.setText("First");
+        btnFirst.setEnabled(false);
+        btnFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirstActionPerformed(evt);
+            }
+        });
 
-        jButton11.setText("Back");
+        btnBack.setText("Back");
+        btnBack.setEnabled(false);
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
-        jButton23.setText("Next");
+        btnNext.setText("Next");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
 
-        jButton24.setText("Last");
+        btnLast.setText("Last");
+        btnLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastActionPerformed(evt);
+            }
+        });
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        lblNumberPage.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNumberPage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNumberPage.setText("1");
+
+        lblCountPage.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCountPage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCountPage.setText("1/100");
 
         javax.swing.GroupLayout jPanel48Layout = new javax.swing.GroupLayout(jPanel48);
         jPanel48.setLayout(jPanel48Layout);
@@ -218,15 +283,17 @@ public class pnlhanghoa extends javax.swing.JPanel {
             jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel48Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNumberPage, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCountPage, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -237,16 +304,19 @@ public class pnlhanghoa extends javax.swing.JPanel {
             jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel48Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTraNoHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCountPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSeparator1)))
-                .addGap(8, 8, 8))
+                        .addComponent(lblNumberPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnFirst, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnTraNoHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(7, 7, 7))
         );
 
         jButton17.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -265,7 +335,7 @@ public class pnlhanghoa extends javax.swing.JPanel {
             .addGroup(jPanel31Layout.createSequentialGroup()
                 .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(txtTimKiemHD, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE))
+                .addComponent(txtTimKiemHD, javax.swing.GroupLayout.DEFAULT_SIZE, 796, Short.MAX_VALUE))
             .addComponent(srcdanhsach3)
             .addComponent(jPanel48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -276,7 +346,7 @@ public class pnlhanghoa extends javax.swing.JPanel {
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTimKiemHD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(srcdanhsach3, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addComponent(srcdanhsach3, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel48, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -294,7 +364,7 @@ public class pnlhanghoa extends javax.swing.JPanel {
             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Trả Nợ", new javax.swing.ImageIcon(getClass().getResource("/IMAGE/debt_20px.png")), jPanel10); // NOI18N
+        jTabbedPane1.addTab("Hóa đơn", new javax.swing.ImageIcon(getClass().getResource("/IMAGE/list_20px.png")), jPanel10); // NOI18N
 
         jPanel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -392,15 +462,43 @@ public class pnlhanghoa extends javax.swing.JPanel {
             }
         });
 
-        jButton8.setText("First");
+        btnFirst1.setText("First");
+        btnFirst1.setEnabled(false);
+        btnFirst1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirst1ActionPerformed(evt);
+            }
+        });
 
-        jButton25.setText("Back");
+        btnBack1.setText("Back");
+        btnBack1.setEnabled(false);
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
 
-        jButton26.setText("Next");
+        lblNumberPage1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNumberPage1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNumberPage1.setText("1");
 
-        jButton27.setText("Last");
+        btnNext1.setText("Next");
+        btnNext1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNext1ActionPerformed(evt);
+            }
+        });
 
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        btnLast1.setText("Last");
+        btnLast1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLast1ActionPerformed(evt);
+            }
+        });
+
+        lblCountPage1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCountPage1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCountPage1.setText("1/100");
 
         javax.swing.GroupLayout jPanel49Layout = new javax.swing.GroupLayout(jPanel49);
         jPanel49.setLayout(jPanel49Layout);
@@ -408,39 +506,44 @@ public class pnlhanghoa extends javax.swing.JPanel {
             jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel49Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFirst1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNumberPage1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNext1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLast1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCountPage1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTraNoPN, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(202, 202, 202))
+                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnTraNoPN, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(161, 161, 161))
             .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel49Layout.createSequentialGroup()
-                    .addContainerGap(792, Short.MAX_VALUE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(22, 22, 22)))
+                    .addContainerGap(824, Short.MAX_VALUE)
+                    .addComponent(jButton13)
+                    .addContainerGap()))
         );
         jPanel49Layout.setVerticalGroup(
             jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel49Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTraNoPN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCountPage1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNumberPage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNext1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLast1))
                     .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSeparator2)))
+                        .addComponent(btnFirst1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnTraNoPN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel49Layout.createSequentialGroup()
@@ -465,7 +568,7 @@ public class pnlhanghoa extends javax.swing.JPanel {
             .addGroup(jPanel32Layout.createSequentialGroup()
                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(txtTimKiemPN, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE))
+                .addComponent(txtTimKiemPN, javax.swing.GroupLayout.DEFAULT_SIZE, 796, Short.MAX_VALUE))
             .addComponent(srcdanhsach4)
             .addComponent(jPanel49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -486,7 +589,7 @@ public class pnlhanghoa extends javax.swing.JPanel {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)
+            .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,15 +704,43 @@ public class pnlhanghoa extends javax.swing.JPanel {
             }
         });
 
-        jButton9.setText("First");
+        btnFirst2.setText("First");
+        btnFirst2.setEnabled(false);
+        btnFirst2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirst2ActionPerformed(evt);
+            }
+        });
 
-        jButton28.setText("Back");
+        btnBack2.setText("Back");
+        btnBack2.setEnabled(false);
+        btnBack2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack2ActionPerformed(evt);
+            }
+        });
 
-        jButton29.setText("Next");
+        lblNumberPage2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNumberPage2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNumberPage2.setText("1");
 
-        jButton30.setText("Last");
+        btnNext2.setText("Next");
+        btnNext2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNext2ActionPerformed(evt);
+            }
+        });
 
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        btnLast2.setText("Last");
+        btnLast2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLast2ActionPerformed(evt);
+            }
+        });
+
+        lblCountPage2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCountPage2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCountPage2.setText("1/100");
 
         javax.swing.GroupLayout jPanel51Layout = new javax.swing.GroupLayout(jPanel51);
         jPanel51.setLayout(jPanel51Layout);
@@ -617,19 +748,21 @@ public class pnlhanghoa extends javax.swing.JPanel {
             jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel51Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFirst2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNumberPage2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNext2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(btnLast2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCountPage2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton20)
+                .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -640,17 +773,20 @@ public class pnlhanghoa extends javax.swing.JPanel {
             jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel51Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCountPage2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNumberPage2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNext2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLast2))
                     .addGroup(jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSeparator3)))
+                        .addComponent(btnFirst2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel51Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -722,15 +858,43 @@ public class pnlhanghoa extends javax.swing.JPanel {
             }
         });
 
-        jButton10.setText("First");
+        btnFirst3.setText("First");
+        btnFirst3.setEnabled(false);
+        btnFirst3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirst3ActionPerformed(evt);
+            }
+        });
 
-        jButton31.setText("Back");
+        btnBack3.setText("Back");
+        btnBack3.setEnabled(false);
+        btnBack3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack3ActionPerformed(evt);
+            }
+        });
 
-        jButton32.setText("Next");
+        lblNumberPage3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNumberPage3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNumberPage3.setText("1");
 
-        jButton33.setText("Last");
+        btnNext3.setText("Next");
+        btnNext3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNext3ActionPerformed(evt);
+            }
+        });
 
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        btnLast3.setText("Last");
+        btnLast3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLast3ActionPerformed(evt);
+            }
+        });
+
+        lblCountPage3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCountPage3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCountPage3.setText("1/100");
 
         javax.swing.GroupLayout jPanel52Layout = new javax.swing.GroupLayout(jPanel52);
         jPanel52.setLayout(jPanel52Layout);
@@ -738,15 +902,17 @@ public class pnlhanghoa extends javax.swing.JPanel {
             jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel52Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFirst3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNumberPage3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNext3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLast3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCountPage3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnThemphieutrahang, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -755,14 +921,16 @@ public class pnlhanghoa extends javax.swing.JPanel {
             jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel52Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThemphieutrahang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCountPage3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNumberPage3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNext3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLast3))
                     .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSeparator4)))
+                        .addComponent(btnFirst3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnThemphieutrahang, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
 
@@ -844,7 +1012,7 @@ public class pnlhanghoa extends javax.swing.JPanel {
                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(txttimkiem4))
-            .addComponent(srcdanhsach5, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)
+            .addComponent(srcdanhsach5, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE)
             .addComponent(jPanel52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel27Layout.setVerticalGroup(
@@ -1128,13 +1296,211 @@ public class pnlhanghoa extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblDSTraHangMouseClicked
 
+    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
+         trangHD = 0;
+       BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
+        trangHD1 = 1;
+          btnNext.setEnabled(true);
+        btnLast.setEnabled(true);
+        btnFirst.setEnabled(false);
+        btnBack.setEnabled(false);
+        lblCountPage.setText(trangHD1 +"/"+ soTrangHD+"");
+        lblNumberPage.setText(trangHD1+"");
+    }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+       
+            if (trangHD1 == 2 ) {
+                 
+                   trangHD = trangHD - 13 ;
+          BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
+           lblNumberPage.setText(""+(trangHD1 = (trangHD1-1))); 
+           lblCountPage.setText(""+trangHD1+"/"+soTrangHD);
+             btnBack.setEnabled(false);
+             btnFirst.setEnabled(false);
+               btnNext.setEnabled(true);
+                
+                 btnLast.setEnabled(true);
+           
+        }else{
+               btnBack.setEnabled(true);
+                 btnNext.setEnabled(true);
+                
+                 btnLast.setEnabled(true);
+                   trangHD = trangHD - 13 ;
+            BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
+           lblNumberPage.setText(""+(trangHD1 = (trangHD1-1))); 
+           lblCountPage.setText(""+trangHD1+"/"+soTrangHD);
+        }
+        
+          
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+           if (trangHD1 == soTrangHD-1) {
+              trangHD = trangHD + 13 ;
+           BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
+           lblNumberPage.setText(""+(trangHD1 = (trangHD1+1))); 
+           lblCountPage.setText(""+trangHD1+"/"+soTrangHD);
+            
+            btnNext.setEnabled(false);
+             btnLast.setEnabled(false);
+               btnBack.setEnabled(true);
+                btnFirst.setEnabled(true);
+        }else{
+              btnNext.setEnabled(true);
+               btnBack.setEnabled(true);
+                btnFirst.setEnabled(true);
+                   trangHD = trangHD + 13 ;
+             BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
+           lblNumberPage.setText(""+(trangHD1 = (trangHD1+1))); 
+           lblCountPage.setText(""+trangHD1+"/"+soTrangHD);
+        }
+           System.out.println(lblNumberPage.getText());
+            
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
+        btnNext.setEnabled(false);
+        btnLast.setEnabled(false);
+        btnFirst.setEnabled(true);
+        btnBack.setEnabled(true);      
+        trangHD = (13*soTrangHD)-13;
+      BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
+       trangHD1 = soTrangHD;
+       lblCountPage.setText(trangHD1 +"/"+ soTrangHD+"");
+        lblNumberPage.setText(trangHD1+"");
+    }//GEN-LAST:event_btnLastActionPerformed
+
+    private void btnFirst1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst1ActionPerformed
+           trangPN = 0;
+        BLL.BLLPhieuNhap.HienThiPhieuNhap(tblPhieuNhap, txtTimKiemPN.getText(),trangPN);
+        trangPN1 = 1;
+          btnNext1.setEnabled(true);
+        btnLast1.setEnabled(true);
+        btnFirst1.setEnabled(false);
+        btnBack1.setEnabled(false);
+        lblCountPage1.setText(trangPN1 +"/"+ soTrangPN+"");
+        lblNumberPage1.setText(trangPN1+"");
+    }//GEN-LAST:event_btnFirst1ActionPerformed
+
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+       
+            if (trangPN1 == 2 ) {
+                 
+                   trangPN = trangPN - 13 ;
+           BLL.BLLPhieuNhap.HienThiPhieuNhap(tblPhieuNhap, txtTimKiemPN.getText(),trangPN);
+           lblNumberPage1.setText(""+(trangPN1 = (trangPN1-1))); 
+           lblCountPage1.setText(""+trangPN1+"/"+soTrangPN);
+             btnBack1.setEnabled(false);
+             btnFirst1.setEnabled(false);
+              btnNext1.setEnabled(true);
+                 
+                 btnLast1.setEnabled(true);
+           
+        }else{
+               btnBack1.setEnabled(true);
+                 btnNext1.setEnabled(true);
+                 
+                 btnLast1.setEnabled(true);
+                   trangPN = trangPN - 13 ;
+             BLL.BLLPhieuNhap.HienThiPhieuNhap(tblPhieuNhap, txtTimKiemPN.getText(),trangPN);
+           lblNumberPage1.setText(""+(trangPN1 = (trangPN1-1))); 
+           lblCountPage1.setText(""+trangPN1+"/"+soTrangPN);
+        }
+        
+          
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
+    private void btnNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext1ActionPerformed
+         if (trangPN1 == soTrangPN-1) {
+              trangPN = trangPN + 13 ;
+          BLL.BLLPhieuNhap.HienThiPhieuNhap(tblPhieuNhap, txtTimKiemPN.getText(),trangPN);
+           lblNumberPage1.setText(""+(trangPN1 = (trangPN1+1))); 
+           lblCountPage1.setText(""+trangPN1+"/"+soTrangPN);
+            
+            btnNext1.setEnabled(false);
+             btnLast1.setEnabled(false);
+               btnBack1.setEnabled(true);
+                btnFirst1.setEnabled(true);
+        }else{
+             
+              btnNext1.setEnabled(true);
+               btnBack1.setEnabled(true);
+                btnFirst1.setEnabled(true);
+                   trangPN = trangPN + 13 ;
+            BLL.BLLPhieuNhap.HienThiPhieuNhap(tblPhieuNhap, txtTimKiemPN.getText(),trangPN);
+           lblNumberPage1.setText(""+(trangPN1 = (trangPN1+1))); 
+           lblCountPage1.setText(""+trangPN1+"/"+soTrangPN);
+        }
+         
+    }//GEN-LAST:event_btnNext1ActionPerformed
+
+    private void btnLast1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast1ActionPerformed
+          btnNext1.setEnabled(false);
+        btnLast1.setEnabled(false);
+        btnFirst1.setEnabled(true);
+        btnBack1.setEnabled(true);      
+        trangPN = (13*soTrangPN)-13;
+     BLL.BLLPhieuNhap.HienThiPhieuNhap(tblPhieuNhap, txtTimKiemPN.getText(),trangPN);
+       trangPN1 = soTrangPN;
+       lblCountPage.setText(trangPN1 +"/"+ soTrangPN+"");
+        lblNumberPage.setText(trangPN1+"");
+    }//GEN-LAST:event_btnLast1ActionPerformed
+
+    private void btnFirst2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFirst2ActionPerformed
+
+    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBack2ActionPerformed
+
+    private void btnNext2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNext2ActionPerformed
+
+    private void btnLast2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLast2ActionPerformed
+
+    private void btnFirst3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFirst3ActionPerformed
+
+    private void btnBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBack3ActionPerformed
+
+    private void btnNext3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNext3ActionPerformed
+
+    private void btnLast3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLast3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
+    private javax.swing.JButton btnBack2;
+    private javax.swing.JButton btnBack3;
+    private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnFirst1;
+    private javax.swing.JButton btnFirst2;
+    private javax.swing.JButton btnFirst3;
+    private javax.swing.JButton btnLast;
+    private javax.swing.JButton btnLast1;
+    private javax.swing.JButton btnLast2;
+    private javax.swing.JButton btnLast3;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnNext1;
+    private javax.swing.JButton btnNext2;
+    private javax.swing.JButton btnNext3;
     private javax.swing.JButton btnThemphieutrahang;
     private javax.swing.JButton btnTraNoHD;
     private javax.swing.JButton btnTraNoPN;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
@@ -1146,21 +1512,7 @@ public class pnlhanghoa extends javax.swing.JPanel {
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton30;
-    private javax.swing.JButton jButton31;
-    private javax.swing.JButton jButton32;
-    private javax.swing.JButton jButton33;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel19;
@@ -1177,11 +1529,15 @@ public class pnlhanghoa extends javax.swing.JPanel {
     public static javax.swing.JPanel jPanel50;
     private javax.swing.JPanel jPanel51;
     private javax.swing.JPanel jPanel52;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblCountPage;
+    private javax.swing.JLabel lblCountPage1;
+    private javax.swing.JLabel lblCountPage2;
+    private javax.swing.JLabel lblCountPage3;
+    private javax.swing.JLabel lblNumberPage;
+    private javax.swing.JLabel lblNumberPage1;
+    private javax.swing.JLabel lblNumberPage2;
+    private javax.swing.JLabel lblNumberPage3;
     private javax.swing.JScrollPane srcdanhsach3;
     private javax.swing.JScrollPane srcdanhsach4;
     private javax.swing.JScrollPane srcdanhsach5;

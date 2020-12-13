@@ -21,9 +21,9 @@ public class TestDemo extends javax.swing.JDialog {
         initComponents();
        DBConection db = new DBConection();
 //         pnlhanghoa gh = new pnlhanghoa();
-         pnlsanpham sp = new pnlsanpham();
+//         pnlsanpham sp = new pnlsanpham();
 //       pnltongquan tq = new pnltongquan();
-//    pnlbanhang bh = new pnlbanhang();
+    pnlbanhang bh = new pnlbanhang();
 //    
 //  
 //    pnlkhachhang kh = new pnlkhachhang();
@@ -31,7 +31,7 @@ public class TestDemo extends javax.swing.JDialog {
 //    pnlnhanvien tg = new pnlnhanvien();
 //    pnlthongke tk = new pnlthongke();
         
-        jPanel1.add(sp);
+        jPanel1.add(bh);
     }
 
     /**

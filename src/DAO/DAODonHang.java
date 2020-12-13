@@ -7,6 +7,7 @@ package DAO;
 
 import DTO.DTODonHang;
 import DTO.DTOHinhThucGiaoHang;
+import static GUI.pnlgiaohang.countDH;
 import java.sql.ResultSet;
 
 /**
@@ -14,13 +15,27 @@ import java.sql.ResultSet;
  * @author KMB1604
  */
 public class DAODonHang {
-    public static ResultSet LayDonHang(String TuKhoa) {
+    public static ResultSet LayDonHang(String TuKhoa, int trang) {
 
-        String query = "SELECT * FROM `hoadon` where loaihoadon = '1'  ORDER BY ngaytaohoadon DESC";
+        String query = "SELECT * FROM `hoadon` where loaihoadon = '1'  ORDER BY ngaytaohoadon DESC limit "+trang+",13";
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
-    
+     public static ResultSet CountHoaDon() {
+        try {
+         String query = "Select count(*) from hoadon where loaihoadon = '1'";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countDH = rs.getInt(1);
+            }
+            System.out.println(countDH);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
       public static ResultSet LayChiTietDonHang(String TuKhoa) {
 
         String query = "SELECT * FROM `chitiethoadon`";

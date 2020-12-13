@@ -29,8 +29,8 @@ import javax.swing.table.TableCellRenderer;
  * @author KMB1604
  */
 public class BLLDonHang {
-     public static void HienThiDonHang(JTable tbl, String TuKhoa) {
-        ResultSet rs = DAO.DAODonHang.LayDonHang(TuKhoa);
+     public static void HienThiDonHang(JTable tbl, String TuKhoa,int trang) {
+        ResultSet rs = DAO.DAODonHang.LayDonHang(TuKhoa,trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[10];

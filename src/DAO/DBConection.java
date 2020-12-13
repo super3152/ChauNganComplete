@@ -21,15 +21,11 @@ import javax.swing.JOptionPane;
  * @author Takemikazuchi
  */
 public class DBConection {
-
-
-
-    private static final String DB_URL = "jdbc:mysql://shopmart.fun/sho71306_ChauNganProject?useUnicode=yes&characterEncoding=UTF-8";   
+    private static final String DB_URL = "jdbc:mysql://shopmart.fun/sho71306_ChauNganProject?"
+    + "useUnicode=yes&characterEncoding=UTF-8";   
     private static final String USER_NAME = "sho71306_Adminchaungan";
     private static final String PASSWORD = "Duantotnghiep2020";
     public static Connection conn;
-
-
     public  DBConection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -40,15 +36,13 @@ public class DBConection {
         } catch (SQLException ex) {
             System.out.println("Lỗi kết nối CSDL" + ex);
         }
-
     }
 
     public static ResultSet GetData(String cauTruyVan) {
-        try {
-            // conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
+        try {        
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(cauTruyVan);
-            System.out.println("getdata");
+           
             return rs;
         } catch (SQLException ex) {
             System.out.println("lỗi lấy dữ liệu " + ex);
@@ -56,12 +50,10 @@ public class DBConection {
         }
     }
     public static int ExcuteTruyVan(String cauTruyVan) {
-        try {
-         //    conn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
+        try {       
             Statement stm = conn.createStatement();
-            System.out.println("getexecute");
+          
             return stm.executeUpdate(cauTruyVan);
- 
         } catch (SQLException ex) {
             System.out.println("Lỗi Thực Thi lệnh SQL");
             return -1;

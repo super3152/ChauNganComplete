@@ -73,7 +73,6 @@ jPanel3.setVisible(false);
         jPanel9 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -160,22 +159,6 @@ jPanel3.setVisible(false);
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 300, 1));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("<html> <body> <u> Quên mật khẩu?</u> </body> </html>");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel4MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel4MousePressed(evt);
-            }
-        });
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 110, -1));
 
         txtUser.setBackground(new java.awt.Color(33, 36, 51));
         txtUser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -348,7 +331,7 @@ jPanel3.setVisible(false);
         bttLogin.setBackground(new java.awt.Color(33, 36, 51));
         bttLogin.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         bttLogin.setForeground(new java.awt.Color(255, 255, 255));
-        bttLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/button/New folder/nenbutton_1.jpg"))); // NOI18N
+        bttLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/nenbutton_1.jpg"))); // NOI18N
         bttLogin.setText("ĐĂNG NHẬP");
         bttLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         bttLogin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -646,18 +629,6 @@ dialog.setVisible(true);
         
 
     }
-    private void jLabel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MousePressed
-        jLabel4.setForeground(Color.RED);
-    }//GEN-LAST:event_jLabel4MousePressed
-
-    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
-       jLabel4.setForeground(Color.WHITE);
-    }//GEN-LAST:event_jLabel4MouseExited
-
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
-        jLabel4.setForeground(Color.RED);
-    }//GEN-LAST:event_jLabel4MouseEntered
-
     private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
         jLabel6.setForeground(new Color(33,36,51));
         jPanel9.setVisible(true);
@@ -736,7 +707,7 @@ dialog.setVisible(true);
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         int ketquasaukhibam = JOptionPane.showConfirmDialog(new JFrame(),
-            "Bạn có muốn thoát chương trình ?", //thông báo
+            "Bạn có muốn thoát phần mềm ?", //thông báo
             "Thông báo!", //tiêu đề
             JOptionPane.YES_NO_OPTION, //lựa chọn
             JOptionPane.WARNING_MESSAGE); // icon
@@ -830,12 +801,13 @@ dialog.setVisible(true);
         String MatKhau =String.valueOf(txtPass.getPassword());
         if (BLLlogin.Checklogin(TenDangNhap, MatKhau) == true) {
           
-            ThongBaoThongTin.ThongBao("Đăng nhập thành công", "Thông báo");
+            
             int idhoatdong = 1;
             int idnguoidung;
              idnguoidung = BLL.BLLlogin.nguoidung.getIdNguoiDung(); 
             DTOHoatDong nd = new DTOHoatDong(idhoatdong, idnguoidung);
             BLL.BLLHoatDong.ThemHoatDong(nd);
+            ThongBaoThongTin.ThongBao("Đăng nhập thành công", "Thông báo");
               this.dispose();
             frmmain frm = new frmmain();
             frm.setVisible(true);
@@ -866,12 +838,14 @@ dialog.setVisible(true);
     
     
        void setcolorbutton(JButton panel){
-   bttLogin.setBackground(Color.WHITE);
+    Image photo2 = new ImageIcon(this.getClass().getResource("/IMAGE/nenbutton.jpg")).getImage();
+        bttLogin.setIcon(new ImageIcon(photo2));
    bttLogin.setForeground(new Color(33,36,51));
 }
         
           void resetcolorbutton(JButton panel){
-    bttLogin.setBackground(new Color(33,36,51));
+  Image photo2 = new ImageIcon(this.getClass().getResource("/IMAGE/nenbutton_1.jpg")).getImage();
+        bttLogin.setIcon(new ImageIcon(photo2));
     bttLogin.setForeground(Color.WHITE);
 }
     /**
@@ -936,7 +910,6 @@ dialog.setVisible(true);
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

@@ -914,7 +914,7 @@ private boolean succeeded;
     }//GEN-LAST:event_FileChooser2ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       HienThiDonHang(tblDonHang1, pnlgiaohang.txttimkiem1.getText());
+       HienThiDonHang(tblDonHang1, pnlgiaohang.txttimkiem1.getText(),0);
     }//GEN-LAST:event_formWindowClosing
 
     private void btthuydon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btthuydon1ActionPerformed

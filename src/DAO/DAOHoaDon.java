@@ -7,6 +7,8 @@ package DAO;
 
 import DTO.DTOHoaDon;
 import DTO.DTOSanPham;
+import GUI.pnlhanghoa;
+import static GUI.pnlhanghoa.countHD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,11 +20,32 @@ import java.util.logging.Logger;
  * @author Administrator
  */
 public class DAOHoaDon {
-     public static ResultSet LayHoaDon(String TuKhoa) {
-        String query = "Select * from hoadon where idhoadon like '%" + TuKhoa + "%' or sohoadon like '%" + TuKhoa + "%' or ngaytaohoadon like '%" + TuKhoa + "%' or idnguoidung like '%" + TuKhoa + "%' or tongtien like '%" + TuKhoa + "%' or idkhachhang like '%" + TuKhoa + "%' or congno like '%" + TuKhoa + "%'";
+     public static ResultSet LayHoaDon(String TuKhoa, int trang) {
+        String query = "Select * from hoadon where idhoadon like '%" + TuKhoa + "%'"
+                + " or sohoadon like '%" + TuKhoa + "%' or ngaytaohoadon like '%" 
+                + TuKhoa + "%' or idnguoidung like '%" + TuKhoa + "%' or tongtien like '%"
+                + TuKhoa + "%' or idkhachhang like '%" + TuKhoa + "%' or congno like '%" 
+                + TuKhoa + "%' limit "+trang+", 13";
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
     }
+     
+     public static ResultSet CountHoaDon() {
+        try {
+         String query = "Select count(*) from hoadon";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countHD = rs.getInt(1);
+            }
+            System.out.println(countHD);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+     
      public static ResultSet LayPhieuNhapTheoID(String IDPhieuNhap) {
         String query = "SELECT * FROM `phieunhap` WHERE `idphieunhap`= '" + IDPhieuNhap + "'";
         ResultSet rs = DBConection.GetData(query);

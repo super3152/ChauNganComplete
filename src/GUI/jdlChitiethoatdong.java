@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static DAO.DAOHoatDong.CountHoatDong;
 import DAO.DBConection;
 import static GUI.pnltongquan.jScrollPane11;
 import static GUI.pnltongquan.tblHoatdong;
@@ -18,7 +19,8 @@ import javax.swing.UIManager;
  * @author KMB1604
  */
 public class jdlChitiethoatdong extends javax.swing.JDialog {
-
+public static int countHoatDong, soTrangHoatDong, trangHoatDong = 1;
+public int trangHoatDong1 = 1;
     /**
      * Creates new form jdlChitiethoatdong
      */
@@ -37,7 +39,7 @@ public class jdlChitiethoatdong extends javax.swing.JDialog {
         initComponents();
        
      
-        jPanel5.add(jScrollPane11);
+      
         
     }
 
@@ -71,15 +73,20 @@ public class jdlChitiethoatdong extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jButton12 = new javax.swing.JButton();
-        jButton31 = new javax.swing.JButton();
-        jButton32 = new javax.swing.JButton();
-        jButton33 = new javax.swing.JButton();
+        btnFirst2 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        lblNumberPage = new javax.swing.JLabel();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
+        lblCountPage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -271,13 +278,43 @@ public class jdlChitiethoatdong extends javax.swing.JDialog {
         jPanel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel8.setPreferredSize(new java.awt.Dimension(633, 30));
 
-        jButton12.setText("First");
+        btnFirst2.setText("First");
+        btnFirst2.setEnabled(false);
+        btnFirst2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirst2ActionPerformed(evt);
+            }
+        });
 
-        jButton31.setText("Back");
+        btnBack.setText("Back");
+        btnBack.setEnabled(false);
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
-        jButton32.setText("Next");
+        lblNumberPage.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNumberPage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNumberPage.setText("1");
 
-        jButton33.setText("Last");
+        btnNext.setText("Next");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
+
+        btnLast.setText("Last");
+        btnLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastActionPerformed(evt);
+            }
+        });
+
+        lblCountPage.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCountPage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCountPage.setText("1/100");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -286,15 +323,19 @@ public class jdlChitiethoatdong extends javax.swing.JDialog {
             .addGap(0, 629, Short.MAX_VALUE)
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
-                    .addGap(133, 133, 133)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(99, 99, 99)
+                    .addComponent(btnFirst2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNumberPage, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(142, Short.MAX_VALUE)))
+                    .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lblCountPage, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(100, Short.MAX_VALUE)))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,11 +343,15 @@ public class jdlChitiethoatdong extends javax.swing.JDialog {
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addGap(1, 1, 1)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblCountPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNumberPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnFirst2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGap(2, 2, 2)))
         );
 
@@ -326,7 +371,7 @@ public class jdlChitiethoatdong extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
         );
 
         pack();
@@ -352,9 +397,104 @@ public class jdlChitiethoatdong extends javax.swing.JDialog {
                 DAO.DAOHoatDong.XoaHoatDong(maHD);
             }
         }
-        BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong1);
+        BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong1,0);
        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnFirst2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst2ActionPerformed
+        trangHoatDong = 0;
+        BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong1,trangHoatDong);
+        trangHoatDong1 = 1;
+        btnNext.setEnabled(true);
+        btnLast.setEnabled(true);
+        btnFirst2.setEnabled(false);
+        btnBack.setEnabled(false);
+        lblCountPage.setText(trangHoatDong1 +"/"+ soTrangHoatDong+"");
+        lblNumberPage.setText(trangHoatDong1+"");
+    }//GEN-LAST:event_btnFirst2ActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+        if (trangHoatDong1 == 2 ) {
+
+            trangHoatDong = trangHoatDong - 13 ;
+          BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong1,trangHoatDong);
+            lblNumberPage.setText(""+(trangHoatDong1 = (trangHoatDong1-1)));
+            lblCountPage.setText(""+trangHoatDong1+"/"+soTrangHoatDong);
+            btnBack.setEnabled(false);
+            btnFirst2.setEnabled(false);
+            btnNext.setEnabled(true);
+
+            btnLast.setEnabled(true);
+
+        }else{
+            btnBack.setEnabled(true);
+            btnNext.setEnabled(true);
+
+            btnLast.setEnabled(true);
+            trangHoatDong = trangHoatDong - 13 ;
+            BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong1,trangHoatDong);
+            lblNumberPage.setText(""+(trangHoatDong1 = (trangHoatDong1-1)));
+            lblCountPage.setText(""+trangHoatDong1+"/"+soTrangHoatDong);
+        }
+
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        if (trangHoatDong1 == soTrangHoatDong-1) {
+            trangHoatDong = trangHoatDong + 13 ;
+          BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong1,trangHoatDong);
+            lblNumberPage.setText(""+(trangHoatDong1 = (trangHoatDong1+1)));
+            lblCountPage.setText(""+trangHoatDong1+"/"+soTrangHoatDong);
+
+            btnNext.setEnabled(false);
+            btnLast.setEnabled(false);
+            btnBack.setEnabled(true);
+            btnFirst2.setEnabled(true);
+        }else{
+            btnNext.setEnabled(true);
+            btnBack.setEnabled(true);
+            btnFirst2.setEnabled(true);
+            trangHoatDong = trangHoatDong + 13 ;
+           BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong1,trangHoatDong);
+            lblNumberPage.setText(""+(trangHoatDong1 = (trangHoatDong1+1)));
+            lblCountPage.setText(""+trangHoatDong1+"/"+soTrangHoatDong);
+        }
+        System.out.println(lblNumberPage.getText());
+
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
+        btnNext.setEnabled(false);
+        btnLast.setEnabled(false);
+        btnFirst2.setEnabled(true);
+        btnBack.setEnabled(true);
+        trangHoatDong = (13*soTrangHoatDong)-13;
+       BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong1,trangHoatDong);
+        trangHoatDong1 = soTrangHoatDong;
+        lblCountPage.setText(trangHoatDong1 +"/"+ soTrangHoatDong+"");
+        lblNumberPage.setText(trangHoatDong1+"");
+    }//GEN-LAST:event_btnLastActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       
+        
+        
+        CountHoatDong();
+        jPanel5.add(jScrollPane11);
+         
+        if (countHoatDong % 13 == 0) {
+            soTrangHoatDong = countHoatDong / 13;
+        } else {
+            soTrangHoatDong = countHoatDong / 13 + 1;
+        }
+          BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong1,0);
+        lblCountPage.setText(trangHoatDong1 +"/"+ soTrangHoatDong+"");
+        lblNumberPage.setText(trangHoatDong1+"");
+        
+        
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -400,13 +540,15 @@ public class jdlChitiethoatdong extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnFirst1;
+    private javax.swing.JButton btnFirst2;
+    private javax.swing.JButton btnLast;
+    private javax.swing.JButton btnNext;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton31;
-    private javax.swing.JButton jButton32;
-    private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -425,5 +567,7 @@ public class jdlChitiethoatdong extends javax.swing.JDialog {
     private javax.swing.JSpinner jSpinner1;
     private com.toedter.calendar.JDateChooser jdcNgaySinh;
     private com.toedter.calendar.JDateChooser jdcNgaySinh1;
+    private javax.swing.JLabel lblCountPage;
+    private javax.swing.JLabel lblNumberPage;
     // End of variables declaration//GEN-END:variables
 }

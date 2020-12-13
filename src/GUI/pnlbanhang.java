@@ -25,6 +25,8 @@ import static GUI.pnldonbanhang.tblChiTietHoaDon1;
 import static GUI.pnldonbanhang.txtSoHoaDon1;
 import static GUI.pnldonbanhang.txtTongTien1;
 import static GUI.pnldonbanhang.txtUuDai1;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -47,6 +49,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.MediaSizeName;
@@ -299,6 +303,7 @@ public static int MaHD2;
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblChiTietHoaDon = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel20 = new javax.swing.JPanel();
@@ -839,15 +844,30 @@ public static int MaHD2;
             tblChiTietHoaDon.getColumnModel().getColumn(4).setMaxWidth(50);
         }
 
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jButton3)
+                .addGap(0, 38, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel7, java.awt.BorderLayout.CENTER);
@@ -1745,6 +1765,10 @@ String value = jTable1.getModel().getValueAt(row, column).toString();
         BLLSanPham.HienThiSanPhamBanHang(jTable1,jTextField1.getText());
     }//GEN-LAST:event_jTextField1MouseClicked
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChonSP;
@@ -1754,6 +1778,7 @@ String value = jTable1.getModel().getValueAt(row, column).toString();
     private javax.swing.JComboBox<String> cbbSize;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

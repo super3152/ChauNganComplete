@@ -10,6 +10,7 @@ import static BLL.BLLDonHang.HienThiChiTietDonHangSanPham;
 import static BLL.BLLDonHang.HienThiDonHang;
 import BLL.ChuyenDoi;
 import DAO.DAODonHang;
+import DAO.DAOHoaDon;
 import DAO.DBConection;
 import DTO.DTODonHang;
 import DTO.DTOKhachHang;
@@ -52,6 +53,8 @@ public class pnlgiaohang extends javax.swing.JPanel {
     /**
      * Creates new form pnldonhang
      */
+    public static int countDH, soTrangDH, trangDH = 1;
+public int trangDH1 = 1;
     public pnlgiaohang() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -67,7 +70,18 @@ public class pnlgiaohang extends javax.swing.JPanel {
          tblDonHang1.getColumnModel().getColumn(0).setPreferredWidth(7);
            tblDonHang1.getColumnModel().getColumn(1).setPreferredWidth(7);
             tblDonHang1.getColumnModel().getColumn(9).setPreferredWidth(7);
-         HienThiDonHang(tblDonHang1, txttimkiem1.getText());
+            
+            
+            
+             DAODonHang.CountHoaDon();
+           if (countDH % 13 == 0) {
+            soTrangDH = countDH / 13;
+        } else {
+            soTrangDH = countDH / 13 + 1;
+        }
+          HienThiDonHang(tblDonHang1, txttimkiem1.getText(),0);
+        lblCountPage3.setText(trangDH1 +"/"+ soTrangDH+"");
+        lblNumberPage3.setText(trangDH1+"");
     }
 
     /**
@@ -87,11 +101,13 @@ public class pnlgiaohang extends javax.swing.JPanel {
         jPanel22 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton12 = new javax.swing.JButton();
-        jButton31 = new javax.swing.JButton();
-        jButton32 = new javax.swing.JButton();
-        jButton33 = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
+        btnFirst3 = new javax.swing.JButton();
+        btnBack3 = new javax.swing.JButton();
+        lblNumberPage3 = new javax.swing.JLabel();
+        btnNext3 = new javax.swing.JButton();
+        btnLast3 = new javax.swing.JButton();
+        lblCountPage3 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         pnlhoanthanh = new javax.swing.JPanel();
@@ -161,15 +177,45 @@ public class pnlgiaohang extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Đơn chưa xem: ");
 
-        jButton12.setText("First");
-
-        jButton31.setText("Back");
-
-        jButton32.setText("Next");
-
-        jButton33.setText("Last");
-
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        btnFirst3.setText("First");
+        btnFirst3.setEnabled(false);
+        btnFirst3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirst3ActionPerformed(evt);
+            }
+        });
+
+        btnBack3.setText("Back");
+        btnBack3.setEnabled(false);
+        btnBack3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack3ActionPerformed(evt);
+            }
+        });
+
+        lblNumberPage3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNumberPage3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNumberPage3.setText("1");
+
+        btnNext3.setText("Next");
+        btnNext3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNext3ActionPerformed(evt);
+            }
+        });
+
+        btnLast3.setText("Last");
+        btnLast3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLast3ActionPerformed(evt);
+            }
+        });
+
+        lblCountPage3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCountPage3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCountPage3.setText("1/100");
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -177,14 +223,18 @@ public class pnlgiaohang extends javax.swing.JPanel {
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFirst3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNumberPage3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton33, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNext3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLast3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCountPage3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,14 +247,17 @@ public class pnlgiaohang extends javax.swing.JPanel {
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator4)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCountPage3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSeparator4))
-                    .addComponent(jButton6)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblNumberPage3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNext3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLast3))
+                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnFirst3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -767,7 +820,7 @@ public class pnlgiaohang extends javax.swing.JPanel {
     }//GEN-LAST:event_txttimkiem1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        HienThiDonHang(tblDonHang1, txttimkiem1.getText());
+        HienThiDonHang(tblDonHang1, txttimkiem1.getText(),0);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -794,14 +847,30 @@ public class pnlgiaohang extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void btnFirst3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFirst3ActionPerformed
+
+    private void btnBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBack3ActionPerformed
+
+    private void btnNext3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNext3ActionPerformed
+
+    private void btnLast3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLast3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack3;
+    private javax.swing.JButton btnFirst3;
+    private javax.swing.JButton btnLast3;
+    private javax.swing.JButton btnNext3;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton31;
-    private javax.swing.JButton jButton32;
-    private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -809,6 +878,8 @@ public class pnlgiaohang extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel22;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JLabel lblCountPage3;
+    private javax.swing.JLabel lblNumberPage3;
     private javax.swing.JPanel pnldanhsach3;
     private javax.swing.JPanel pnlhoanthanh;
     private javax.swing.JScrollPane srcdanhsach3;

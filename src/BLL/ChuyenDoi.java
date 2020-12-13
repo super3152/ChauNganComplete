@@ -27,10 +27,29 @@ public class ChuyenDoi {
         return null;
     }
     
+     static DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
+    //Hàm chuyển String -> Date
+    public static Date GetDate2(String ngay){
+        try {
+           return df2.parse(ngay); 
+        } catch (ParseException e) {
+            
+        }
+        return null;
+    }
+    
+    
     //Hàm chuyển Date --> String
     public static String GetNgay(Date date){
         return df.format(date);
     }
+    
+     public static String GetNgay2(Date date2){
+        return df2.format(date2);
+    }
+    
+    
+    
     public static String DinhDangTien(double so){
         return NumberFormat.getNumberInstance().format(so);
     }

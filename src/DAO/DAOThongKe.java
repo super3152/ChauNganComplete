@@ -35,14 +35,14 @@ public class DAOThongKe {
     }
         public static ResultSet LayThongKeHoaDon() {
 
-        String query = "SELECT idhoadon,sohoadon,ngaytaohoadon,nguoidung.tennguoidung,congno,tongtien FROM hoadon INNER JOIN nguoidung ON nguoidung.idnguoidung = hoadon.idnguoidung";
+        String query = "SELECT idhoadon,sohoadon,ngaytaohoadon,nguoidung.tennguoidung,congno,tongtien FROM hoadon INNER JOIN nguoidung ON nguoidung.idnguoidung = hoadon.idnguoidung limit 0,13";
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
         
              public static ResultSet LayThongPhieuNhap() {
 
-        String query = "SELECT idphieunhap, sophieunhap, ngaynhap, congno,  thanhtien FROM phieunhap";
+        String query = "SELECT idphieunhap, sophieunhap, ngaynhap, congno,  thanhtien FROM phieunhap limit 0,13";
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }

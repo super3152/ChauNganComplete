@@ -250,7 +250,19 @@ Runnable update = new Runnable() {
                 }else{
                       txtUudai1.setText("Giờ nghỉ");    
                 }
+                
+                
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 };
 
 java.util.Timer timer = new java.util.Timer();
@@ -365,6 +377,8 @@ update.run();
         txtNgayPhat = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         tblCheckPL = new javax.swing.JTable();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tblCheckPL1 = new javax.swing.JTable();
         tbpchuyentab = new javax.swing.JTabbedPane();
         pnldanhsach = new javax.swing.JPanel();
         cbbloaikhachhang = new javax.swing.JComboBox<>();
@@ -505,8 +519,6 @@ update.run();
         lblmatkhau4 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         txtTongtienluong = new javax.swing.JTextField();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        tblCheckPL1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -633,6 +645,24 @@ update.run();
             }
         });
         jScrollPane7.setViewportView(tblCheckPL);
+
+        tblCheckPL1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Vắng", "Đi làm", "Ngày"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(tblCheckPL1);
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -1588,24 +1618,6 @@ update.run();
         txtTongtienluong.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         pnlnenmatkhau4.add(txtTongtienluong, java.awt.BorderLayout.CENTER);
 
-        tblCheckPL1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Vắng", "Đi làm", "Ngày"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane8.setViewportView(tblCheckPL1);
-
         javax.swing.GroupLayout pnlnenthongtin1Layout = new javax.swing.GroupLayout(pnlnenthongtin1);
         pnlnenthongtin1.setLayout(pnlnenthongtin1Layout);
         pnlnenthongtin1Layout.setHorizontalGroup(
@@ -1650,13 +1662,8 @@ update.run();
             .addGroup(pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlnenthongtin1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(517, Short.MAX_VALUE)))
-            .addGroup(pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlnenthongtin1Layout.createSequentialGroup()
-                    .addContainerGap(573, Short.MAX_VALUE)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(248, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 927, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         pnlnenthongtin1Layout.setVerticalGroup(
             pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1693,11 +1700,6 @@ update.run();
                     .addGap(356, 356, 356)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                     .addContainerGap()))
-            .addGroup(pnlnenthongtin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlnenthongtin1Layout.createSequentialGroup()
-                    .addContainerGap(388, Short.MAX_VALUE)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(66, Short.MAX_VALUE)))
         );
 
         pnlnenngoaithongtin1.add(pnlnenthongtin1, java.awt.BorderLayout.CENTER);

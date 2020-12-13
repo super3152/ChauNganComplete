@@ -6,6 +6,8 @@
 package DAO;
 
 import DTO.DTONhaCungCap;
+import static GUI.pnlhanghoa.countHD;
+import static GUI.pnlhanghoa.countPN;
 import java.sql.ResultSet;
 
 /**
@@ -35,7 +37,7 @@ public class DAONhaCungCap {
     }
     public static ResultSet LayNhaCungCap(String TuKhoa) {
 
-        String query = "SELECT * FROM nhacungcap where tennhacungcap like '%" + TuKhoa + "%' or idnhacungcap like '%" + TuKhoa + "%' or manhacungcap like '%" + TuKhoa + "%' or idloainhacungcap like '%" + TuKhoa + "%' or idnguoidung like '%" + TuKhoa + "%'";
+        String query = "SELECT * FROM nhacungcap where tennhacungcap like '%" + TuKhoa + "%' or idnhacungcap like '%" + TuKhoa + "%' or manhacungcap like '%" + TuKhoa + "%' or idloainhacungcap like '%" + TuKhoa + "%' or idnguoidung like '%" + TuKhoa + "%' limit 0, 13";
         ResultSet rs = DBConection.GetData(query);    
         return rs;
     }
@@ -154,4 +156,5 @@ public class DAONhaCungCap {
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
+      
 }

@@ -34,8 +34,8 @@ import javax.swing.table.TableCellRenderer;
  */
 public class BLLHoaDon {
 
-    public static void HienThiHoaDon(JTable tbl, String TuKhoa) {
-        ResultSet rs = DAO.DAOHoaDon.LayHoaDon(TuKhoa);
+    public static void HienThiHoaDon(JTable tbl, String TuKhoa, int trang) {
+        ResultSet rs = DAO.DAOHoaDon.LayHoaDon(TuKhoa, trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[8];

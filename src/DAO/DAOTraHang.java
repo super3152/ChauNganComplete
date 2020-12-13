@@ -19,7 +19,7 @@ public class DAOTraHang {
         return rs;
     }
     public static ResultSet LayTraHang(){
-        String query = "Select * from trahang";
+        String query = "Select * from trahang limit 0, 13";
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
     }

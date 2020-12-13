@@ -34,8 +34,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BLLPhieuNhap {
 
-    public static void HienThiPheuNhap(JTable tbl, String TuKhoa) {
-        ResultSet rs = DAO.DAOPhieuNhap.LayPhieuNhap(TuKhoa);
+    public static void HienThiPhieuNhap(JTable tbl, String TuKhoa, int trang) {
+        ResultSet rs = DAO.DAOPhieuNhap.LayPhieuNhap(TuKhoa,trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[10];

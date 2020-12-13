@@ -8,6 +8,7 @@ package GUI;
 import BLL.BLLChamCong;
 import BLL.BLLNguoiDung;
 import BLL.ChuyenDoi;
+import DAO.DBConection;
 import DTO.DTOChamCong;
 import static GUI.jdlCameraScanners.jTextField13;
 import static GUI.pnlbanhang.tblChiTietHoaDon;
@@ -49,6 +50,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import java.util.Date;
+import java.util.TimerTask;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -60,6 +62,8 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -72,41 +76,63 @@ import javax.swing.table.DefaultTableModel;
  * @author Takemikazuchi
  */
 public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFactory, ActionListener {
-
-  
-   
-   
-
     Timer updateTimer;
     int DELAY = 100;
-
     public static WebcamPanel panelcam = null;
     public static Webcam webcam = null;
-
     private static final long serialVersionUID = 6441489157408381878L;
     private Executor executor = Executors.newSingleThreadExecutor(this);
- public Date currenTime = new Date();
-   
+    public Date currenTime = new Date();  
     public frmmain() {
-
         initComponents();
-       
-        lbltenuser.setText(BLL.BLLlogin.nguoidung.getTenNguoiDung());
-//        updateTimer = new Timer(DELAY, new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Date currenTime = new Date();
-//                String formatTimeStr = "dd/MM/yy" + " - " + "hh:mm:ss";
-//                DateFormat formatTime = new SimpleDateFormat(formatTimeStr);
-//                String formatedTimeStr = formatTime.format(currenTime);
-//
-//                lbltime.setText(formatedTimeStr);
-//
-//            }
-//
-//        });
-//        updateTimer.start();
+        
+           int milisInAMinute = 2000;
+long time = System.currentTimeMillis();
 
+Runnable update = new Runnable() {
+    public void run() {
+//      while (true) {            
+//        if (DBConection.conn != null) {
+//           
+//        }else{  
+//            ImageIcon icon = new ImageIcon("src/IMAGE/831.gif");
+//            
+//             Object[] options = {"Đồng ý",
+//                    "Thoát"};
+//         int ketquasaukhibam = JOptionPane.showOptionDialog(new JFrame(),
+//            "<html><body><strong>Vui lòng kết nối lại ?</strong></body?</html>", //thông báo
+//            "Thông báo!", //tiêu đề
+//           JOptionPane.YES_NO_OPTION,
+//    JOptionPane.QUESTION_MESSAGE,
+//    icon,     //không sử dụng icon tùy chỉnh
+//    options,  //các tiêu để của các nút
+//    options[0]); //tiêu đề nút mặc định
+//
+//        if (ketquasaukhibam == JOptionPane.YES_OPTION){
+//         DBConection db = new DBConection();
+//          } else{
+//            System.exit(0);
+//        }
+//        }
+//      }   
+                
+    }
+ 
+};
+
+java.util.Timer timer = new java.util.Timer();
+timer.schedule(new TimerTask() {
+    public void run() {
+        update.run();
+    }
+}, time % milisInAMinute, milisInAMinute);
+update.run();
+        
+        
+        
+        
+        
+        lbltenuser.setText(BLL.BLLlogin.nguoidung.getTenNguoiDung());
         btntongquan.addActionListener(this);
         btnbanhang.addActionListener(this);
         btnsanpham.addActionListener(this);
@@ -116,7 +142,6 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
         btntragop.addActionListener(this);
         btnthongke.addActionListener(this);
     }
-
     public void dsnut() {
         btntongquan.setEnabled(true);
         btnbanhang.setEnabled(true);
@@ -542,7 +567,7 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbluser, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(lbltieude, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbltieude)
                     .addComponent(lbltenuser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -832,6 +857,8 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             
             
             nut();
+            
+            
             Dimension size = WebcamResolution.QVGA.getSize();
             webcam = Webcam.getWebcams().get(0);
             webcam.setViewSize(size);
@@ -1044,9 +1071,9 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             }
 
             LuminanceSource source = new BufferedImageLuminanceSource(image);
-            
+                       
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
-
+                     
             try {
                 result = new MultiFormatReader().decode(bitmap);
             }
@@ -1059,47 +1086,57 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             }
 
             if (result != null) {
-                jTextField1.setText(result.getText());
-                String MaSanPham = result.getText();
-                int MaSP = BLL.BLLHoaDon.LayMaSanPhamString(MaSanPham);
-                DTO.DTOSanPham sp = BLL.BLLSanPham.GetMaSP(MaSP);
+                    jTextField1.setText(result.getText());
+                     jTextField13.setText(result.getText());
+                    String MaSanPham = result.getText();
+                    int MaSP = BLL.BLLHoaDon.LayMaSanPhamString(MaSanPham);
+                    DTO.DTOSanPham sp = BLL.BLLSanPham.GetMaSP(MaSP);
 
-                int MaSPB = 0;
-                int SoLuongB = 0;
-                double UuDaiB = 0;
-                double TongTien = 0;
+                    for (int i = 0; i < tblChiTietHoaDon.getRowCount(); i++) {
+                        int MaSPB = (int) tblChiTietHoaDon.getValueAt(i, 0);
+                        int SoLuongB = (int) tblChiTietHoaDon.getValueAt(i, 6);
+                        double UuDaiB = ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon.getValueAt(i, 8).toString());
+                        double TongTien = ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon.getValueAt(i, 9).toString());
 
-                for (int i = 0; i < tblChiTietHoaDon.getRowCount(); i++) {
-                    MaSPB = (int) tblChiTietHoaDon.getValueAt(i, 0);
-                    SoLuongB = (int) tblChiTietHoaDon.getValueAt(i, 6);
-                    UuDaiB = ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon.getValueAt(i, 8).toString());
-                    TongTien = ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon.getValueAt(i, 9).toString());
-                }
+                    }
 
-                ResultSet rsksp = DAO.DAOHoaDon.GetByMaSP(MaSanPham);
-                try {
-                    if (!rsksp.next()) {
-                        ThongBaoCanhBao.ThongBao("Không phải sản phẩm! "
-                                + "\nVui lòng quét lại mã! ", "Thông báo");
+                    ResultSet rsksp = DAO.DAOHoaDon.GetByMaSP(MaSanPham);
+                    try {
+                        if (!rsksp.next()) {
+                            ThongBaoCanhBao.ThongBao("Không phải sản phẩm! "
+                                    + "\nVui lòng quét lại mã! ", "Thông báo");
 
-                    } else {
-
-                        if (sp.getTonKho() <= 0) {
-                            ThongBaoCanhBao.ThongBao("Sản phẩm đã hết hàng!", "Thông Báo");
                         } else {
 
-                            if (MaSP == MaSPB) {
-                                for (int i = 0; i < tblChiTietHoaDon.getRowCount(); i++) {
-                                    DefaultTableModel model = (DefaultTableModel) tblChiTietHoaDon.getModel();
-                                    model.removeRow(i);
-                                }
-                                double tongTien = BLL.BLLHoaDon.NhapSanPhamVaoChiTietHoaDonTrung(tblChiTietHoaDon, sp, SoLuongB, UuDaiB);
-                                double TongTienCu = ChuyenDoi.ChuyenSangSo(txtTongTien.getText());
-                                double TongTienTru = TongTienCu - TongTien;
-                                double TongTienMoi = TongTienTru + tongTien;
-                                txtTongTien.setText(ChuyenDoi.DinhDangTien(TongTienMoi));
-
+                            if (sp.getTonKho() <= 0) {
+                                ThongBaoCanhBao.ThongBao("Sản phẩm đã hết hàng!", "Thông Báo");
                             } else {
+                                
+                                for (int i = 0; i < tblChiTietHoaDon.getRowCount(); i++) {
+                                    
+                                    
+                                    int MaSPB = (int) tblChiTietHoaDon.getValueAt(i, 0);
+                                    int SoLuongB = (int) tblChiTietHoaDon.getValueAt(i, 6);
+                                    double UuDaiB = ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon.getValueAt(i, 8).toString());
+                                    double TongTien = ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon.getValueAt(i, 9).toString());
+
+                                    if (MaSP == MaSPB) {
+
+                                        DefaultTableModel model = (DefaultTableModel) tblChiTietHoaDon.getModel();
+                                        model.removeRow(i);
+                                       
+                                        double tongTien = BLL.BLLHoaDon.NhapSanPhamVaoChiTietHoaDonTrung(tblChiTietHoaDon, sp, SoLuongB, UuDaiB);
+                                        double TongTienCu = ChuyenDoi.ChuyenSangSo(txtTongTien.getText());
+                                        double TongTienTru  = TongTienCu - TongTien;
+                                        double TongTienMoi = TongTienTru + tongTien;
+                                        
+                                      
+                                       
+     
+                                    }
+                                   
+                                }
+                               
                                 int SoLuong = 1;
                                 double UuDai = 0;
 
@@ -1118,36 +1155,36 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
 
                         }
 
+                    } catch (SQLException ex) {
+                        ThongBaoCanhBao.ThongBao("Lỗi lệnh SQL", "Thông báo");
+
                     }
-                } catch (SQLException ex) {
-                    ThongBaoCanhBao.ThongBao("Lỗi lệnh SQL", "Thông báo");
+                    
+                    try {
+
+                        // Open an audio input stream.
+                        URL url = this.getClass().getClassLoader().getResource("MP3/beep.wav");
+                        AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+                        // Get a sound clip resource.
+                        Clip clip = AudioSystem.getClip();
+                        // Open audio clip and load samples from the audio input stream.
+                        clip.open(audioIn);
+                        clip.start();
+                    } catch (UnsupportedAudioFileException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (LineUnavailableException e) {
+                        e.printStackTrace();
+                    }
+
+                    try {
+                        Thread.sleep(1500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(pnlkhachhang.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 }
-                try {
-
-                    // Open an audio input stream.
-                    URL url = this.getClass().getClassLoader().getResource("MP3/beep.wav");
-                    AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-                    // Get a sound clip resource.
-                    Clip clip = AudioSystem.getClip();
-                    // Open audio clip and load samples from the audio input stream.
-                    clip.open(audioIn);
-                    clip.start();
-                } catch (UnsupportedAudioFileException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (LineUnavailableException e) {
-                    e.printStackTrace();
-                }
-
-                try {
-                    Thread.sleep(1500);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(pnlkhachhang.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-            }
         } while (true);
         }else if(lbltieude.getText().equals("NHÂN VIÊN")){
             System.out.println("nhân viên");
@@ -1410,33 +1447,6 @@ public class frmmain extends javax.swing.JFrame implements Runnable, ThreadFacto
             ThongBaoCanhBao.ThongBao("Thời gian nghỉ", "Thông báo");
         }
 
-                
-                
-                
-                
-                
-                
-                
-                /////////
-                 try {
-                      
-         // Open an audio input stream.
-         URL url = this.getClass().getClassLoader().getResource("MP3/beep.wav");
-         AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-         // Get a sound clip resource.
-         Clip clip = AudioSystem.getClip();
-         // Open audio clip and load samples from the audio input stream.
-         clip.open(audioIn);
-         clip.start();
-      } catch (UnsupportedAudioFileException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      } catch (LineUnavailableException e) {
-         e.printStackTrace();
-      }     
-              
-                 
                 System.out.println(result);
                 
               

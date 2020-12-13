@@ -51,10 +51,10 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Tr&#x1ea3; N&#x1ee3;">
-                <Property name="tabTitle" type="java.lang.String" value="Tr&#x1ea3; N&#x1ee3;"/>
+              <JTabbedPaneConstraints tabName="H&#xf3;a &#x111;&#x1a1;n">
+                <Property name="tabTitle" type="java.lang.String" value="H&#xf3;a &#x111;&#x1a1;n"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/IMAGE/debt_20px.png"/>
+                  <Image iconType="3" name="/IMAGE/list_20px.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -96,7 +96,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButton17" min="-2" pref="180" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                              <Component id="txtTimKiemHD" pref="795" max="32767" attributes="0"/>
+                              <Component id="txtTimKiemHD" pref="796" max="32767" attributes="0"/>
                           </Group>
                           <Component id="srcdanhsach3" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanel48" alignment="0" max="32767" attributes="0"/>
@@ -110,7 +110,7 @@
                                   <Component id="txtTimKiemHD" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="srcdanhsach3" pref="502" max="32767" attributes="0"/>
+                              <Component id="srcdanhsach3" pref="503" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel48" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -281,15 +281,17 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton6" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="btnFirst" min="-2" pref="84" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton11" min="-2" pref="84" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton23" min="-2" pref="84" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton24" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="btnBack" min="-2" pref="84" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNumberPage" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnNext" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnLast" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblCountPage" min="-2" pref="47" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jButton14" min="-2" pref="168" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -302,18 +304,23 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btnTraNoHD" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="jButton14" alignment="3" max="32767" attributes="0"/>
-                                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                          <Component id="jButton6" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton11" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton23" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton24" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jSeparator1" alignment="3" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lblCountPage" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lblNumberPage" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnNext" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnLast" alignment="3" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="btnFirst" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnBack" alignment="3" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="btnTraNoHD" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton14" alignment="3" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                                  <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -338,29 +345,56 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14jButton10ActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton6">
+                        <Component class="javax.swing.JButton" name="btnFirst">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="First"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirstActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton11">
+                        <Component class="javax.swing.JButton" name="btnBack">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Back"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton23">
+                        <Component class="javax.swing.JButton" name="btnNext">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Next"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton24">
+                        <Component class="javax.swing.JButton" name="btnLast">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Last"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLastActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JSeparator" name="jSeparator1">
+                        <Component class="javax.swing.JLabel" name="lblNumberPage">
                           <Properties>
-                            <Property name="orientation" type="int" value="1"/>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="12" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="text" type="java.lang.String" value="1"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblCountPage">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="12" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="text" type="java.lang.String" value="1/100"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -403,7 +437,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel23" alignment="0" pref="975" max="32767" attributes="0"/>
+                  <Component id="jPanel23" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -436,7 +470,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButton18" min="-2" pref="180" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                              <Component id="txtTimKiemPN" pref="795" max="32767" attributes="0"/>
+                              <Component id="txtTimKiemPN" pref="796" max="32767" attributes="0"/>
                           </Group>
                           <Component id="srcdanhsach4" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanel49" alignment="0" max="32767" attributes="0"/>
@@ -738,26 +772,28 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton8" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="btnFirst1" min="-2" pref="84" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton25" min="-2" pref="84" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton26" min="-2" pref="84" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton27" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="btnBack1" min="-2" pref="84" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNumberPage1" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnNext1" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnLast1" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblCountPage1" min="-2" pref="47" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jButton15" min="-2" pref="168" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btnTraNoPN" min="-2" pref="168" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
+                                  <Component id="jButton15" min="-2" pref="136" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnTraNoPN" min="-2" pref="138" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace pref="792" max="32767" attributes="0"/>
-                                      <Component id="jButton13" min="-2" pref="168" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                      <EmptySpace pref="824" max="32767" attributes="0"/>
+                                      <Component id="jButton13" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -766,15 +802,20 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btnTraNoPN" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="jButton15" alignment="3" max="32767" attributes="0"/>
-                                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                          <Component id="jButton8" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton25" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton26" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton27" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jSeparator2" alignment="3" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblCountPage1" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                          <Component id="lblNumberPage1" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnNext1" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnLast1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="btnFirst1" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnBack1" alignment="3" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="btnTraNoPN" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton15" alignment="3" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -817,29 +858,56 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton13jButton10ActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton8">
+                        <Component class="javax.swing.JButton" name="btnFirst1">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="First"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirst1ActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton25">
+                        <Component class="javax.swing.JButton" name="btnBack1">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Back"/>
+                            <Property name="enabled" type="boolean" value="false"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBack1ActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblNumberPage1">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="12" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="text" type="java.lang.String" value="1"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton26">
+                        <Component class="javax.swing.JButton" name="btnNext1">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Next"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNext1ActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton27">
+                        <Component class="javax.swing.JButton" name="btnLast1">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Last"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLast1ActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JSeparator" name="jSeparator2">
+                        <Component class="javax.swing.JLabel" name="lblCountPage1">
                           <Properties>
-                            <Property name="orientation" type="int" value="1"/>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="12" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="text" type="java.lang.String" value="1/100"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -1133,19 +1201,21 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton9" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="btnFirst2" min="-2" pref="84" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton28" min="-2" pref="84" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton29" min="-2" pref="84" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton30" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="btnBack2" min="-2" pref="84" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="71" max="32767" attributes="0"/>
+                                  <Component id="lblNumberPage2" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnNext2" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnLast2" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblCountPage2" min="-2" pref="47" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jButton21" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton20" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton20" min="-2" pref="141" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButton19" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1158,17 +1228,22 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jButton16" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="jButton19" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="jButton20" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="jButton21" alignment="3" max="32767" attributes="0"/>
-                                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                          <Component id="jButton9" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton28" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton29" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton30" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jSeparator3" alignment="3" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblCountPage2" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                          <Component id="lblNumberPage2" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnNext2" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnLast2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="btnFirst2" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnBack2" alignment="3" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jButton16" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton19" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton20" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="jButton21" alignment="3" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1212,29 +1287,56 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton21jButton10ActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton9">
+                        <Component class="javax.swing.JButton" name="btnFirst2">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="First"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirst2ActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton28">
+                        <Component class="javax.swing.JButton" name="btnBack2">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Back"/>
+                            <Property name="enabled" type="boolean" value="false"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBack2ActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblNumberPage2">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="12" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="text" type="java.lang.String" value="1"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton29">
+                        <Component class="javax.swing.JButton" name="btnNext2">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Next"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNext2ActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton30">
+                        <Component class="javax.swing.JButton" name="btnLast2">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Last"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLast2ActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JSeparator" name="jSeparator3">
+                        <Component class="javax.swing.JLabel" name="lblCountPage2">
                           <Properties>
-                            <Property name="orientation" type="int" value="1"/>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="12" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="text" type="java.lang.String" value="1/100"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -1317,7 +1419,7 @@
                               <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                               <Component id="txttimkiem4" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="srcdanhsach5" alignment="0" pref="975" max="32767" attributes="0"/>
+                          <Component id="srcdanhsach5" alignment="0" pref="976" max="32767" attributes="0"/>
                           <Component id="jPanel52" alignment="0" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
@@ -1352,15 +1454,17 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton10" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="btnFirst3" min="-2" pref="84" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton31" min="-2" pref="84" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton32" min="-2" pref="84" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton33" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="btnBack3" min="-2" pref="84" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jSeparator4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNumberPage3" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnNext3" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnLast3" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblCountPage3" min="-2" pref="47" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnThemphieutrahang" min="-2" pref="168" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1371,15 +1475,18 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btnThemphieutrahang" alignment="3" max="32767" attributes="0"/>
-                                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                          <Component id="jButton10" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton31" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton32" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton33" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jSeparator4" alignment="3" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblCountPage3" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                          <Component id="lblNumberPage3" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnNext3" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnLast3" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="btnFirst3" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnBack3" alignment="3" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="btnThemphieutrahang" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -1395,29 +1502,56 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemphieutrahangActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton10">
+                        <Component class="javax.swing.JButton" name="btnFirst3">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="First"/>
+                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirst3ActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton31">
+                        <Component class="javax.swing.JButton" name="btnBack3">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Back"/>
+                            <Property name="enabled" type="boolean" value="false"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBack3ActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblNumberPage3">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="12" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="text" type="java.lang.String" value="1"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton32">
+                        <Component class="javax.swing.JButton" name="btnNext3">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Next"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNext3ActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton33">
+                        <Component class="javax.swing.JButton" name="btnLast3">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Last"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLast3ActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JSeparator" name="jSeparator4">
+                        <Component class="javax.swing.JLabel" name="lblCountPage3">
                           <Properties>
-                            <Property name="orientation" type="int" value="1"/>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="12" style="1"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="text" type="java.lang.String" value="1/100"/>
                           </Properties>
                         </Component>
                       </SubComponents>

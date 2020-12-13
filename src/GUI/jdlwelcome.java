@@ -126,7 +126,6 @@ public void showjdlDangNhap(){
         lblBackground = new javax.swing.JLabel();
         pgbLoading = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WELCOME TO RES.STAR");
@@ -197,10 +196,6 @@ public void showjdlDangNhap(){
         pnlNenChao.add(jPanel1);
         jPanel1.setBounds(20, 380, 560, 30);
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/img_loader (2).gif"))); // NOI18N
-        pnlNenChao.add(jLabel15);
-        jLabel15.setBounds(0, 0, 300, 200);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -270,7 +265,6 @@ public void showjdlDangNhap(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblBackground;

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static DAO.DAOHoatDong.CountHoatDong;
 import static GUI.jdlwelcome.lblLoad;
 import java.awt.Color;
 import java.text.DateFormat;
@@ -43,11 +44,10 @@ public class pnltongquan extends javax.swing.JPanel {
         } catch (Exception ex) {
 
         }
-        initComponents();
-        System.out.println("oke2");
+        initComponents();    
         Thongke7ngay();
-        BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong);
-        BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong1);
+        BLL.BLLHoatDong.HienThiChiTietHoatDong(tblHoatdong,0);
+       
         BLL.BLLThongke.HienThiThongKeSanPhamBanChay2(tblSanphambanchay);
          tblSanphambanchay.getColumnModel().getColumn(0).setWidth(0);
         tblSanphambanchay.getColumnModel().getColumn(0).setMinWidth(0);
@@ -833,6 +833,7 @@ public void Thongke7ngay(){
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       jdlChitiethoatdong hd = new jdlChitiethoatdong(new javax.swing.JFrame(), true);
+      
       hd.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

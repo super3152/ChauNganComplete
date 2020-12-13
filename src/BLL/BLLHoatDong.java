@@ -19,33 +19,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BLLHoatDong {
     
-      public static void HienThiHoatDong(JTable tbl) {
-        ResultSet rs = DAO.DAOHoatDong.LayHoatDong();
-        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
-        tbModel.setRowCount(0);
-        Object obj[] = new Object[3];
-        try {
-            while (rs.next()) {
-                ResultSet loaihoatdong = DAO.DAOHoatDong.LayLoaiHoatDong(rs.getString("idloaihoatdong"));
-                if (loaihoatdong.next()) {
-                    obj[1] = loaihoatdong.getString("tenloaihoatdong");
-                }          
-                 ResultSet nguoidung = DAO.DAOHoatDong.LayNguoiDung(rs.getString("idnguoidung"));
-                if (nguoidung.next()) {
-                    obj[0] = nguoidung.getString("tennguoidung");
-                }
-                obj[2] = BLL.ChuyenDoi.GetNgay(rs.getTimestamp("thoigianhoatdong"));
-                tbModel.addRow(obj);
-            }
-        } catch (SQLException ex) {
-            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng hoạt động", "Thông báo");
-        }
-
-    }
+    
     
       
-          public static void HienThiChiTietHoatDong(JTable tbl) {
-        ResultSet rs = DAO.DAOHoatDong.LayHoatDong();
+          public static void HienThiChiTietHoatDong(JTable tbl, int trang) {
+        ResultSet rs = DAO.DAOHoatDong.LayHoatDong(trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[5];
@@ -60,9 +38,8 @@ public class BLLHoatDong {
                 if (nguoidung.next()) {
                     obj[1] = nguoidung.getString("tennguoidung");
                 }
-                obj[3] = BLL.ChuyenDoi.GetNgay(rs.getDate("thoigianhoatdong"));
-               
-                 obj[4] = BLL.ChuyenDoi.GetNgay(rs.getTimestamp("thoigianhoatdong"));
+                obj[3] = BLL.ChuyenDoi.GetNgay(rs.getDate("thoigianhoatdong"));              
+                obj[4] = BLL.ChuyenDoi.GetNgay2(rs.getTimestamp("thoigianhoatdong"));
                 tbModel.addRow(obj);
             }
         } catch (SQLException ex) {

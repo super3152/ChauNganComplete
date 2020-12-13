@@ -8,6 +8,7 @@ package DAO;
 import DTO.DTOKho;
 import DTO.DTOPhieuNhap;
 import DTO.DTOSanPham;
+import static GUI.pnlhanghoa.countPN;
 import java.sql.ResultSet;
 
 /**
@@ -47,12 +48,27 @@ public class DAOPhieuNhap {
         return rs;
     }
 
-    public static ResultSet LayPhieuNhap(String TuKhoa) {
-        String query = "Select * from phieunhap where idphieunhap like '%" + TuKhoa + "%' or idnhacungcap like '%" + TuKhoa + "%' or idnguoidung like '%" + TuKhoa + "%' or sophieunhap like '%" + TuKhoa + "%' or ngaynhap like '%" + TuKhoa + "%' or thanhtien like '%" + TuKhoa + "%'";
+    public static ResultSet LayPhieuNhap(String TuKhoa, int trang) {
+        String query = "Select * from phieunhap where idphieunhap like '%" + TuKhoa + "%' or idnhacungcap like '%" + TuKhoa + "%' or idnguoidung like '%" + TuKhoa + "%' or sophieunhap like '%" + TuKhoa + "%' or ngaynhap like '%" + TuKhoa + "%' or thanhtien like '%" + TuKhoa + "%' limit "+trang+", 13";
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
     }
-
+         public static ResultSet CountPN() {
+        try {
+         String query = "Select count(*) from phieunhap";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countPN = rs.getInt(1);
+            }
+            System.out.println(countPN);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+    
     public static ResultSet LayNhaCungCap() {
         String query = "Select * from nhacungcap";
         ResultSet rs = DAO.DBConection.GetData(query);
