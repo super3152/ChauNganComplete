@@ -11,6 +11,7 @@ import DAO.DBConection;
 import DTO.DTOHoaDon;
 import DTO.DTOKhachHang;
 import DTO.DTOKho;
+import DTO.DTOPhieuThuChi;
 import DTO.DTOSanPham;
 import DTO.MyCombobox;
 import static GUI.pnlbanhang.MaHD2;
@@ -48,7 +49,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -76,47 +76,6 @@ public class pnldonbanhang extends javax.swing.JPanel {
         initComponents();
 
        
-        if (SoHoaDon2 == null) {
-           pnldonbanhang.FillSanPhamHayDung2();
-            pnldonbanhang.menu1.add(panel1);
-            BLL.BLLKhachHang.DoDuLieuVaoCBBKhachHang(cbbKhachHang1);
-         
-            cbbSize1.removeAllItems();
-            cbbSize1.addItem("Size");
-            cbbMau1.removeAllItems();
-            cbbMau1.addItem("Màu");
-           
-               
-           
-
-            
-            NgayGio();
-        } else {
-             pnldonbanhang.FillSanPhamHayDung2();
-            DTO.DTOHoaDon hd = BLL.BLLHoaDon.GetMaHD(MaHD2);
-            txtSoHoaDon1.setText(SoHoaDon2);
-            BLL.BLLKhachHang.SetCBBKhachHang(cbbKhachHang1, hd.getMaKhachHang());
-            pnldonbanhang.txtNgayTao1.setText(hd.getNgayTaoHoaDon());
-            BLL.BLLHoaDon.DoSanPhamLenLaiHoaDon(tblChiTietHoaDon1, MaHD2);
-            for (int i = 0; i < tblChiTietHoaDon1.getRowCount(); i++) {
-                double UuDai = 0;
-                UuDai = UuDai + ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon1.getValueAt(i, 8).toString());
-                txtUuDai1.setText(ChuyenDoi.DinhDangTien(UuDai));
-            }
-          
-           pnlShowItem bh = new pnlShowItem();
-       JPopupMenu pop = new JPopupMenu();
-              pop.add(bh);
-            btnChonSP1.setEnabled(false);
-          
-            
-            txtSoHoaDon1.setEnabled(false);
-            pnldonbanhang.txtNgayTao1.setEnabled(false);
-            txtUuDai1.setEnabled(false);
-            txtTongTien1.setEnabled(false);
-            pnldonbanhang.btnMuaHang1.setEnabled(false);
-
-        }
           
 
         
@@ -316,6 +275,10 @@ public class pnldonbanhang extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jPanel30 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
+        jPopupMenu3 = new javax.swing.JPopupMenu();
+        jPanel54 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         pnlDonHang1 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -1061,15 +1024,55 @@ public class pnldonbanhang extends javax.swing.JPanel {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPopupMenu3.setFocusable(false);
+
+        jScrollPane5.setBorder(null);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Tìm kiếm "
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setRowHeight(25);
+        jTable1.setShowHorizontalLines(false);
+        jTable1.setShowVerticalLines(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel54Layout = new javax.swing.GroupLayout(jPanel54);
+        jPanel54.setLayout(jPanel54Layout);
+        jPanel54Layout.setHorizontalGroup(
+            jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 407, Short.MAX_VALUE)
+            .addGroup(jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
+        );
+        jPanel54Layout.setVerticalGroup(
+            jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 187, Short.MAX_VALUE)
+            .addGroup(jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+        );
+
         setBackground(new java.awt.Color(225, 226, 226));
         setPreferredSize(new java.awt.Dimension(980, 619));
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
-        });
 
         jPanel9.setBackground(new java.awt.Color(255, 0, 0));
         jPanel9.setLayout(new java.awt.BorderLayout());
@@ -2319,6 +2322,20 @@ public class pnldonbanhang extends javax.swing.JPanel {
             }
 
         }
+         String MaThuChi = BLL.BLLThuChi.TaoSoHoaDon();
+        String LoaiPhieu= "Phiếu Thu";
+        String HangMucThuChi = "Bán Hàng" ;
+        double TongTien;
+        double TongTienHang = BLL.ChuyenDoi.ChuyenTien(txtTongTien1.getText());
+        double TienThanhToan = BLL.ChuyenDoi.ChuyenTien(txtThanhToan1.getText());
+        if (TienThanhToan>=TongTienHang) {
+            TongTien = TongTienHang;
+        }else{
+             TongTien = TienThanhToan;
+        }
+        String GhiChu ="Thu Hóa Đơn "+SoHoaDon+"";
+         DTOPhieuThuChi ptc = new DTOPhieuThuChi(MaThuChi, MaKhachHang, LoaiPhieu, HangMucThuChi, TongTien, GhiChu);
+        BLL.BLLThuChi.ThemPhieuThuBanHang(ptc);
         DefaultTableModel dtm = (DefaultTableModel) tblChiTietHoaDon1.getModel();
         dtm.setRowCount(0);
         int ketquasaukhibam = JOptionPane.showConfirmDialog(new JFrame(),
@@ -2368,7 +2385,7 @@ public class pnldonbanhang extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
      
-        try {
+           try {
              so++;
    
       JPanel  buttonPanel = new JPanel();
@@ -2376,18 +2393,52 @@ buttonPanel.setSize(new Dimension(974, 587));
          buttonPanel.setLayout(new java.awt.BorderLayout());
          
         tbpchuyentab.addTab("Đơn Số "+so, buttonPanel);
+       
         pnldonbanhang tdh = new pnldonbanhang();
         buttonPanel.add(tdh);
         tbpchuyentab.setSelectedIndex(so-1);
         System.out.println(so-1);
 
-       
         
+        
+        if (SoHoaDon2 == null) {
+            FillSanPhamHayDung2();
+            pnldonbanhang.menu1.add(panel1);
+            BLL.BLLKhachHang.DoDuLieuVaoCBBKhachHang(cbbKhachHang1);
+           BLLSanPham.HienThiSanPhamBanHang(jTable1,jTextField1.getText());
+            cbbSize1.removeAllItems();
+            cbbSize1.addItem("Size");
+            cbbMau1.removeAllItems();
+            cbbMau1.addItem("Màu");
+            cbbSize1.setEnabled(false);
+            cbbMau1.setEnabled(false);
+            NgayGio();
+        } else {
+             FillSanPhamHayDung2();
+            DTO.DTOHoaDon hd = BLL.BLLHoaDon.GetMaHD(MaHD2);
+            txtSoHoaDon1.setText(SoHoaDon2);
+            BLL.BLLKhachHang.SetCBBKhachHang(cbbKhachHang1, hd.getMaKhachHang());
+            pnldonbanhang.txtNgayTao1.setText(hd.getNgayTaoHoaDon());
+            BLL.BLLHoaDon.DoSanPhamLenLaiHoaDon(tblChiTietHoaDon1, MaHD2);
+            for (int i = 0; i < tblChiTietHoaDon1.getRowCount(); i++) {
+                double UuDai = 0;
+                UuDai = UuDai + ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon1.getValueAt(i, 8).toString());
+                txtUuDai1.setText(ChuyenDoi.DinhDangTien(UuDai));
+            }
+            btnChonSP1.setEnabled(false);
+           
+            cbbSize1.setEnabled(false);
+            cbbMau1.setEnabled(false);
+            txtSoHoaDon1.setEnabled(false);
+            pnldonbanhang.txtNgayTao1.setEnabled(false);
+            txtUuDai1.setEnabled(false);
+            txtTongTien1.setEnabled(false);
+            pnldonbanhang.btnMuaHang1.setEnabled(false);
+
+        }
         } catch (Exception e) {
             
         }
- 
-  
   
 
          
@@ -2415,8 +2466,8 @@ buttonPanel.setSize(new Dimension(974, 587));
             return;
         }
           int column = 0;
-            int row = pnlShowItem.jTable1.getSelectedRow();
-            String value = pnlShowItem.jTable1.getModel().getValueAt(row, column).toString();
+            int row = jTable1.getSelectedRow();
+            String value = jTable1.getModel().getValueAt(row, column).toString();
         MyCombobox mbs = (MyCombobox) cbbSize1.getSelectedItem();
         int MaSize = Integer.parseInt(mbs.Value.toString());
         MyCombobox mbm = (MyCombobox) cbbMau1.getSelectedItem();
@@ -2525,23 +2576,39 @@ buttonPanel.setSize(new Dimension(974, 587));
         // TODO add your handling code here:
     }//GEN-LAST:event_tblChiTietHoaDon1MouseReleased
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 
+        try {
+
+            int column = 0;
+            int row = pnldonbanhang.jTable1.getSelectedRow();
+            String value = pnldonbanhang.jTable1.getModel().getValueAt(row, column).toString();
+
+            BLL.BLLSanPham.SizeSanPhamTheoTen(cbbSize1, value);
+            MyCombobox mbs = (MyCombobox) cbbSize1.getSelectedItem();
+            int MaSize = Integer.parseInt(mbs.Value.toString());
+            System.out.println(MaSize);
+            BLL.BLLSanPham.MauSanPhamTheoTen(cbbMau1, value, MaSize);
+            pnldonbanhang.jTextField1.setText(value);
+            pnldonbanhang.jPopupMenu3.setVisible(false);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        if (pnldonbanhang.jTextField1.getText().equals("")) {
+            pnldonbanhang.jPopupMenu3.setVisible(false);
+        }else{
+             pnldonbanhang.jPopupMenu3.show(pnldonbanhang.jTextField1,0,pnldonbanhang.jTextField1.getHeight());
+        BLLSanPham.HienThiSanPhamBanHang(pnldonbanhang.jTable1,pnldonbanhang.jTextField1.getText());
+        }
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-          pnlShowItem bh = new pnlShowItem();
-             JPopupMenu pop = new JPopupMenu();
-              pop.add(bh); 
-       
-        
-           pop.show(pnldonbanhang.jTextField1,0,pnldonbanhang.jTextField1.getHeight());
-        BLLSanPham.HienThiSanPhamBanHang(pnlShowItem.jTable1,pnldonbanhang.jTextField1.getText());
+          pnldonbanhang.jTextField1.setText("");
+            pnldonbanhang.jPopupMenu3.show(pnldonbanhang.jTextField1,0,pnldonbanhang.jTextField1.getHeight());
+        BLLSanPham.HienThiSanPhamBanHang(pnldonbanhang.jTable1,pnldonbanhang.jTextField1.getText());
     }//GEN-LAST:event_jTextField1MouseClicked
-
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-      
-    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2638,16 +2705,20 @@ buttonPanel.setSize(new Dimension(974, 587));
     private javax.swing.JPanel jPanel51;
     private javax.swing.JPanel jPanel52;
     private javax.swing.JPanel jPanel53;
+    public static javax.swing.JPanel jPanel54;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    public static javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    public static javax.swing.JTable jTable1;
     public static javax.swing.JTextField jTextField1;
     public static com.toedter.calendar.JDateChooser jdcHanTraCongNo;
     public static com.toedter.calendar.JDateChooser jdcHanTraCongNo1;

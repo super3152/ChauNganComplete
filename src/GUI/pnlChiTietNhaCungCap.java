@@ -573,7 +573,7 @@ public class pnlChiTietNhaCungCap extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTraNoActionPerformed
 
     private void btnDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanhSachActionPerformed
-        BLL.BLLNhaCungCap.HienThiNhaCungCap(pnlhanghoa.tblnhacungcap, pnlhanghoa.txttimkiem6.getText());
+        BLL.BLLNhaCungCap.HienThiNhaCungCap(pnlhanghoa.tblnhacungcap, pnlhanghoa.txttimkiem6.getText(),0);
         pnlhanghoa.jPanel29.remove(this);
         pnlhanghoa.jPanel50.setVisible(true);
     }//GEN-LAST:event_btnDanhSachActionPerformed

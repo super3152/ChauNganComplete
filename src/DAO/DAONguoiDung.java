@@ -9,6 +9,7 @@ import DTO.DTOKhachHang;
 import DTO.DTOLoaiKhachHang;
 import DTO.DTONguoidung;
 import GUI.pnlnhanvien;
+import static GUI.pnlnhanvien.countNV;
 import static GUI.pnlnhanvien.countnv;
 
 import java.sql.ResultSet;
@@ -86,9 +87,9 @@ public class DAONguoiDung {
 
     }
 
-    public static ResultSet LayNguoiDung(String TuKhoa) {
+    public static ResultSet LayNguoiDung(String TuKhoa, int trang) {
 
-        String query = "SELECT * FROM nguoidung where tennguoidung like '%" + TuKhoa + "%' or ngaysinh like '%" + TuKhoa + "%' or ngayvaolam like '%" + TuKhoa + "%' or cmnd like '%" + TuKhoa + "%' or tendangnhap like '%" + TuKhoa + "%' ";
+        String query = "SELECT * FROM nguoidung where tennguoidung like '%" + TuKhoa + "%' or ngaysinh like '%" + TuKhoa + "%' or ngayvaolam like '%" + TuKhoa + "%' or cmnd like '%" + TuKhoa + "%' or tendangnhap like '%" + TuKhoa + "%' limit "+trang+",13";
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
@@ -237,7 +238,21 @@ public class DAONguoiDung {
         return null;
       
     }
-     
+      public static ResultSet CountNhanVien() {
+        try {
+         String query = "Select count(*) from nguoidung";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countNV = rs.getInt(1);
+            }
+            System.out.println(countNV);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
   
        public static ResultSet LayTenNV(String ten) {
         try {

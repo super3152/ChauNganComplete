@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import static GUI.pnlhanghoa.tblThuChi;
+import static GUI.pnlthongke.tblThuChi;
 
 /**
  *

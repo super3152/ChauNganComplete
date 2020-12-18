@@ -821,8 +821,13 @@ dialog.setVisible(true);
              System.out.println(chucvu + "hehe");
             ThongBaoThongTin.ThongBao("Đăng nhập thành công"+"\n"+"Người dùng: "+tennguoidung+"\n"+"Chức vụ: "+quyen, "Thông báo");
               this.dispose();
+             
             frmmain frm = new frmmain();
+            
             frm.setVisible(true);
+             frm.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+                frm.setUndecorated(true); 
+            
         }else{
             bttLogin.setEnabled(false);
               java.util.Timer timer = new java.util.Timer();

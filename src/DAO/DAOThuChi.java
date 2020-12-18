@@ -5,7 +5,11 @@
  */
 package DAO;
 
+import BLL.ChuyenDoi;
 import DTO.DTOPhieuThuChi;
+import GUI.pnlhanghoa;
+import GUI.pnlthongke;
+import static GUI.pnlthongke.countThuChi;
 import java.sql.ResultSet;
 
 /**
@@ -58,7 +62,14 @@ public class DAOThuChi {
         public static ResultSet LayPhieuThuChi(String TuKhoa, int trang){
           String query = "select * from ThuChi"
                   + " where `mathuchi` like '%" + TuKhoa + "%' or `idnhacungcap` like '%" + TuKhoa + "%' or `idkhachhang` like '%" + TuKhoa + "%' or `idnguoidung` like '%" + TuKhoa + "%'"
-                  + "or `loaiphieu` like '%" + TuKhoa + "%' or `hangmucthuchi` like '%" + TuKhoa + "%'or `tongtien` like '%" + TuKhoa + "%' limit "+trang+",9";
+                  + "or `loaiphieu` like '%" + TuKhoa + "%' or `hangmucthuchi` like '%" + TuKhoa + "%'or `tongtien` like '%" + TuKhoa + "%' order by ngaytao DESC limit "+trang+",9 ";
+          ResultSet rs = DAO.DBConection.GetData(query);
+          return rs;
+      }
+          public static ResultSet LayPhieuThuChiHomNay(String TuKhoa, int trang){
+          String query = "select * from ThuChi"
+                  + " where DATE(ngaytao) = DATE(CURRENT_DATE()) AND (`mathuchi` like '%" + TuKhoa + "%' or `idnhacungcap` like '%" + TuKhoa + "%' or `idkhachhang` like '%" + TuKhoa + "%' or `idnguoidung` like '%" + TuKhoa + "%'"
+                  + "or `loaiphieu` like '%" + TuKhoa + "%' or `hangmucthuchi` like '%" + TuKhoa + "%'or `tongtien` like '%" + TuKhoa + "%') order by ngaytao DESC limit "+trang+",9 ";
           ResultSet rs = DAO.DBConection.GetData(query);
           return rs;
       }
@@ -67,6 +78,107 @@ public class DAOThuChi {
           ResultSet rs = DAO.DBConection.GetData(query);
           return rs;
       }
+       public static ResultSet CountThuChi() {
+        try {
+         String query = "Select count(*) from ThuChi";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countThuChi = rs.getInt(1);
+            }
+            System.out.println(countThuChi + "thuchi");
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+       public static ResultSet CountThuChiHomNay() {
+        try {
+         String query = "Select count(*) from ThuChi WHERE DATE(ngaytao) = DATE(CURRENT_DATE())";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countThuChi = rs.getInt(1);
+            }
+            System.out.println(countThuChi + "thuchi");
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+       
+       
+       public static ResultSet TongThu() {
+        try {
+         String query = "SELECT Sum(tongtien) FROM `ThuChi` WHERE loaiphieu = 'Phiếu Thu'";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+             
+                pnlthongke.thu = rs.getDouble(1);
+            }
+            System.out.println(countThuChi + "thuchi");
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+       
+       public static ResultSet TongChi() {
+        try {
+        String query = "SELECT Sum(tongtien) FROM `ThuChi` WHERE loaiphieu = 'Phiếu Chi'";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                   pnlthongke.chi = rs.getDouble(1);
+            }
+            System.out.println(countThuChi + "thuchi");
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+     
+       
+       
+          public static ResultSet TongThuHomNay() {
+        try {
+         String query = "SELECT SUM(tongtien) FROM ThuChi WHERE DATE(ngaytao) = DATE(CURRENT_DATE()) AND loaiphieu = 'Phiếu Thu'";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+             
+                pnlthongke.thuhomnay = rs.getDouble(1);
+            }
+          
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+       
+       public static ResultSet TongChiHomNay() {
+        try {
+        String query = "SELECT SUM(tongtien) FROM ThuChi WHERE DATE(ngaytao) = DATE(CURRENT_DATE()) AND loaiphieu = 'Phiếu Chi'";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                   pnlthongke.chihomnay = rs.getDouble(1);
+            }
+           
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+       
+     
      public static ResultSet LayPhieuThuChiLoc(String IDNCC, String IDKH, String IDNV, String LoaiPhieuu, String HangMuc){
           String query = "select * from ThuChi where "+IDNCC+""+IDKH+""+IDNV+" loaiphieu like '%"+LoaiPhieuu+"%' and hangmucthuchi like '%"+HangMuc+"%'";
           ResultSet rs = DAO.DBConection.GetData(query);
@@ -82,7 +194,10 @@ public class DAOThuChi {
         String query = "Select DISTINCT idkhachhang from ThuChi";
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
-    }
+    }    
+    
+      
+      
         public static ResultSet LayThuChiLocNhaCungCap() {
         String query = "Select DISTINCT idnhacungcap from ThuChi";
         ResultSet rs = DAO.DBConection.GetData(query);

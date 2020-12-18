@@ -240,9 +240,9 @@ public class BLLNhaCungCap {
       
          
       
-         public static void HienThiNhaCungCap(JTable tbl, String TuKhoa) {
+         public static void HienThiNhaCungCap(JTable tbl, String TuKhoa,int trang) {
              
-        ResultSet rs = DAO.DAONhaCungCap.LayNhaCungCap(TuKhoa);
+        ResultSet rs = DAO.DAONhaCungCap.LayNhaCungCap(TuKhoa, trang);
       
      
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();

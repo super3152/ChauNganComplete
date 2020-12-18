@@ -24,8 +24,8 @@ import javax.swing.table.TableCellRenderer;
  * @author KMB1604
  */
 public class BLLThongke {
-     public static void HienThiThongKeSanPham(JTable tbl, String tukhoa) {
-        ResultSet rs = DAO.DAOThongKe.LayThongKeSanPham(tukhoa);
+     public static void HienThiThongKeSanPham(JTable tbl, String tukhoa,int trang) {
+        ResultSet rs = DAO.DAOThongKe.LayThongKeSanPham(tukhoa, trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[4];
@@ -78,8 +78,8 @@ public class BLLThongke {
      
      
      
-      public static void HienThiThongKeHoaDon(JTable tbl) {
-        ResultSet rs = DAO.DAOThongKe.LayThongKeHoaDon();
+      public static void HienThiThongKeHoaDon(JTable tbl, int trang) {
+        ResultSet rs = DAO.DAOThongKe.LayThongKeHoaDon(trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[6];
@@ -141,8 +141,8 @@ public class BLLThongke {
     }
        
        
-          public static void HienThiThongKePhieuNhap(JTable tbl) {
-        ResultSet rs = DAO.DAOThongKe.LayThongPhieuNhap();
+          public static void HienThiThongKePhieuNhap(JTable tbl, int trang) {
+        ResultSet rs = DAO.DAOThongKe.LayThongPhieuNhap(trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[5];

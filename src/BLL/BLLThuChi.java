@@ -106,6 +106,66 @@ public class BLLThuChi {
         }
 
     }
+    
+    public static void HienThiPhieuThuChiHomNay(JTable tbl, String TuKhoa, int trang) {
+
+        ResultSet rs = DAO.DAOThuChi.LayPhieuThuChiHomNay(TuKhoa,trang);
+
+        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
+        tbModel.setRowCount(0);
+        Object obj[] = new Object[9];
+        try {
+            while (rs.next()) {
+                obj[0] = rs.getString("mathuchi");
+                int MaNCC = rs.getInt("idnhacungcap");
+    
+                if (MaNCC != 0) {
+                    ResultSet rsNcc = DAO.DAOPhieuNhap.LayTenNCC(MaNCC);
+                    if (rsNcc.next()) {
+                        obj[1] = rsNcc.getString("tennhacungcap");
+                    }
+                } else {
+                    obj[1] = "Trống";
+                }
+
+                int MaKH = rs.getInt("idkhachhang");
+                if (MaKH != 0) {
+                    ResultSet rsKH = DAO.DAOPhieuNhap.LayTenKH(MaKH);
+                    if (rsKH.next()) {
+                        obj[2] = rsKH.getString("tenkhachhang");
+                    }
+                } else {
+                    obj[2] = "Trống";
+                }
+
+                int MaND = rs.getInt("idnguoidung");
+                if (MaND != 0) {
+                    ResultSet rsND = DAO.DAOPhieuNhap.LayTenND(MaND);
+                    if (rsND.next()) {
+                        obj[3] = rsND.getString("tennguoidung");
+                    }
+                } else {
+                    obj[3] = "Trống";
+                }
+
+                String LoaiPhieu = rs.getString("loaiphieu");
+                if (LoaiPhieu.equals("Phiếu Thu")) {
+                    obj[4] = "<html><body style='color:blue;'>Phiếu Thu</body></html>";
+                } else {
+                    obj[4] = "<html><body style='color:red;'>Phiếu Chi</body></html>";
+                }
+                obj[5] = BLL.ChuyenDoi.GetNgay(rs.getDate("ngaytao"));
+                obj[6] = rs.getString("hangmucthuchi");
+                obj[7] = ChuyenDoi.DinhDangTien(rs.getDouble("tongtien"));
+                obj[8] = rs.getString("ghichu");
+                tbModel.addRow(obj);
+
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng thu chi", "Thông báo");
+        }
+
+    }
      public static void HienThiPhieuThuChiLoc(JTable tbl, String IDNCC, String IDKH, String IDNV, String LoaiPhieuu, String HangMuc) {
 
         ResultSet rs = DAO.DAOThuChi.LayPhieuThuChiLoc(IDNCC, IDKH, IDNV, LoaiPhieuu,HangMuc);

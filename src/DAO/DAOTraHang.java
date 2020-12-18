@@ -6,6 +6,7 @@
 package DAO;
 
 
+import static GUI.pnlhanghoa.countTH;
 import java.sql.ResultSet;
 
 /**
@@ -24,8 +25,23 @@ public class DAOTraHang {
          System.out.println(query);
         return rs;
     }
-    public static ResultSet LayTraHang(){
-        String query = "Select * from trahang limit 0, 13";
+       public static ResultSet CountTraHang() {
+        try {
+         String query = "Select count(*) from trahang";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countTH = rs.getInt(1);
+            }
+            System.out.println(countTH);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+    public static ResultSet LayTraHang(String tukhoa,int trang){
+        String query = "Select * from trahang limit "+trang+", 13";
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
     }

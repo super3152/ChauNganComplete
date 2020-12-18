@@ -22,7 +22,7 @@ import static GUI.pnlnhanvien.jTextField1;
 import static GUI.pnlnhanvien.tbllichsuchamcong;
 import static GUI.pnlnhanvien.tblnhanvienchamcong;
 import static GUI.pnlnhanvien.txtIDnhanvien;
-import static GUI.pnlnhanvien.txtTrangthai;
+
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
@@ -621,6 +621,8 @@ update.run();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+           
+
         jPanel2.removeAll();
         jPanel2.add(LoadDatabase.tq);
         jPanel2.validate();
@@ -970,7 +972,7 @@ update.run();
             panelcam.setPreferredSize(size);
             panelcam.setFPSDisplayed(true);
             executor.execute(this);
-             jPanel7.add(panelcam, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 201, 144));
+             jPanel7.add(panelcam, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, jPanel7.getWidth(), jPanel7.getHeight()));
         } else if (evt.equals(btnthongke)) {
             
             if (webcam == null) {
@@ -1045,7 +1047,7 @@ update.run();
     private javax.swing.JPanel pnlnoidung;
     // End of variables declaration//GEN-END:variables
 
-    @Override
+  @Override
     public void run() {
         
         if (lbltieude.getText().equals("BÁN HÀNG")) {
@@ -1083,20 +1085,11 @@ update.run();
 
             }
 
-            if (result != null) {
+          if (result != null) {
                     jTextField1.setText(result.getText());
-                     jTextField13.setText(result.getText());
                     String MaSanPham = result.getText();
                     int MaSP = BLL.BLLHoaDon.LayMaSanPhamString(MaSanPham);
                     DTO.DTOSanPham sp = BLL.BLLSanPham.GetMaSP(MaSP);
-
-                    for (int i = 0; i < tblChiTietHoaDon.getRowCount(); i++) {
-                        int MaSPB = (int) tblChiTietHoaDon.getValueAt(i, 0);
-                        int SoLuongB = (int) tblChiTietHoaDon.getValueAt(i, 6);
-                        double UuDaiB = ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon.getValueAt(i, 8).toString());
-                        double TongTien = ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon.getValueAt(i, 9).toString());
-
-                    }
 
                     ResultSet rsksp = DAO.DAOHoaDon.GetByMaSP(MaSanPham);
                     try {
@@ -1109,55 +1102,58 @@ update.run();
                             if (sp.getTonKho() <= 0) {
                                 ThongBaoCanhBao.ThongBao("Sản phẩm đã hết hàng!", "Thông Báo");
                             } else {
-                                
+                                int MaSPB = 0;
+
                                 for (int i = 0; i < tblChiTietHoaDon.getRowCount(); i++) {
-                                    
-                                    
-                                    int MaSPB = (int) tblChiTietHoaDon.getValueAt(i, 0);
+                                    MaSPB = (int) tblChiTietHoaDon.getValueAt(i, 0);
                                     int SoLuongB = (int) tblChiTietHoaDon.getValueAt(i, 6);
                                     double UuDaiB = ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon.getValueAt(i, 8).toString());
                                     double TongTien = ChuyenDoi.ChuyenSangSo(tblChiTietHoaDon.getValueAt(i, 9).toString());
 
                                     if (MaSP == MaSPB) {
+                                        if (sp.getTonKho() == SoLuongB) {
+                                            ThongBaoCanhBao.ThongBao("Sản phẩm đã hết hàng vui lòng nhập thêm!", "Thông Báo");
 
-                                        DefaultTableModel model = (DefaultTableModel) tblChiTietHoaDon.getModel();
-                                        model.removeRow(i);
-                                       
-                                        double tongTien = BLL.BLLHoaDon.NhapSanPhamVaoChiTietHoaDonTrung(tblChiTietHoaDon, sp, SoLuongB, UuDaiB);
-                                        double TongTienCu = ChuyenDoi.ChuyenSangSo(txtTongTien.getText());
-                                        double TongTienTru  = TongTienCu - TongTien;
-                                        double TongTienMoi = TongTienTru + tongTien;
-                                        
-                                      
-                                       
-     
+                                        }
+                                        if ((sp.getTonKho() != SoLuongB)) {
+                                            DefaultTableModel model = (DefaultTableModel) tblChiTietHoaDon.getModel();
+                                            model.removeRow(i);
+
+                                            double tongTienTrung = BLL.BLLHoaDon.NhapSanPhamVaoChiTietHoaDonTrung(tblChiTietHoaDon, sp, SoLuongB, UuDaiB);
+                                            double TongTienCu = ChuyenDoi.ChuyenSangSo(txtTongTien.getText());
+                                            double TongTienTru = TongTienCu - TongTien;
+                                            double TongTienMoi = TongTienTru + tongTienTrung;
+                                            txtTongTien.setText(ChuyenDoi.DinhDangTien(TongTienMoi));
+                                        }
+
                                     }
-                                   
                                 }
-                               
-                                int SoLuong = 1;
-                                double UuDai = 0;
+                                if (MaSP != MaSPB) {
 
-                                double tongTien = BLL.BLLHoaDon.NhapSanPhamVaoChiTietHoaDon(tblChiTietHoaDon, sp, SoLuong, UuDai);
-                                txtTongTien.setText(BLL.ChuyenDoi.DinhDangTien(tongTien));
+                                    int SoLuong = 1;
+                                    double UuDai = 0;
 
-                                double TongUuDai = BLL.ChuyenDoi.ChuyenTien(txtUuDai.getText());
-                                txtUuDai.setText(ChuyenDoi.DinhDangTien(TongUuDai));
+                                    double tongTien = BLL.BLLHoaDon.NhapSanPhamVaoChiTietHoaDon(tblChiTietHoaDon, sp, SoLuong, UuDai);
+                                    txtTongTien.setText(BLL.ChuyenDoi.DinhDangTien(tongTien));
 
-                                if (txtSoHoaDon.getText().equals("")) {
+                                    double TongUuDai = BLL.ChuyenDoi.ChuyenTien(txtUuDai.getText());
+                                    txtUuDai.setText(ChuyenDoi.DinhDangTien(TongUuDai));
 
-                                    txtSoHoaDon.setText(BLL.BLLHoaDon.TaoSoHoaDon());
+                                    if (txtSoHoaDon.getText().equals("")) {
 
+                                        txtSoHoaDon.setText(BLL.BLLHoaDon.TaoSoHoaDon());
+
+                                    }
                                 }
+
                             }
-
                         }
 
                     } catch (SQLException ex) {
                         ThongBaoCanhBao.ThongBao("Lỗi lệnh SQL", "Thông báo");
 
                     }
-                    
+
                     try {
 
                         // Open an audio input stream.

@@ -7,6 +7,7 @@ package DAO;
 
 import DTO.DTONhaCungCap;
 import static GUI.pnlhanghoa.countHD;
+import static GUI.pnlhanghoa.countNCC;
 import static GUI.pnlhanghoa.countPN;
 import java.sql.ResultSet;
 
@@ -50,9 +51,9 @@ public class DAONhaCungCap {
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
     }
-    public static ResultSet LayNhaCungCap(String TuKhoa) {
+    public static ResultSet LayNhaCungCap(String TuKhoa, int trang) {
 
-        String query = "SELECT * FROM nhacungcap where tennhacungcap like '%" + TuKhoa + "%' or idnhacungcap like '%" + TuKhoa + "%' or manhacungcap like '%" + TuKhoa + "%' or idloainhacungcap like '%" + TuKhoa + "%' or idnguoidung like '%" + TuKhoa + "%' limit 0, 13";
+        String query = "SELECT * FROM nhacungcap where tennhacungcap like '%" + TuKhoa + "%' or idnhacungcap like '%" + TuKhoa + "%' or manhacungcap like '%" + TuKhoa + "%' or idloainhacungcap like '%" + TuKhoa + "%' or idnguoidung like '%" + TuKhoa + "%' limit "+trang+", 13";
         ResultSet rs = DBConection.GetData(query);    
         return rs;
     }
@@ -74,7 +75,21 @@ public class DAONhaCungCap {
         return rs;
 
     }
-    
+        public static ResultSet CountNCC() {
+        try {
+         String query = "Select count(*) from nhacungcap";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countNCC = rs.getInt(1);
+            }
+            System.out.println(countNCC);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
         public static ResultSet LayMaNguoiDungCBB(int MaNguoiDung) {
 
         String query = "SELECT * FROM nguoidung where idnguoidung = '" + MaNguoiDung + "' ";

@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.DTOThongke;
+import static GUI.pnlthongke.countTKSP;
 import java.sql.ResultSet;
 import java.util.Date;
 
@@ -20,12 +21,7 @@ public class DAOThongKe {
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
-      public static ResultSet LayThongKeSanPham(String tukhoa) {
-
-        String query = "SELECT sanpham.idsanpham,sanpham.tensanpham,SUM(chitiethoadon.soluong),SUM(chitiethoadon.thanhtien) FROM hoadon INNER JOIN chitiethoadon ON hoadon.idhoadon = chitiethoadon.idhoadon INNER JOIN sanpham ON sanpham.idsanpham = chitiethoadon.idsanpham  where sanpham.idsanpham like '%" + tukhoa + "%' or sanpham.tensanpham like '%" + tukhoa + "%'  GROUP BY sanpham.idsanpham";
-        ResultSet rs = DBConection.GetData(query);
-        return rs;
-    }
+      
      
       public static ResultSet TimKiemSanPhamTheoNgay(String ngaybatdau, String ngayketthuc) {
 
@@ -33,19 +29,52 @@ public class DAOThongKe {
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
-        public static ResultSet LayThongKeHoaDon() {
+      
+      
+      
+      
+      
+      public static ResultSet LayThongKeSanPham(String tukhoa, int trang) {
 
-        String query = "SELECT idhoadon,sohoadon,ngaytaohoadon,nguoidung.tennguoidung,congno,tongtien FROM hoadon INNER JOIN nguoidung ON nguoidung.idnguoidung = hoadon.idnguoidung limit 0,13";
+        String query = "SELECT sanpham.idsanpham,sanpham.tensanpham,SUM(chitiethoadon.soluong),SUM(chitiethoadon.thanhtien) FROM hoadon INNER JOIN chitiethoadon ON hoadon.idhoadon = chitiethoadon.idhoadon INNER JOIN sanpham ON sanpham.idsanpham = chitiethoadon.idsanpham  where sanpham.idsanpham like '%" + tukhoa + "%' or sanpham.tensanpham like '%" + tukhoa + "%'  GROUP BY sanpham.idsanpham limit "+trang+",13";
+        ResultSet rs = DBConection.GetData(query);
+        return rs;
+    }
+        public static ResultSet LayThongKeHoaDon(int trang) {
+
+        String query = "SELECT idhoadon,sohoadon,ngaytaohoadon,nguoidung.tennguoidung,congno,tongtien FROM hoadon INNER JOIN nguoidung ON nguoidung.idnguoidung = hoadon.idnguoidung limit "+trang+",13";
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
         
-             public static ResultSet LayThongPhieuNhap() {
+             public static ResultSet LayThongPhieuNhap(int trang) {
 
-        String query = "SELECT idphieunhap, sophieunhap, ngaynhap, congno,  thanhtien FROM phieunhap limit 0,13";
+        String query = "SELECT idphieunhap, sophieunhap, ngaynhap, congno,  thanhtien FROM phieunhap limit "+trang+",13";
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
+             
+             
+             
+               public static ResultSet CountTKSP() {
+        try {
+         String query = "Select count(*) from phieunhap";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countTKSP = rs.getInt(1);
+            }
+            System.out.println(countTKSP);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+             
+             
+             
+             
            
               public static ResultSet LayThongKeSanPhamBanChay2() {
 

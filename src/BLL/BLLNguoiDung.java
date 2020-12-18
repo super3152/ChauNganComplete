@@ -214,8 +214,8 @@ public class BLLNguoiDung {
 
     }
 
-    public static void HienThiNguoiDung(JTable tbl, String TuKhoa) {
-        ResultSet rs = DAO.DAONguoiDung.LayNguoiDung(TuKhoa);
+    public static void HienThiNguoiDung(JTable tbl, String TuKhoa, int trang) {
+        ResultSet rs = DAO.DAONguoiDung.LayNguoiDung(TuKhoa, trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[11];

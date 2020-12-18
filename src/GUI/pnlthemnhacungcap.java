@@ -680,7 +680,7 @@ public class pnlthemnhacungcap extends javax.swing.JPanel {
             jPanel29.remove(this);
             jPanel50.setVisible(true);
 
-            BLL.BLLNhaCungCap.HienThiNhaCungCap(GUI.pnlhanghoa.tblnhacungcap, GUI.pnlhanghoa.txttimkiem6.getText());
+            BLL.BLLNhaCungCap.HienThiNhaCungCap(GUI.pnlhanghoa.tblnhacungcap, GUI.pnlhanghoa.txttimkiem6.getText(),0);
         }
     }//GEN-LAST:event_btnthemActionPerformed
 
@@ -721,7 +721,7 @@ public class pnlthemnhacungcap extends javax.swing.JPanel {
             jPanel29.remove(this);
             jPanel50.setVisible(true);
 
-            BLL.BLLNhaCungCap.HienThiNhaCungCap(GUI.pnlhanghoa.tblnhacungcap, GUI.pnlhanghoa.txttimkiem6.getText());
+            BLL.BLLNhaCungCap.HienThiNhaCungCap(GUI.pnlhanghoa.tblnhacungcap, GUI.pnlhanghoa.txttimkiem6.getText(),0);
         }
 
 

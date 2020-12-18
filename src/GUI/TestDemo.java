@@ -40,7 +40,7 @@ public class TestDemo extends javax.swing.JDialog {
     pnlkhachhang kh = new pnlkhachhang();
 
         
-        jPanel1.add(bh);
+        jPanel1.add(gh);
     }
 
     /**

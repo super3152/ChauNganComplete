@@ -14,6 +14,10 @@ import BLL.ChuyenDoi;
 import DAO.DBConection;
 import DTO.DTOPhieuThuChi;
 import DTO.MyCombobox;
+import static GUI.pnlthongke.soTrangThuChi;
+import static GUI.pnlthongke.tblThuChi;
+import static GUI.pnlthongke.trangThuChi;
+import static GUI.pnlthongke.txtTimKiemTC;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -280,6 +284,17 @@ public class jdlThemphieuthuchi extends javax.swing.JDialog {
               DTOPhieuThuChi tc = new DTOPhieuThuChi(soHoaDon, LoaiPhieu, hangmucthuchi, doituong, giatri, ghichu);
             BLL.BLLThuChi.ThemThuChiNV(tc);
             ThongBaoCanhBao.ThongBao("Thêm phiếu "+LoaiPhieu +" nhân viên thành công", "Thông báo");
+            this.dispose();
+            pnlthongke.jComboBox1.setSelectedIndex(0);
+               trangThuChi = 0;
+            BLL.BLLThuChi.HienThiPhieuThuChi( pnlthongke.tblThuChi,  pnlthongke.txtTimKiemTC.getText(), pnlthongke.trangThuChi);
+            pnlthongke.trangThuChi1 = 1;
+             pnlthongke.btnNext4.setEnabled(true);
+             pnlthongke.btnLast4.setEnabled(true);
+             pnlthongke.btnFirst4.setEnabled(false);
+             pnlthongke.btnBack4.setEnabled(false);
+             pnlthongke.lblCountPage4.setText( pnlthongke.trangThuChi1 +"/"+  pnlthongke.soTrangThuChi+"");
+             pnlthongke.lblNumberPage4.setText( pnlthongke.trangThuChi1+"");
         }
         
         }else  if (jComboBox1.getSelectedItem().equals("Khách hàng")) {
@@ -300,6 +315,17 @@ public class jdlThemphieuthuchi extends javax.swing.JDialog {
               DTOPhieuThuChi tc = new DTOPhieuThuChi(soHoaDon, doituong, LoaiPhieu, hangmucthuchi, giatri, ghichu);
             BLL.BLLThuChi.ThemThuChiNV(tc);
             ThongBaoCanhBao.ThongBao("Thêm phiếu "+LoaiPhieu +" khách hàng thành công", "Thông báo");
+              this.dispose();
+               pnlthongke.jComboBox1.setSelectedIndex(0);
+               trangThuChi = 0;
+            BLL.BLLThuChi.HienThiPhieuThuChi( pnlthongke.tblThuChi,  pnlthongke.txtTimKiemTC.getText(), pnlthongke.trangThuChi);
+            pnlthongke.trangThuChi1 = 1;
+             pnlthongke.btnNext4.setEnabled(true);
+             pnlthongke.btnLast4.setEnabled(true);
+             pnlthongke.btnFirst4.setEnabled(false);
+             pnlthongke.btnBack4.setEnabled(false);
+             pnlthongke.lblCountPage4.setText( pnlthongke.trangThuChi1 +"/"+  pnlthongke.soTrangThuChi+"");
+             pnlthongke.lblNumberPage4.setText( pnlthongke.trangThuChi1+"");
         }
         }else{
           
@@ -319,6 +345,17 @@ public class jdlThemphieuthuchi extends javax.swing.JDialog {
               DTOPhieuThuChi tc = new DTOPhieuThuChi(soHoaDon, LoaiPhieu, doituong, hangmucthuchi, giatri, ghichu);
             BLL.BLLThuChi.ThemThuChiNV(tc);
             ThongBaoCanhBao.ThongBao("Thêm phiếu "+LoaiPhieu +" nhà cung cấp thành công", "Thông báo");
+              this.dispose();
+              pnlthongke.jComboBox1.setSelectedIndex(0);
+               trangThuChi = 0;
+            BLL.BLLThuChi.HienThiPhieuThuChi( pnlthongke.tblThuChi,  pnlthongke.txtTimKiemTC.getText(), pnlthongke.trangThuChi);
+            pnlthongke.trangThuChi1 = 1;
+             pnlthongke.btnNext4.setEnabled(true);
+             pnlthongke.btnLast4.setEnabled(true);
+             pnlthongke.btnFirst4.setEnabled(false);
+             pnlthongke.btnBack4.setEnabled(false);
+             pnlthongke.lblCountPage4.setText( pnlthongke.trangThuChi1 +"/"+  pnlthongke.soTrangThuChi+"");
+             pnlthongke.lblNumberPage4.setText( pnlthongke.trangThuChi1+"");
         }
             
         }

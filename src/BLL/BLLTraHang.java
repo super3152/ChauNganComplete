@@ -177,8 +177,8 @@ public class BLLTraHang {
             ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng trả hàng", "Thông báo");
         }
     }
-    public static void HienThiTraHang(JTable tbl) {
-        ResultSet rs = DAO.DAOTraHang.LayTraHang();
+    public static void HienThiTraHang(JTable tbl,String tukhoa, int trang) {
+        ResultSet rs = DAO.DAOTraHang.LayTraHang(tukhoa, trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[8];
