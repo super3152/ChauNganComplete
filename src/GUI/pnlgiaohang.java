@@ -848,19 +848,77 @@ public int trangDH1 = 1;
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void btnFirst3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst3ActionPerformed
-        // TODO add your handling code here:
+          trangDH = 0;
+      HienThiDonHang(tblDonHang1, txttimkiem1.getText(),trangDH);
+        trangDH1 = 1;
+          btnNext3.setEnabled(true);
+        btnLast3.setEnabled(true);
+        btnFirst3.setEnabled(false);
+        btnBack3.setEnabled(false);
+        lblCountPage3.setText(trangDH1 +"/"+ soTrangDH+"");
+        lblNumberPage3.setText(trangDH1+"");
     }//GEN-LAST:event_btnFirst3ActionPerformed
 
     private void btnBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack3ActionPerformed
-        // TODO add your handling code here:
+          if (trangDH1 == 2 ) {
+                 
+                   trangDH = trangDH - 13 ;
+           HienThiDonHang(tblDonHang1, txttimkiem1.getText(),trangDH);
+           lblNumberPage3.setText(""+(trangDH1 = (trangDH1-1))); 
+           lblCountPage3.setText(""+trangDH1+"/"+soTrangDH);
+             btnBack3.setEnabled(false);
+             btnFirst3.setEnabled(false);
+               btnNext3.setEnabled(true);
+                
+                 btnLast3.setEnabled(true);
+           
+        }else{
+               btnBack3.setEnabled(true);
+                 btnNext3.setEnabled(true);
+                
+                 btnLast3.setEnabled(true);
+                   trangDH = trangDH - 13 ;
+             HienThiDonHang(tblDonHang1, txttimkiem1.getText(),trangDH);
+           lblNumberPage3.setText(""+(trangDH1 = (trangDH1-1))); 
+           lblCountPage3.setText(""+trangDH1+"/"+soTrangDH);
+        }
+        
     }//GEN-LAST:event_btnBack3ActionPerformed
 
     private void btnNext3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext3ActionPerformed
-        // TODO add your handling code here:
+        if (trangDH1 == soTrangDH-1) {
+              trangDH = trangDH + 13 ;
+            HienThiDonHang(tblDonHang1, txttimkiem1.getText(),trangDH);
+           lblNumberPage3.setText(""+(trangDH1 = (trangDH1+1))); 
+           lblCountPage3.setText(""+trangDH1+"/"+soTrangDH);
+            
+            btnNext3.setEnabled(false);
+             btnLast3.setEnabled(false);
+               btnBack3.setEnabled(true);
+                btnFirst3.setEnabled(true);
+        }else{
+              btnNext3.setEnabled(true);
+               btnBack3.setEnabled(true);
+                btnFirst3.setEnabled(true);
+                   trangDH = trangDH + 13 ;
+             HienThiDonHang(tblDonHang1, txttimkiem1.getText(),trangDH);
+           lblNumberPage3.setText(""+(trangDH1 = (trangDH1+1))); 
+           lblCountPage3.setText(""+trangDH1+"/"+soTrangDH);
+        }
+           System.out.println(lblNumberPage3.getText());
+            
     }//GEN-LAST:event_btnNext3ActionPerformed
 
     private void btnLast3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast3ActionPerformed
-        // TODO add your handling code here:
+         btnNext3.setEnabled(false);
+        btnLast3.setEnabled(false);
+        btnFirst3.setEnabled(true);
+        btnBack3.setEnabled(true);      
+        trangDH = (13*soTrangDH)-13;
+      HienThiDonHang(tblDonHang1, txttimkiem1.getText(),trangDH);
+       trangDH1 = soTrangDH;
+       lblCountPage3.setText(trangDH1 +"/"+ soTrangDH+"");
+        lblNumberPage3.setText(trangDH1+"");
     }//GEN-LAST:event_btnLast3ActionPerformed
 
 

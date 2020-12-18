@@ -60,6 +60,92 @@ public class BLLSanPham {
             ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu cbb Size sản phẩm", "Thông Báo");           
         }
     }
+       public static void HienThiSanPhamLoc(JTable tbl, String MaLoaiSP, String MaHangSP, String MaKe, String MaSize, String MaMau) {
+
+        pnlsanpham.tblSanPham.getColumn("Ảnh Sản Phẩm").setCellRenderer(new mytable());
+        pnlsanpham.tblSanPham.getColumn("Mã Quét").setCellRenderer(new mytable());
+        ResultSet rs = DAO.DAOSanPham.LaySanPhamLoc(MaLoaiSP, MaHangSP, MaKe, MaSize, MaMau);
+        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
+        tbModel.setRowCount(0);
+        Object obj[] = new Object[14];
+        try {
+            while (rs.next()) {
+                obj[0] = rs.getString("masanpham");
+                obj[1] = rs.getString("tensanpham") + " - " + rs.getString("masanpham");
+                int MaLoaiSanPham = rs.getInt("idloaisanpham");
+                ResultSet rsLSP = DAO.DAOSanPham.LayLoaiSanPham(MaLoaiSanPham);
+                if (rsLSP.next()) {
+                    obj[2] = rsLSP.getString("tenloaisanpham");
+                }
+                int MaHangSanPham = rs.getInt("idhangsanpham");
+                ResultSet rsHSP = DAO.DAOSanPham.LayHangSanPham(MaHangSanPham);
+                if (rsHSP.next()) {
+                    obj[3] = rsHSP.getString("tenhang");
+                }
+                obj[4] = rs.getDouble("gianhap");
+                obj[5] = rs.getDouble("giabanle");
+                obj[6] = BLL.ChuyenDoi.GetNgay(rs.getDate("ngaytao"));
+                obj[7] = rs.getInt("tonkho");
+                int MaSizeSanPham = rs.getInt("idsizesanpham");
+                ResultSet rsSSP = DAO.DAOSanPham.LaySizeSanPham(MaSizeSanPham);
+                if (rsSSP.next()) {
+                    obj[8] = rsSSP.getString("tensize");
+                }
+                int MaMauSanPham = rs.getInt("idmausanpham");
+                ResultSet rsMSP = DAO.DAOSanPham.LayMauSanPham(MaMauSanPham);
+                if (rsMSP.next()) {
+                    obj[9] = rsMSP.getString("tenmausanpham");
+                }
+                int MaKeSanPham = rs.getInt("idke");
+                ResultSet rsKSP = DAO.DAOSanPham.LayKeSanPham(MaKeSanPham);
+                if (rsKSP.next()) {
+                    obj[10] = rsKSP.getString("tenke");
+                }
+                obj[11] = rs.getInt("idsanpham");
+
+                JLabel lb = new JLabel();
+
+                ImageIcon imageIcon = new ImageIcon(new ImageIcon(rs.getBytes("anhsanpham")).getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+                lb.setIcon(imageIcon);
+                obj[12] = lb;
+                String code = rs.getString("masanpham");
+                JLabel lbl3 = new JLabel();
+
+                String id = code;
+
+                byte[] result = BarCode(id, 65, 30);
+
+                lbl3.setIcon(new ImageIcon(result));
+
+                obj[13] = lbl3;
+                tbModel.addRow(obj);
+
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng Sản Phẩm", "Thông báo");
+        }
+    }
+
+      public static void DoDuLieuVaoCBBPhieuNhap(JComboBox cbb) {
+        try {
+            ResultSet rs = DAO.DAOSanPham.LayPhieuNhap();
+            DefaultComboBoxModel cbbModel = (DefaultComboBoxModel) cbb.getModel();
+            cbbModel.removeAllElements();
+            while (rs.next()) {
+                int SoPN = rs.getInt("idphieunhap");
+                ResultSet rsPN = DAO.DAOKho.LaySoPhieuNhap(SoPN);
+                while (rsPN.next()) {
+                    String MaPN = rsPN.getString("sophieunhap");
+                    cbbModel.addElement(MaPN);
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi truy vấn dữ liệu", "Thông báo");
+        }
+
+    }
       public static void MauSanPhamTheoTenRi(JComboBox cbbSizeSanPham, String TenSP) {
         ResultSet rs = DAO.DAOSanPham.LayMauTheoTenSanPhamRi(TenSP);
         DefaultComboBoxModel cbbModel = (DefaultComboBoxModel) cbbSizeSanPham.getModel();
@@ -187,11 +273,11 @@ public class BLLSanPham {
          return null;
         }
   }
-    public static void HienThiSanPham(JTable tbl) {
+    public static void HienThiSanPham(JTable tbl, int trang, String tukhoa) {
 
         pnlsanpham.tblSanPham.getColumn("Ảnh Sản Phẩm").setCellRenderer(new mytable());
          pnlsanpham.tblSanPham.getColumn("Mã Quét").setCellRenderer(new mytable());
-        ResultSet rs = DAO.DAOSanPham.LaySanPham();
+        ResultSet rs = DAO.DAOSanPham.LaySanPham(trang, tukhoa);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[14];

@@ -6,6 +6,10 @@
 package DAO;
 
 import DTO.DTOKhachHang;
+import GUI.pnlbanhang;
+import static GUI.pnlbanhang.layidkh;
+import GUI.pnlkhachhang;
+import static GUI.pnlkhachhang.countKhachHang;
 import java.sql.ResultSet;
 
 
@@ -40,7 +44,13 @@ public class DAOKhachHang {
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
+ public static ResultSet LayKhachHangLoc(String GioiTinh,String CongNo) {
 
+        String query = "SELECT * FROM `khachhang` WHERE gioitinh like '%"+GioiTinh+"%' and congno "+CongNo+"";
+        ResultSet rs = DBConection.GetData(query);
+        System.out.println(query);
+        return rs;
+    }
     public static ResultSet LayMaLoaiKhachHangCBB(int MaLoaiKhachHang) {
 
         String query = "SELECT * FROM loaikhachhang where idloaikhachhang = '" + MaLoaiKhachHang + "' ";
@@ -48,6 +58,22 @@ public class DAOKhachHang {
         return rs;
     }
 
+     public static ResultSet LayLoaiKhachHang(int idkh) {
+        try {
+         String query = "Select idloaikhachhang from khachhang where idkhachhang = '"+idkh+"'";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+               layidkh = rs.getInt(1);
+            }
+            System.out.println(layidkh);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+    
 
     public static ResultSet LayKhachHangTheoMaLoai(int MaLoaiKhachHang) {
 
@@ -57,13 +83,31 @@ public class DAOKhachHang {
 
     }
 
-    public static ResultSet LayKhachHang(String TuKhoa) {
+    public static ResultSet LayKhachHang(String TuKhoa, int trang) {
 
-        String query = "SELECT * FROM khachhang where tenkhachhang like '%" + TuKhoa + "%' or sodienthoai like '%" + TuKhoa + "%' or email like '%" + TuKhoa + "%' or ngaysinh like '%" + TuKhoa + "%' or diachi like '%" + TuKhoa + "%'";
+        String query = "SELECT * FROM khachhang where tenkhachhang like '%" + TuKhoa + "%'"
+                + " or sodienthoai like '%" + TuKhoa + "%' or email like '%" + TuKhoa + "%'"
+                + " or ngaysinh like '%" + TuKhoa + "%' or diachi like '%" + TuKhoa + "%' limit "+trang+",13";
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
 
+     public static ResultSet CountKhachHang() {
+        try {
+         String query = "Select count(*) from khachhang";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+              countKhachHang = rs.getInt(1);
+            }
+            System.out.println(countKhachHang);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+    
     public static ResultSet LayKhachHangTheoMa(int MaKhachHang) {
 
         String query = "SELECT * FROM khachhang where idkhachhang =  '" + MaKhachHang + "'";

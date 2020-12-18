@@ -27,7 +27,7 @@ import jxl.write.biff.RowsExceededException;
 public class Excel {
 
     //Xuất Excel truyền vào bảng cần xuất
-    public boolean ExportExcel(JTable tab) {
+    public boolean ExportExcel() {
         boolean result = false;
         JFileChooser chooser = new JFileChooser();
         int i = chooser.showSaveDialog(chooser);
@@ -37,19 +37,11 @@ public class Excel {
             try {
                 workbook = Workbook.createWorkbook(new File(file + ".xls"));
                 WritableSheet sheet1 = workbook.createSheet("ChauNganShop", 0);
-                DefaultTableModel model = (DefaultTableModel) tab.getModel();
-                for (int j = 0; j < model.getColumnCount(); j++) {
-                    sheet1.addCell(new Label(j, 0, (String) tab.getColumnName(j)));
-                }
-                int rowBegin = 1;
-                int colBegin = 0;
-
-                for (int row = rowBegin, j = 0; row < model.getRowCount() + rowBegin; row++, j++) {
-                    for (int col = colBegin, k = 0; col < model.getColumnCount() + colBegin; col++, k++) {
-                        Object data = model.getValueAt(j, k);
-                        sheet1.addCell(new Label(col, row, (String) data.toString()));
-                    }
-                }
+               
+                
+                
+                System.out.println(sheet1);
+                
                 workbook.write();
                 workbook.close();
             } catch (IOException e) {

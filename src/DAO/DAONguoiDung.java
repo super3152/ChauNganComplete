@@ -8,6 +8,9 @@ package DAO;
 import DTO.DTOKhachHang;
 import DTO.DTOLoaiKhachHang;
 import DTO.DTONguoidung;
+import GUI.pnlnhanvien;
+import static GUI.pnlnhanvien.countnv;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,7 +39,13 @@ public class DAONguoiDung {
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
+ public static ResultSet LayNguoiDungLoc(String GioiTinh, String Quyen, String TrangThai){
 
+        String query = "SELECT * FROM nguoidung where gioitinh like '%"+GioiTinh+"%' and quyen like '%"+Quyen+"%' and trangthai like '%"+TrangThai+"%'";
+        ResultSet rs = DBConection.GetData(query);
+        System.out.println(query);
+        return rs;
+    }
     public static ResultSet LayMaLuongCBB(int MaLuong) {
 
         String query = "SELECT * FROM luong where idluong = '" + MaLuong + "' ";
@@ -190,11 +199,59 @@ public class DAONguoiDung {
 
     }
     
-  public static ResultSet CheckLayNguoiDungChamCongThangNam(int id,int thang, int nam) {
-
-        String query = "SELECT chamcong.songaytrongthang,SUM(chamcong.tongsocachamcong) FROM `chamcong` INNER JOIN nguoidung ON nguoidung.idnguoidung = chamcong.idnguoidung WHERE nguoidung.quyen = 0 and nguoidung.idnguoidung ='"+id+"' and MONTH(ngaychamcong)= '"+thang+"' && YEAR(ngaychamcong)='"+nam+"'  GROUP BY chamcong.idnguoidung";
+  public static ResultSet CheckLayNguoiDungChamCongThangNam(String ten,int thang, int nam) {
+            try {
+         String query = "SELECT chamcong.songaytrongthang,SUM(chamcong.tongsocachamcong) FROM `chamcong` INNER JOIN nguoidung ON nguoidung.idnguoidung = chamcong.idnguoidung WHERE nguoidung.quyen = 0 and nguoidung.tennguoidung ='"+ten+"' and MONTH(ngaychamcong)= '"+thang+"' && YEAR(ngaychamcong)='"+nam+"'  GROUP BY chamcong.idnguoidung";
         ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                pnlnhanvien.txtSocadilam.setText(String.valueOf(rs.getInt(2)));
+                pnlnhanvien.txtSocavang.setText(String.valueOf((rs.getInt(1)*3)-rs.getInt(2)));
+                pnlnhanvien.txtsongaytrongthang.setText(String.valueOf(rs.getInt(1)));
+            }
+           
         return rs;
+        } catch (Exception e) {
+        }
+        return null;
 
     }
+   
+      public static ResultSet CountNhanVien(String ten, int thang, int nam) {
+        try {
+         String query = "SELECT phatluong.trangthai FROM `phatluong` INNER JOIN nguoidung on nguoidung.idnguoidung = phatluong.idnguoidung  WHERE nguoidung.tennguoidung = '"+ten+"' and phatluong.namphatluong = '"+nam+"' and phatluong.thangphatluong = '"+thang+"'";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+             if (rs.getInt(1) == 0) {
+                  countnv = 0;
+             }else{
+                  countnv = rs.getInt(1);
+             }
+               
+            }
+            
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+     
+  
+       public static ResultSet LayTenNV(String ten) {
+        try {
+         String query = "SELECT idnguoidung FROM `nguoidung` WHERE tennguoidung = '"+ten+"'";
+        ResultSet rs = DBConection.GetData(query);     
+         while (rs.next()) {           
+                  pnlnhanvien.idnv = rs.getInt(1);            
+            }          
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+      
+  
 }

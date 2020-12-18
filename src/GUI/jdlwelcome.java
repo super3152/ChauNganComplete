@@ -59,6 +59,7 @@ public class jdlwelcome extends javax.swing.JFrame {
   
   
 public void Start(){
+    
         pgbLoading.setStringPainted(true);
         Timer t = new Timer(10, new ActionListener() {
             @Override

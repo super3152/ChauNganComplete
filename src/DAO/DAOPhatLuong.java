@@ -6,6 +6,8 @@
 package DAO;
 
 import DTO.DTOLuong;
+import static GUI.pnlnhanvien.cbbNam;
+import static GUI.pnlnhanvien.cbbThang;
 import java.sql.ResultSet;
 
 /**
@@ -34,8 +36,10 @@ public class DAOPhatLuong {
             return rs;
         }
          public static int PhatLuong(DTO.DTOPhatLuong pl) {
+              int thang =  Integer.parseInt(cbbThang.getSelectedItem().toString());
+            int nam =  Integer.parseInt(cbbNam.getSelectedItem().toString());
         String cauTruyVan = "INSERT INTO `phatluong`"
-                + "(`idnguoidung`, `idluong`, `ngayphat`, `socadilam`, `socanghi`, `tienthuong`, `tienphat`, `tongluong`, `ghichu`)"
+                + "(`idnguoidung`, `idluong`, `ngayphat`, `socadilam`, `socanghi`, `tienthuong`, `tienphat`, `tongluong`, `ghichu`,`trangthai`,`thangphatluong`,`namphatluong`)"
                 + " VALUES "
                 + "('"+pl.getMaNV()+"',"
                 + "'"+pl.getMaLuong()+"',"
@@ -45,7 +49,11 @@ public class DAOPhatLuong {
                 + "'"+pl.getTienThuong()+"',"
                 + "'"+pl.getTienPhat()+"',"
                 + "'"+pl.getTongLuong()+"',"
-                + "'"+pl.getGhiChu()+"')";
+                + "'"+pl.getGhiChu()+"',"
+                
+                 + "'1',"
+                 + "'"+thang+"',"
+                + "'"+nam+"')";
         System.out.println(cauTruyVan);
          return  DBConection.ExcuteTruyVan(cauTruyVan);
        

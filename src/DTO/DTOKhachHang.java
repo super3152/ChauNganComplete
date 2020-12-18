@@ -71,6 +71,7 @@ public class DTOKhachHang {
         this.LanCuoiMuaHang = LanCuoiMuaHang;
         this.TongTienHang = TongTienHang;
     }
+    
 
     public DTOKhachHang(int IdKhachHang, double CongNo) {
         this.IdKhachHang = IdKhachHang;

@@ -29,7 +29,11 @@ public class DAOHoaDon {
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
     }
-     
+       public static ResultSet GetByTenKH(String TenKH) {
+        String cauTruyVan = "select * from khachhang where tenkhachhang = '" + TenKH + "'";
+        ResultSet rs = DBConection.GetData(cauTruyVan);
+        return rs;
+    }
      public static ResultSet CountHoaDon() {
         try {
          String query = "Select count(*) from hoadon";
@@ -73,7 +77,23 @@ public class DAOHoaDon {
         return DBConection.ExcuteTruyVan(query);
 
     }
-
+ public static ResultSet LayHoaDonLoc(String MaNhanVien, String MaKhachHang, String TinhTrang, String TraHang, String CongNo) {
+        String query = "Select * from hoadon where idnguoidung like '%"+MaNhanVien+"%' and idkhachhang like '%"+MaKhachHang+"%' and tinhtrang like '%"+TinhTrang+"%'"
+                + " and trahang like '%"+TraHang+"%' and congno "+CongNo+"";
+        ResultSet rs = DAO.DBConection.GetData(query);
+         System.out.println(query);
+        return rs;
+    }
+       public static ResultSet LayHoaDonLocNguoiDung() {
+        String query = "Select DISTINCT idnguoidung from hoadon";
+        ResultSet rs = DAO.DBConection.GetData(query);
+        return rs;
+    }
+        public static ResultSet LayHoaDonLocKhachHang() {
+        String query = "Select DISTINCT idkhachhang from hoadon";
+        ResultSet rs = DAO.DBConection.GetData(query);
+        return rs;
+    }
     public static ResultSet GetByTenHD(String SoHoaDon) {
         String cauTruyVan = "select * from hoadon where sohoadon = '" + SoHoaDon + "'";
         ResultSet rs = DBConection.GetData(cauTruyVan);

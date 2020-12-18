@@ -244,7 +244,7 @@
                       <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                       <Component id="jButton3" min="-2" pref="105" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="srcdanhsach" max="32767" attributes="0"/>
+                  <Component id="srcdanhsach" pref="975" max="32767" attributes="0"/>
                   <Component id="jPanel21" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
@@ -367,7 +367,7 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
+                          <Title value="M&#xe3; Qu&#xe9;t"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
@@ -415,17 +415,19 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton6" min="-2" pref="84" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton11" min="-2" pref="84" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton12" min="-2" pref="84" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton13" min="-2" pref="84" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="166" max="32767" attributes="0"/>
+                          <Component id="btnFirst1" min="-2" pref="84" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBack1" min="-2" pref="84" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblNumberPage1" min="-2" pref="23" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnNext1" min="-2" pref="84" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLast1" min="-2" pref="84" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblCountPage1" min="-2" pref="47" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="jButton4" min="-2" pref="138" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="jButton2" min="-2" pref="138" max="-2" attributes="0"/>
@@ -439,15 +441,22 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton1" alignment="3" max="32767" attributes="0"/>
-                              <Component id="jButton2" alignment="3" max="32767" attributes="0"/>
-                              <Component id="jButton4" alignment="3" max="32767" attributes="0"/>
-                              <Component id="jButton6" alignment="3" max="32767" attributes="0"/>
-                              <Component id="jButton11" alignment="3" max="32767" attributes="0"/>
-                              <Component id="jButton12" alignment="3" max="32767" attributes="0"/>
-                              <Component id="jButton13" alignment="3" max="32767" attributes="0"/>
-                              <Component id="jSeparator1" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblCountPage1" alignment="1" max="32767" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                  <Component id="lblNumberPage1" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="btnNext1" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="btnLast1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="btnFirst1" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="btnBack1" alignment="3" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton1" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="jButton2" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="jButton4" alignment="3" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -482,29 +491,56 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton6">
+                <Component class="javax.swing.JButton" name="btnFirst1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="First"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirst1ActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton11">
+                <Component class="javax.swing.JButton" name="btnBack1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Back"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBack1ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblNumberPage1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="12" style="1"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="1"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton12">
+                <Component class="javax.swing.JButton" name="btnNext1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Next"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNext1ActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton13">
+                <Component class="javax.swing.JButton" name="btnLast1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Last"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLast1ActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JSeparator" name="jSeparator1">
+                <Component class="javax.swing.JLabel" name="lblCountPage1">
                   <Properties>
-                    <Property name="orientation" type="int" value="1"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="12" style="1"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="1/100"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1615,7 +1651,7 @@
                                             <Component class="javax.swing.JTable" name="tblThemThuocTinh">
                                               <Properties>
                                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                                  <Table columnCount="10" rowCount="0">
+                                                  <Table columnCount="9" rowCount="0">
                                                     <Column editable="false" title="H&#xec;nh &#x1ea3;nh" type="java.lang.Object"/>
                                                     <Column editable="true" title="T&#xea;n Size" type="java.lang.Object"/>
                                                     <Column editable="true" title="T&#xea;n M&#xe0;u" type="java.lang.Object"/>
@@ -1625,16 +1661,10 @@
                                                     <Column editable="true" title="Gi&#xe1; nh&#x1ead;p" type="java.lang.Object"/>
                                                     <Column editable="false" title="M&#xe3; s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                                                     <Column editable="false" title="Link" type="java.lang.Object"/>
-                                                    <Column editable="false" title="Qu&#xe9;t m&#xe3;" type="java.lang.Object"/>
                                                   </Table>
                                                 </Property>
                                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                                   <TableColumnModel selectionModel="0">
-                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                                      <Title/>
-                                                      <Editor/>
-                                                      <Renderer/>
-                                                    </Column>
                                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                                       <Title/>
                                                       <Editor/>
@@ -3148,13 +3178,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jButton9" min="-2" pref="180" max="-2" attributes="0"/>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
-                      <Component id="txtTimKiemKho" min="-2" pref="692" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtTimKiemKho" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnTimKiem" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="srcdanhsach2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="srcdanhsach2" alignment="0" pref="975" max="32767" attributes="0"/>
                   <Component id="jPanel38" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
@@ -3357,6 +3387,40 @@
                           <Data value="null"/>
                         </Column>
                       </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
                     </Property>
                     <Property name="dragEnabled" type="boolean" value="true"/>
                     <Property name="focusable" type="boolean" value="false"/>

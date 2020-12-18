@@ -13,13 +13,13 @@ public class DTOPhatLuong {
     int MaPhatLuong;
     int MaNV;   
     String NgayPhat;
-    String SoCaDiLam;
-    String SoCaNghi;
-    String TienThuong;
-    String TienPhat;   
+    int SoCaDiLam;
+    int SoCaNghi;
+    Double TienThuong;
+    Double TienPhat;   
     String GhiChu;
     int MaLuong;
-    String TongLuong;
+    Double TongLuong;
     int trangthai;
     int thang;
     int nam;
@@ -34,7 +34,7 @@ public class DTOPhatLuong {
 
     
     
-    public DTOPhatLuong(int MaPhatLuong, int MaNV, String NgayPhat, String SoCaDiLam, String SoCaNghi, String TienThuong, String TienPhat, String GhiChu, int MaLuong, String TongLuong) {
+    public DTOPhatLuong(int MaPhatLuong, int MaNV, String NgayPhat, int SoCaDiLam, int SoCaNghi, Double TienThuong, Double TienPhat, String GhiChu, int MaLuong, Double TongLuong) {
         this.MaPhatLuong = MaPhatLuong;
         this.MaNV = MaNV;
         this.NgayPhat = NgayPhat;
@@ -47,7 +47,7 @@ public class DTOPhatLuong {
         this.TongLuong = TongLuong;
     }
 
-    public DTOPhatLuong(int MaNV, String NgayPhat, String SoCaDiLam, String SoCaNghi, String TienThuong, String TienPhat, String GhiChu, int MaLuong, String TongLuong) {
+    public DTOPhatLuong(int MaNV,int MaLuong, String NgayPhat, int SoCaDiLam, int SoCaNghi, Double TienThuong, Double TienPhat, String GhiChu,  Double TongLuong) {
         this.MaNV = MaNV;
         this.NgayPhat = NgayPhat;
         this.SoCaDiLam = SoCaDiLam;
@@ -59,9 +59,84 @@ public class DTOPhatLuong {
         this.TongLuong = TongLuong;
     }
 
-    
-    
-    public DTOPhatLuong() {
+    public int getMaPhatLuong() {
+        return MaPhatLuong;
+    }
+
+    public void setMaPhatLuong(int MaPhatLuong) {
+        this.MaPhatLuong = MaPhatLuong;
+    }
+
+    public int getMaNV() {
+        return MaNV;
+    }
+
+    public void setMaNV(int MaNV) {
+        this.MaNV = MaNV;
+    }
+
+    public String getNgayPhat() {
+        return NgayPhat;
+    }
+
+    public void setNgayPhat(String NgayPhat) {
+        this.NgayPhat = NgayPhat;
+    }
+
+    public int getSoCaDiLam() {
+        return SoCaDiLam;
+    }
+
+    public void setSoCaDiLam(int SoCaDiLam) {
+        this.SoCaDiLam = SoCaDiLam;
+    }
+
+    public int getSoCaNghi() {
+        return SoCaNghi;
+    }
+
+    public void setSoCaNghi(int SoCaNghi) {
+        this.SoCaNghi = SoCaNghi;
+    }
+
+    public Double getTienThuong() {
+        return TienThuong;
+    }
+
+    public void setTienThuong(Double TienThuong) {
+        this.TienThuong = TienThuong;
+    }
+
+    public Double getTienPhat() {
+        return TienPhat;
+    }
+
+    public void setTienPhat(Double TienPhat) {
+        this.TienPhat = TienPhat;
+    }
+
+    public String getGhiChu() {
+        return GhiChu;
+    }
+
+    public void setGhiChu(String GhiChu) {
+        this.GhiChu = GhiChu;
+    }
+
+    public int getMaLuong() {
+        return MaLuong;
+    }
+
+    public void setMaLuong(int MaLuong) {
+        this.MaLuong = MaLuong;
+    }
+
+    public Double getTongLuong() {
+        return TongLuong;
+    }
+
+    public void setTongLuong(Double TongLuong) {
+        this.TongLuong = TongLuong;
     }
 
     public int getTrangthai() {
@@ -89,87 +164,5 @@ public class DTOPhatLuong {
     }
 
     
-    
-    
-    public int getMaPhatLuong() {
-        return MaPhatLuong;
-    }
-
-    public void setMaPhatLuong(int MaPhatLuong) {
-        this.MaPhatLuong = MaPhatLuong;
-    }
-
-    public int getMaNV() {
-        return MaNV;
-    }
-
-    public void setMaNV(int MaNV) {
-        this.MaNV = MaNV;
-    }
-
-    public String getNgayPhat() {
-        return NgayPhat;
-    }
-
-    public void setNgayPhat(String NgayPhat) {
-        this.NgayPhat = NgayPhat;
-    }
-
-    public String getSoCaDiLam() {
-        return SoCaDiLam;
-    }
-
-    public void setSoCaDiLam(String SoCaDiLam) {
-        this.SoCaDiLam = SoCaDiLam;
-    }
-
-    public String getSoCaNghi() {
-        return SoCaNghi;
-    }
-
-    public void setSoCaNghi(String SoCaNghi) {
-        this.SoCaNghi = SoCaNghi;
-    }
-
-    public String getTienThuong() {
-        return TienThuong;
-    }
-
-    public void setTienThuong(String TienThuong) {
-        this.TienThuong = TienThuong;
-    }
-
-    public String getTienPhat() {
-        return TienPhat;
-    }
-
-    public void setTienPhat(String TienPhat) {
-        this.TienPhat = TienPhat;
-    }
-
-    public String getGhiChu() {
-        return GhiChu;
-    }
-
-    public void setGhiChu(String GhiChu) {
-        this.GhiChu = GhiChu;
-    }
-
-    public int getMaLuong() {
-        return MaLuong;
-    }
-
-    public void setMaLuong(int MaLuong) {
-        this.MaLuong = MaLuong;
-    }
-
-    public String getTongLuong() {
-        return TongLuong;
-    }
-
-    public void setTongLuong(String TongLuong) {
-        this.TongLuong = TongLuong;
-    }
-
    
 }

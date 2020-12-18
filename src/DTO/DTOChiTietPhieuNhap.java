@@ -18,7 +18,9 @@ public class DTOChiTietPhieuNhap {
     double GiaNhap;
     double ThanhTien;
     String GhiChu;
-
+    int idnhacungcap;
+    String hinhthucnhap;
+    
     public DTOChiTietPhieuNhap(int IDChiTietPhieuNhap, int IDPhieuNhap, int IDSanPham, String DonViTinh, int SoLuong, double GiaNhap, double ThanhTien, String GhiChu) {
         this.IDChiTietPhieuNhap = IDChiTietPhieuNhap;
         this.IDPhieuNhap = IDPhieuNhap;
@@ -30,7 +32,7 @@ public class DTOChiTietPhieuNhap {
         this.GhiChu = GhiChu;
     }
 
-    public DTOChiTietPhieuNhap(int IDPhieuNhap, int IDSanPham, String DonViTinh, int SoLuong, double GiaNhap, double ThanhTien, String GhiChu) {
+    public DTOChiTietPhieuNhap(int IDPhieuNhap, int IDSanPham, String DonViTinh, int SoLuong, double GiaNhap, double ThanhTien, String GhiChu, int idnhacungcap, String hinhthucnhap) {
         this.IDPhieuNhap = IDPhieuNhap;
         this.IDSanPham = IDSanPham;
         this.DonViTinh = DonViTinh;
@@ -38,6 +40,24 @@ public class DTOChiTietPhieuNhap {
         this.GiaNhap = GiaNhap;
         this.ThanhTien = ThanhTien;
         this.GhiChu = GhiChu;
+        this.idnhacungcap = idnhacungcap;
+        this.hinhthucnhap = hinhthucnhap;
+    }
+
+    public String getHinhthucnhap() {
+        return hinhthucnhap;
+    }
+
+    public void setHinhthucnhap(String hinhthucnhap) {
+        this.hinhthucnhap = hinhthucnhap;
+    }
+
+    public int getIdnhacungcap() {
+        return idnhacungcap;
+    }
+
+    public void setIdnhacungcap(int idnhacungcap) {
+        this.idnhacungcap = idnhacungcap;
     }
 
     public int getIDChiTietPhieuNhap() {

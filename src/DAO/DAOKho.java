@@ -7,6 +7,7 @@ package DAO;
 
 import DTO.DTOKho;
 import DTO.DTOPhieuNhap;
+import static GUI.pnlsanpham.countKho;
 import java.sql.ResultSet;
 
 /**
@@ -24,10 +25,31 @@ public class DAOKho {
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
-    public static ResultSet LayKho(String TuKhoa){
-        String query = "Select * from kho where idkho like '%"+TuKhoa+"%' or idsanpham like '%"+TuKhoa+"%' or idphieunhap like '%"+TuKhoa+"%' or trangthai like '%"+TuKhoa+"%'";
+    public static ResultSet LayKho(String TuKhoa, int trang){
+        String query = "Select * from kho where idkho like '%"+TuKhoa+"%' or idsanpham like '%"+TuKhoa+"%' or idphieunhap like '%"+TuKhoa+"%' or trangthai like '%"+TuKhoa+"%' limit "+trang+",13";
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
+    }
+     public static ResultSet LayKhoLoc(String MaSP, String MaPN, String TrangThai){
+        String query = "Select * from kho where idsanpham like '%"+MaSP+"%' and idphieunhap like '%"+MaPN+"%' and trangthai like '%"+TrangThai+"%'";
+        ResultSet rs = DAO.DBConection.GetData(query);
+         System.out.println(query);
+        return rs;
+    }
+      public static ResultSet CountKho() {
+        try {
+         String query = "Select count(*) from kho";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countKho = rs.getInt(1);
+            }
+            System.out.println(countKho);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
     }
         public static int ThemKho(DTOKho k) {
         String query = "INSERT INTO `kho`(`idsanpham`, `idphieunhap`, `tonkho`, `hangdangve`, `trangthai`)"

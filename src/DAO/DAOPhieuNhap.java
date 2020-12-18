@@ -8,6 +8,10 @@ package DAO;
 import DTO.DTOKho;
 import DTO.DTOPhieuNhap;
 import DTO.DTOSanPham;
+import static GUI.Test.addid;
+import GUI.jdlNhapXuatExcel;
+import static GUI.jdlNhapXuatExcel.idphieunhapp;
+import static GUI.jdlNhapXuatExcel.idpn;
 import static GUI.pnlhanghoa.countPN;
 import java.sql.ResultSet;
 
@@ -16,7 +20,11 @@ import java.sql.ResultSet;
  * @author Administrator
  */
 public class DAOPhieuNhap {
-
+  public static ResultSet LayPhieuNhapLocNguoiDung() {
+        String query = "Select DISTINCT idnguoidung from phieunhap";
+        ResultSet rs = DAO.DBConection.GetData(query);
+        return rs;
+    }
     public static ResultSet LayThongTinSPTheoID(int MaSP) {
         String query = "SELECT * FROM sanpham where idsanpham =  '" + MaSP + "'";
         ResultSet rs = DBConection.GetData(query);
@@ -36,6 +44,11 @@ public class DAOPhieuNhap {
     }
 
 
+        public static ResultSet LayPhieuNhapLocNhaCungCap() {
+        String query = "Select DISTINCT idnhacungcap from phieunhap";
+        ResultSet rs = DAO.DBConection.GetData(query);
+        return rs;
+    }
     public static ResultSet LayTenND(int MaND) {
         String query = "SELECT * FROM nguoidung where idnguoidung =  '" + MaND + "'";
         ResultSet rs = DBConection.GetData(query);
@@ -49,7 +62,7 @@ public class DAOPhieuNhap {
     }
 
     public static ResultSet LayPhieuNhap(String TuKhoa, int trang) {
-        String query = "Select * from phieunhap where idphieunhap like '%" + TuKhoa + "%' or idnhacungcap like '%" + TuKhoa + "%' or idnguoidung like '%" + TuKhoa + "%' or sophieunhap like '%" + TuKhoa + "%' or ngaynhap like '%" + TuKhoa + "%' or thanhtien like '%" + TuKhoa + "%' limit "+trang+", 13";
+        String query = "Select * from phieunhap where idphieunhap like '%" + TuKhoa + "%' or idnhacungcap like '%" + TuKhoa + "%' or idnguoidung like '%" + TuKhoa + "%' or sophieunhap like '%" + TuKhoa + "%' or ngaynhap like '%" + TuKhoa + "%' or thanhtien like '%" + TuKhoa + "%' order by ngaynhap DESC limit "+trang+", 13";
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
     }
@@ -103,6 +116,16 @@ public class DAOPhieuNhap {
         return DBConection.ExcuteTruyVan(query);
 
     }
+    
+      public static int ThemIDPhieuNhap(DTOPhieuNhap pn) {
+        String query = "INSERT INTO `phieunhap`"
+                + "(`idphieunhap`)"
+                + " VALUES "
+                + "('" + pn.getIDPhieuNhap()+ "')";
+        System.out.println(query);
+        return DBConection.ExcuteTruyVan(query);
+
+    }
 
     public static ResultSet GetByTenPN(String SoPhieuNhap) {
         String cauTruyVan = "select * from phieunhap where sophieunhap = '" + SoPhieuNhap + "'";
@@ -111,13 +134,36 @@ public class DAOPhieuNhap {
     }
 
     public static int SuaTonKhoGia(DTOKho kh) {
-        String query = "UPDATE `kho` SET `tonkho`='" + kh.getTonKho() + "',`trangthai`='" + kh.getTrangThai() + "' WHERE `idsanpham`='" + kh.getIDSanPham() + "'";
+        String query = "UPDATE `kho` SET "
+                + "`tonkho`='" + kh.getTonKho() + 
+                "',`trangthai`='" +kh.getTrangThai()  +
+                "' WHERE `idsanpham`='" + kh.getIDSanPham() + "'";
         System.out.println(query);
         return DBConection.ExcuteTruyVan(query);
     }
 
     public static int SuaNhapKhoPN(DTOPhieuNhap pn) {
-        String query = "UPDATE `phieunhap` SET `nhapkho`='" + pn.getNhapKho() + "' WHERE `sophieunhap`='" + pn.getSoPhieuNhap() + "'";
+        String query = "UPDATE `phieunhap` SET `nhapkho`='" + pn.getNhapKho()
+                + "' WHERE `sophieunhap`='" + pn.getSoPhieuNhap() + "'";
+        System.out.println(query);
+        return DBConection.ExcuteTruyVan(query);
+    }
+    public static int SuaPhieuNhap(DTOPhieuNhap pn) {
+        String query = "UPDATE `phieunhap` SET "                
+                + "`idnhacungcap`='" + pn.getIDNhaCungCap()
+                + "',`idnguoidung`='" + pn.getIDNguoiDung()
+                 + "',`sophieunhap`='" +  pn.getSoPhieuNhap()                
+                 + "',`thanhtien`='" +  pn.getThanhTien()
+                 + "',`hinhthucthanhtoan`='" +  pn.getHinhThucThanhToan()
+                 + "',`hinhthucnhap`='" +  pn.getHinhThucNhap()
+                 + "',`trangthai`='" +  pn.getTrangThai()
+                 + "',`nhapkho`='" +  pn.getNhapKho()
+                 + "',`thanhtoan`='" +  pn.getThanhToan()
+                 + "',`congno`='" +  pn.getCongNo()
+               
+                 + "',`tag`='" +  pn.getTag()
+                 + "',`ghichu`='" +  pn.getGhiChu()               
+                + "' WHERE `idphieunhap` = '"+pn.getIDPhieuNhap()+"'";
         System.out.println(query);
         return DBConection.ExcuteTruyVan(query);
     }
@@ -139,4 +185,44 @@ public class DAOPhieuNhap {
         System.out.println(query);
         return DBConection.ExcuteTruyVan(query);
     }
+       public static ResultSet AddID() {
+        try {
+         String query = "SELECT idphieunhap FROM phieunhap ORDER BY idphieunhap DESC LIMIT 1";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                idphieunhapp = rs.getInt(1);
+            }
+            System.out.println(idphieunhapp);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+       
+       public static ResultSet LayThongTinCTPhieuNhap(int idphieunhap) {
+        try {
+         String query = "SELECT idnhacungcap, sum(thanhtien), hinhthucnhap FROM `chitietphieunhap` WHERE idphieunhap = '"+idphieunhap+"'";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                
+                jdlNhapXuatExcel.idnhacungcap = rs.getInt(1);
+                 jdlNhapXuatExcel.thanhtien = rs.getDouble(2);
+                 jdlNhapXuatExcel.hinhthucnhap = rs.getString(3);
+            }        
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
+        public static int XoaPhieuNhap(Integer idphieunhap) {
+        String cauTruyVan = "DELETE FROM `phieunhap` WHERE idphieunhap = '"+idphieunhap+"'";
+        System.out.println(cauTruyVan);
+       return  DBConection.ExcuteTruyVan(cauTruyVan);
+        
+    }
+       
 }

@@ -29,6 +29,8 @@ public class DTOKho {
         this.HangDangVe = HangDangVe;
         this.TrangThai = TrangThai;
     }
+    
+    
 
     public DTOKho(int IDSanPham, int IDPhieuNhap, int TonKho, int HangDangVe, int TrangThai) {
         this.IDSanPham = IDSanPham;

@@ -19,8 +19,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Administrator
  */
 public class BLLKho {
-      public static void HienThiKho(JTable tbl, String TuKhoa) {
-        ResultSet rs = DAO.DAOKho.LayKho(TuKhoa);
+      public static void HienThiKho(JTable tbl, String TuKhoa, int trang) {
+        ResultSet rs = DAO.DAOKho.LayKho(TuKhoa, trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[6];
@@ -55,7 +55,42 @@ public class BLLKho {
         }
 
     }
+public static void HienThiLocKho(JTable tbl, String MaSanPham, String MaPhieuNhap, String TrangT) {
+        ResultSet rs = DAO.DAOKho.LayKhoLoc(MaSanPham, MaPhieuNhap, TrangT);
+        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
+        tbModel.setRowCount(0);
+        Object obj[] = new Object[6];
+        try {
+            while (rs.next()) {
+                obj[0] = rs.getInt("idkho");
+                int MaSP = rs.getInt("idsanpham");
+                ResultSet rsSP = DAO.DAOKho.LayTenSP(MaSP);
+                if (rsSP.next()) {
+                    obj[1] = rsSP.getString("tensanpham");
+                }
+                int SoPN = rs.getInt("idphieunhap");
+                ResultSet rsPN = DAO.DAOKho.LaySoPhieuNhap(SoPN);
+                if (rsPN.next()) {
+                    obj[2] = rsPN.getString("sophieunhap");
+                }
+                 obj[3] = rs.getInt("tonkho");
+                 obj[4] = rs.getInt("hangdangve");
+                  int tt = rs.getInt("trangthai");
+                String TrangThai = String.valueOf(tt);
+                if (TrangThai.equals("0")) {
+                    obj[5] = "Đang Giao Dịch";
+                }else {
+                    obj[5] = "Hoàn Thành";
+                }
+                
+              
+                tbModel.addRow(obj);
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng kho", "Thông báo");
+        }
 
+    }
     public static void ThemKho(DTOKho K) {
         DAO.DAOKho.ThemKho(K);
     }

@@ -6,6 +6,7 @@
 package GUI;
 
 import DTO.MyCombobox;
+import static GUI.pnlhanghoa.tblnhacungcap;
 
 /**
  *
@@ -19,8 +20,7 @@ public class jdllocnhacungcap extends javax.swing.JDialog {
     public jdllocnhacungcap(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        BLL.BLLNhaCungCap.DoDuLieuVaoCBBNguoiDung(cbbnguoidung);
-        BLL.BLLNhaCungCap.DoDuLieuVaoCBBLoaiNhaCungCap(cbbloaincc);
+        
     }
 
     /**
@@ -53,9 +53,20 @@ public class jdllocnhacungcap extends javax.swing.JDialog {
 
         jLabel10.setText("Nhân viên phụ trách");
 
-        cbbloaincc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbloaincc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất Cả Loại" }));
+        cbbloaincc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbbloainccMouseClicked(evt);
+            }
+        });
 
-        cbbnguoidung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbnguoidung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất Cả Nhân Viên" }));
+        cbbnguoidung.setToolTipText("");
+        cbbnguoidung.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbbnguoidungMouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Lọc ngay");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +96,7 @@ public class jdllocnhacungcap extends javax.swing.JDialog {
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(121, 121, 121)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,12 +133,43 @@ public class jdllocnhacungcap extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
- MyCombobox mbLoaiNcc = (MyCombobox) cbbloaincc.getSelectedItem();
-        MyCombobox mbNguoiDung = (MyCombobox) cbbnguoidung.getSelectedItem();    
-          String idLoaiNcc = mbLoaiNcc.Value.toString();
-        String idNguoiDung = mbNguoiDung.Value.toString();
-         BLL.BLLNhaCungCap.HienThiNhaCungCapLoc(pnlhanghoa.tblnhacungcap, idLoaiNcc, idNguoiDung);
+ if (cbbloaincc.getSelectedItem().equals("Tất Cả Loại") && cbbnguoidung.getSelectedItem().equals("Tất Cả Nhân Viên") ) {
+            ThongBaoCanhBao.ThongBao("Vui lòng chọn kiểu lọc nhà cung cấp!", "Thông Báo");
+            return;
+
+        }
+        String MaLoaiNCC;
+        String MaNhanVien;
+
+        if (cbbloaincc.getSelectedItem().equals("Tất Cả Loại")) {
+            MaLoaiNCC = "";
+        } else {
+            int IDLoaiNCC = BLL.BLLNhaCungCap.LayMaLoaiNCCString(cbbloaincc.getSelectedItem().toString());
+            MaLoaiNCC = String.valueOf(IDLoaiNCC);
+        }
+        if (cbbnguoidung.getSelectedItem().equals("Tất Cả Nhân Viên")) {
+            MaNhanVien = "";
+        } else {
+            int IDNhanVien = BLL.BLLHoaDon.LayMaNhanVienString(cbbnguoidung.getSelectedItem().toString());
+            MaNhanVien = String.valueOf(IDNhanVien);
+        }
+        
+        BLL.BLLNhaCungCap.HienThiNhaCungCapLoc(tblnhacungcap, MaLoaiNCC,MaNhanVien);
+        if (tblnhacungcap.getRowCount() == 0) {
+            ThongBaoCanhBao.ThongBao("Không tìm thấy nhà cung cấp phù hợp!", "Thông Báo");
+        } else {
+            ThongBaoCanhBao.ThongBao("Đã tìm thấy " + tblnhacungcap.getRowCount() + " nhà cung cấp phù hợp!", "Thông Báo");
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cbbloainccMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbloainccMouseClicked
+      BLL.BLLNhaCungCap.DoDuLieuVaoCBBLoaiNhaCungCap(cbbloaincc);
+    }//GEN-LAST:event_cbbloainccMouseClicked
+
+    private void cbbnguoidungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbnguoidungMouseClicked
+       BLL.BLLNhaCungCap.DoDuLieuVaoCBBTenNguoiDungNCC(cbbnguoidung);
+    }//GEN-LAST:event_cbbnguoidungMouseClicked
 
     /**
      * @param args the command line arguments
@@ -154,6 +196,9 @@ public class jdllocnhacungcap extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(jdllocnhacungcap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */

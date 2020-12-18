@@ -48,7 +48,10 @@ import javax.swing.table.TableCellRenderer;
  * @author Takemikazuchi
  */
 public class pnlsanpham extends javax.swing.JPanel {
-
+public static int countSP, soTrangSP, trangSP = 1;
+public int trangSP1 = 1;
+public static int countKho, soTrangKho, trangKho = 1;
+public int trangKho1 = 1;
     /**
      *
      */
@@ -98,11 +101,12 @@ public class pnlsanpham extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
+        btnFirst1 = new javax.swing.JButton();
+        btnBack1 = new javax.swing.JButton();
+        lblNumberPage1 = new javax.swing.JLabel();
+        btnNext1 = new javax.swing.JButton();
+        btnLast1 = new javax.swing.JButton();
+        lblCountPage1 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -369,6 +373,9 @@ public class pnlsanpham extends javax.swing.JPanel {
             }
         });
         srcdanhsach.setViewportView(tblSanPham);
+        if (tblSanPham.getColumnModel().getColumnCount() > 0) {
+            tblSanPham.getColumnModel().getColumn(13).setHeaderValue("Mã Quét");
+        }
 
         txttimkiem.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txttimkiem.addActionListener(new java.awt.event.ActionListener() {
@@ -399,15 +406,43 @@ public class pnlsanpham extends javax.swing.JPanel {
             }
         });
 
-        jButton6.setText("First");
+        btnFirst1.setText("First");
+        btnFirst1.setEnabled(false);
+        btnFirst1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirst1ActionPerformed(evt);
+            }
+        });
 
-        jButton11.setText("Back");
+        btnBack1.setText("Back");
+        btnBack1.setEnabled(false);
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
 
-        jButton12.setText("Next");
+        lblNumberPage1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNumberPage1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNumberPage1.setText("1");
 
-        jButton13.setText("Last");
+        btnNext1.setText("Next");
+        btnNext1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNext1ActionPerformed(evt);
+            }
+        });
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        btnLast1.setText("Last");
+        btnLast1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLast1ActionPerformed(evt);
+            }
+        });
+
+        lblCountPage1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCountPage1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCountPage1.setText("1/100");
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -415,16 +450,18 @@ public class pnlsanpham extends javax.swing.JPanel {
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFirst1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNumberPage1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNext1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addComponent(btnLast1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCountPage1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -436,15 +473,19 @@ public class pnlsanpham extends javax.swing.JPanel {
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator1))
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCountPage1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNumberPage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNext1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLast1))
+                    .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnFirst1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -474,7 +515,7 @@ public class pnlsanpham extends javax.swing.JPanel {
                 .addComponent(txttimkiem)
                 .addGap(0, 0, 0)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(srcdanhsach)
+            .addComponent(srcdanhsach, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)
             .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnldanhsachLayout.setVerticalGroup(
@@ -899,11 +940,11 @@ public class pnlsanpham extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Hình ảnh", "Tên Size", "Tên Màu", "Khối lượng", "Giá bán lẻ", "Giá bán buôn", "Giá nhập", "Mã sản phẩm", "Link", "Quét mã"
+                "Hình ảnh", "Tên Size", "Tên Màu", "Khối lượng", "Giá bán lẻ", "Giá bán buôn", "Giá nhập", "Mã sản phẩm", "Link"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, false, false, false
+                false, true, true, true, true, true, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1671,12 +1712,12 @@ public class pnlsanpham extends javax.swing.JPanel {
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel37Layout.createSequentialGroup()
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(txtTimKiemKho, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTimKiemKho)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTimKiem)
                 .addGap(9, 9, 9))
-            .addComponent(srcdanhsach2)
+            .addComponent(srcdanhsach2, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)
             .addComponent(jPanel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel37Layout.setVerticalGroup(
@@ -1716,16 +1757,59 @@ public class pnlsanpham extends javax.swing.JPanel {
 
     public void run() {
         
-       
-        BLL.BLLSanPham.HienThiSanPham(tblSanPham);
+       DAO.DAOSanPham.CountSanPham();
+         if (countSP % 10 == 0) {
+            soTrangSP = countSP / 10;
+        } else {
+            soTrangSP = countSP / 10 + 1;
+        }
+        
+            BLL.BLLSanPham.HienThiSanPham(tblSanPham, 0, txttimkiem.getText());
+        lblCountPage1.setText(trangSP1 +"/"+ soTrangSP+"");
+        lblNumberPage1.setText(trangSP1+"");
+         if (trangSP1 == soTrangSP) {
+            btnLast1.setEnabled(false);
+            btnNext1.setEnabled(false);        
+        }
+        
+      
+        
+        
+        
+        
         BLL.BLLSanPham.DoDuLieucbbKeSanPham(cbbViTriKe);
         BLL.BLLSanPham.DoDuLieucbbHangSanPham(cbbHangSanPham);
         BLL.BLLSanPham.DoDuLieucbbLoaiSanPham(cbbLoaiSanPham);
         BLL.BLLSanPham.DoDuLieucbbSizeSanPham(cbbsize);
         BLL.BLLSanPham.DoDuLieucbbMauSanPham(cbbmau);
      
-        BLL.BLLKho.HienThiKho(tblKho, txtTimKiemKho.getText());
+        
+        
+        DAO.DAOKho.CountKho();
+        System.out.println(countKho+" 3123");
+        if (countKho % 13 == 0) {
+            soTrangKho = countKho / 13;
+            System.out.println("1");
+        }else {
+             if(countKho < 13) {
+            soTrangKho = 1;
+             btnLast.setEnabled(false);
+            btnNext.setEnabled(false);   
+             System.out.println("2");
+        }else{
+                  soTrangKho = countKho / 13 + 1;
+                   System.out.println("3");
+             }
+           
+        }
+           BLL.BLLKho.HienThiKho(tblKho, txtTimKiemKho.getText(),0);
+        lblCountPage.setText(trangKho1 +"/"+ soTrangKho+"");
+        lblNumberPage.setText(trangKho1+"");
+        
        
+        
+        
+        
         tblThemThuocTinh.setRowHeight(54);
         tblThemThuocTinh.getColumnModel().getColumn(0).setPreferredWidth(54);
          tblThemThuocTinh.getColumnModel().getColumn(8).setWidth(0);
@@ -1897,10 +1981,7 @@ public class pnlsanpham extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Excel excel = new Excel();
-        if (excel.ExportExcel(tblSanPham)) {
-            ThongBaoThongTin.ThongBao("Xuất File Excel thành công!", "Thông báo");
-        }
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1910,12 +1991,12 @@ public class pnlsanpham extends javax.swing.JPanel {
             DAO.DAOSanPham.XoaSP(XoaSize);
         }
 
-        BLL.BLLSanPham.HienThiSanPham(tblSanPham);
+         BLL.BLLSanPham.HienThiSanPham(tblSanPham, 0, txttimkiem.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        BLL.BLLSanPham.HienThiSanPhamTimKiem(tblSanPham, txttimkiem.getText());
+        BLL.BLLSanPham.HienThiSanPham(tblSanPham, 0, txttimkiem.getText());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txttimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttimkiemActionPerformed
@@ -1924,15 +2005,22 @@ public class pnlsanpham extends javax.swing.JPanel {
 
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        BLL.BLLSanPham.HienThiSanPham(tblSanPham);
+    countSP = 1; 
+    soTrangSP = 1;
+    trangSP = 1;
+    trangSP1 = 1; 
+        txttimkiem.setText("");
+            BLL.BLLSanPham.HienThiSanPham(tblSanPham, 0, txttimkiem.getText());
+      
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+         jdlLockho lk = new jdlLockho(new javax.swing.JFrame(), true);
+        lk.setVisible(true);   
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        BLL.BLLKho.HienThiKho(tblKho, txtTimKiemKho.getText());
+        BLL.BLLKho.HienThiKho(tblKho, txtTimKiemKho.getText(), 0);
     }//GEN-LAST:event_btnTimKiemActionPerformed
        public void clickrun(){
           
@@ -2112,7 +2200,7 @@ public boolean validCheck() {
         }
             }
            ThongBaoThongTin.ThongBao("Thêm thành công "+"'"+txtTenSanPham.getText()+"'"+" Và "+"'"+rows+"'"+" Loại size màu", "Thông báo");
-              BLL.BLLSanPham.HienThiSanPham(tblSanPham);
+             BLL.BLLSanPham.HienThiSanPham(tblSanPham, 0, txttimkiem.getText());
               tbpchuyentab.setSelectedIndex(0);
             }
         
@@ -2173,7 +2261,7 @@ public boolean validCheck() {
              ImagePast = null;
             ThongBaoThongTin.ThongBao("Sửa thành công", "Thông báo");  
             
-            BLL.BLLSanPham.HienThiSanPham(tblSanPham);
+         BLL.BLLSanPham.HienThiSanPham(tblSanPham, 0, txttimkiem.getText());
             tbpchuyentab.setSelectedIndex(0);
             lammoi();
         } else {
@@ -2212,86 +2300,166 @@ public boolean validCheck() {
     }//GEN-LAST:event_tblThemThuocTinh1KeyReleased
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-//        trangHD = 0;
-//        BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
-//        trangHD1 = 1;
-//        btnNext.setEnabled(true);
-//        btnLast.setEnabled(true);
-//        btnFirst.setEnabled(false);
-//        btnBack.setEnabled(false);
-//        lblCountPage.setText(trangHD1 +"/"+ soTrangHD+"");
-//        lblNumberPage.setText(trangHD1+"");
+              trangKho = 0;
+        BLL.BLLKho.HienThiKho(tblKho, txtTimKiemKho.getText(),0);
+        trangKho1 = 1;
+          btnNext.setEnabled(true);
+        btnLast.setEnabled(true);
+        btnFirst.setEnabled(false);
+        btnBack.setEnabled(false);
+        lblCountPage.setText(trangKho1 +"/"+ soTrangKho+"");
+        lblNumberPage.setText(trangKho1+"");
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
-//        if (trangHD1 == 2 ) {
-//
-//            trangHD = trangHD - 13 ;
-//            BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
-//            lblNumberPage.setText(""+(trangHD1 = (trangHD1-1)));
-//            lblCountPage.setText(""+trangHD1+"/"+soTrangHD);
-//            btnBack.setEnabled(false);
-//            btnFirst.setEnabled(false);
-//            btnNext.setEnabled(true);
-//
-//            btnLast.setEnabled(true);
-//
-//        }else{
-//            btnBack.setEnabled(true);
-//            btnNext.setEnabled(true);
-//
-//            btnLast.setEnabled(true);
-//            trangHD = trangHD - 13 ;
-//            BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
-//            lblNumberPage.setText(""+(trangHD1 = (trangHD1-1)));
-//            lblCountPage.setText(""+trangHD1+"/"+soTrangHD);
-//        }
+            
+            if (trangKho1 == 2 ) {
+                 
+                   trangKho = trangKho - 13 ;
+         BLL.BLLKho.HienThiKho(tblKho, txtTimKiemKho.getText(),0);
+           lblNumberPage.setText(""+(trangKho1 = (trangKho1-1))); 
+           lblCountPage.setText(""+trangKho1+"/"+soTrangKho);
+             btnBack.setEnabled(false);
+             btnFirst.setEnabled(false);
+               btnNext.setEnabled(true);
+                
+                 btnLast.setEnabled(true);
+           
+        }else{
+               btnBack.setEnabled(true);
+                 btnNext.setEnabled(true);
+                
+                 btnLast.setEnabled(true);
+                   trangKho = trangKho - 13 ;
+            BLL.BLLKho.HienThiKho(tblKho, txtTimKiemKho.getText(),0);
+           lblNumberPage.setText(""+(trangKho1 = (trangKho1-1))); 
+           lblCountPage.setText(""+trangKho1+"/"+soTrangKho);
+        }
+        
 
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-//        if (trangHD1 == soTrangHD-1) {
-//            trangHD = trangHD + 13 ;
-//            BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
-//            lblNumberPage.setText(""+(trangHD1 = (trangHD1+1)));
-//            lblCountPage.setText(""+trangHD1+"/"+soTrangHD);
-//
-//            btnNext.setEnabled(false);
-//            btnLast.setEnabled(false);
-//            btnBack.setEnabled(true);
-//            btnFirst.setEnabled(true);
-//        }else{
-//            btnNext.setEnabled(true);
-//            btnBack.setEnabled(true);
-//            btnFirst.setEnabled(true);
-//            trangHD = trangHD + 13 ;
-//            BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
-//            lblNumberPage.setText(""+(trangHD1 = (trangHD1+1)));
-//            lblCountPage.setText(""+trangHD1+"/"+soTrangHD);
-//        }
-//        System.out.println(lblNumberPage.getText());
-
+                 if (trangKho1 == soTrangKho-1) {
+              trangKho = trangKho + 13 ;
+            BLL.BLLKho.HienThiKho(tblKho, txtTimKiemKho.getText(),0);
+           lblNumberPage.setText(""+(trangKho1 = (trangKho1+1))); 
+           lblCountPage.setText(""+trangKho1+"/"+soTrangKho);
+            
+            btnNext.setEnabled(false);
+             btnLast.setEnabled(false);
+               btnBack.setEnabled(true);
+                btnFirst.setEnabled(true);
+        }else{
+              btnNext.setEnabled(true);
+               btnBack.setEnabled(true);
+                btnFirst.setEnabled(true);
+                   trangKho = trangKho + 13 ;
+             BLL.BLLKho.HienThiKho(tblKho, txtTimKiemKho.getText(),0);
+           lblNumberPage.setText(""+(trangKho1 = (trangKho1+1))); 
+           lblCountPage.setText(""+trangKho1+"/"+soTrangKho);
+        }
+           System.out.println(lblNumberPage.getText());
+            
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-//        btnNext.setEnabled(false);
-//        btnLast.setEnabled(false);
-//        btnFirst.setEnabled(true);
-//        btnBack.setEnabled(true);
-//        trangHD = (13*soTrangHD)-13;
-//        BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText(),trangHD);
-//        trangHD1 = soTrangHD;
-//        lblCountPage.setText(trangHD1 +"/"+ soTrangHD+"");
-//        lblNumberPage.setText(trangHD1+"");
+              btnNext.setEnabled(false);
+        btnLast.setEnabled(false);
+        btnFirst.setEnabled(true);
+        btnBack.setEnabled(true);      
+        trangKho = (13*soTrangKho)-13;
+      BLL.BLLKho.HienThiKho(tblKho, txtTimKiemKho.getText(),0);
+       trangKho1 = soTrangKho;
+       lblCountPage.setText(trangKho1 +"/"+ soTrangKho+"");
+        lblNumberPage.setText(trangKho1+"");
     }//GEN-LAST:event_btnLastActionPerformed
+
+    private void btnFirst1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst1ActionPerformed
+        trangSP = 0;
+       BLL.BLLSanPham.HienThiSanPham(tblSanPham, trangSP, txttimkiem.getText());
+        trangSP1 = 1;
+        btnNext1.setEnabled(true);
+        btnLast1.setEnabled(true);
+        btnFirst1.setEnabled(false);
+        btnBack1.setEnabled(false);
+        lblCountPage1.setText(trangSP1 +"/"+ soTrangSP+"");
+        lblNumberPage1.setText(trangSP1+"");
+    }//GEN-LAST:event_btnFirst1ActionPerformed
+
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+
+        if (trangSP1 == 2 ) {
+
+            trangSP = trangSP - 10 ;
+           BLL.BLLSanPham.HienThiSanPham(tblSanPham, trangSP, txttimkiem.getText());
+            lblNumberPage1.setText(""+(trangSP1 = (trangSP1-1)));
+            lblCountPage1.setText(""+trangSP1+"/"+soTrangSP);
+            btnBack1.setEnabled(false);
+            btnFirst1.setEnabled(false);
+            btnNext1.setEnabled(true);
+
+            btnLast1.setEnabled(true);
+
+        }else{
+            btnBack1.setEnabled(true);
+            btnNext1.setEnabled(true);
+
+            btnLast1.setEnabled(true);
+            trangSP = trangSP - 10 ;
+            BLL.BLLSanPham.HienThiSanPham(tblSanPham, trangSP, txttimkiem.getText());
+            lblNumberPage1.setText(""+(trangSP1 = (trangSP1-1)));
+            lblCountPage1.setText(""+trangSP1+"/"+soTrangSP);
+        }
+
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
+    private void btnNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext1ActionPerformed
+        if (trangSP1 == soTrangSP-1) {
+            trangSP = trangSP + 10 ;
+           BLL.BLLSanPham.HienThiSanPham(tblSanPham, trangSP, txttimkiem.getText());
+            lblNumberPage1.setText(""+(trangSP1 = (trangSP1+1)));
+            lblCountPage1.setText(""+trangSP1+"/"+soTrangSP);
+
+            btnNext1.setEnabled(false);
+            btnLast1.setEnabled(false);
+            btnBack1.setEnabled(true);
+            btnFirst1.setEnabled(true);
+        }else{
+            btnNext1.setEnabled(true);
+            btnBack1.setEnabled(true);
+            btnFirst1.setEnabled(true);
+            trangSP = trangSP + 10 ;
+           BLL.BLLSanPham.HienThiSanPham(tblSanPham, trangSP, txttimkiem.getText());
+            lblNumberPage1.setText(""+(trangSP1 = (trangSP1+1)));
+            lblCountPage1.setText(""+trangSP1+"/"+soTrangSP);
+        }
+        System.out.println(lblNumberPage.getText());
+
+    }//GEN-LAST:event_btnNext1ActionPerformed
+
+    private void btnLast1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast1ActionPerformed
+        btnNext1.setEnabled(false);
+        btnLast1.setEnabled(false);
+        btnFirst1.setEnabled(true);
+        btnBack1.setEnabled(true);
+        trangSP = (10*soTrangSP)-10;
+     BLL.BLLSanPham.HienThiSanPham(tblSanPham, trangSP, txttimkiem.getText());
+        trangSP1 = soTrangSP;
+        lblCountPage1.setText(trangSP1 +"/"+ soTrangSP+"");
+        lblNumberPage1.setText(trangSP1+"");
+    }//GEN-LAST:event_btnLast1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnFirst1;
     private javax.swing.JButton btnLast;
+    private javax.swing.JButton btnLast1;
     private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnNext1;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton bttLamMoi;
     private javax.swing.JButton bttLamMoiThuocTinh;
@@ -2315,14 +2483,10 @@ public boolean validCheck() {
     private javax.swing.JComboBox<String> cbbdoidtuong;
     private javax.swing.JCheckBox cbkke;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton9;
     public static javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
@@ -2432,14 +2596,15 @@ public boolean validCheck() {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     public static javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private com.toedter.calendar.JDateChooser jdcNgayTao;
     public static com.toedter.calendar.JDateChooser jdcNgaytaosua;
     public static javax.swing.JLabel lblAnhsanphamsua;
     private javax.swing.JLabel lblCountPage;
+    private javax.swing.JLabel lblCountPage1;
     private javax.swing.JLabel lblLink;
     private javax.swing.JLabel lblNumberPage;
+    private javax.swing.JLabel lblNumberPage1;
     private javax.swing.JLabel lblTenAnh;
     private javax.swing.JLabel lbthongtincoban1;
     private javax.swing.JLabel lbthongtincoban3;

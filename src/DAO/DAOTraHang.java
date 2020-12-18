@@ -18,6 +18,12 @@ public class DAOTraHang {
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
     }
+     public static ResultSet LayTraHangLoc(String MaKhachHang, String MaNhanVien, String TrangThai, String HoanTien){
+        String query = "Select * from trahang where idkhachhang like '%"+MaKhachHang+"%' and idnguoidung like '%"+MaNhanVien+"%' and trangthai like '%"+TrangThai+"%' and hoantien like '%"+HoanTien+"%'";
+        ResultSet rs = DAO.DBConection.GetData(query);
+         System.out.println(query);
+        return rs;
+    }
     public static ResultSet LayTraHang(){
         String query = "Select * from trahang limit 0, 13";
         ResultSet rs = DAO.DBConection.GetData(query);
@@ -33,6 +39,16 @@ public class DAOTraHang {
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
     }
+        public static ResultSet LayTraHangLocNguoiDung(){
+          String query = "Select DISTINCT idnguoidung from trahang";
+          ResultSet rs = DAO.DBConection.GetData(query);
+          return rs;
+      }
+       public static ResultSet LayTraHangLocKhachHang(){
+          String query = "Select DISTINCT idkhachhang from trahang";
+          ResultSet rs = DAO.DBConection.GetData(query);
+          return rs;
+      }
      public static ResultSet LayChiTietHoaDonTheoHoaDon(int MaHoaDon){
         String query ="Select * from chitiethoadon where idhoadon = '"+MaHoaDon+"'";
         ResultSet rs = DAO.DBConection.GetData(query);

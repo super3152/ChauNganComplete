@@ -36,7 +36,9 @@ import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
  */
 public class jdllogin extends javax.swing.JFrame {
 int index;
-   
+   public static String tennguoidung;
+    public static int idnguoidung;
+    public static int chucvu;
     public jdllogin() {
           try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -807,7 +809,17 @@ dialog.setVisible(true);
              idnguoidung = BLL.BLLlogin.nguoidung.getIdNguoiDung(); 
             DTOHoatDong nd = new DTOHoatDong(idhoatdong, idnguoidung);
             BLL.BLLHoatDong.ThemHoatDong(nd);
-            ThongBaoThongTin.ThongBao("Đăng nhập thành công", "Thông báo");
+             tennguoidung = BLL.BLLlogin.nguoidung.getTenNguoiDung();
+             chucvu = BLL.BLLlogin.nguoidung.getQuyen();
+             String quyen;
+             if (chucvu == 0) {
+                quyen = "Nhân viên";
+            }else{
+                 
+                   quyen = "Admin";
+             }
+             System.out.println(chucvu + "hehe");
+            ThongBaoThongTin.ThongBao("Đăng nhập thành công"+"\n"+"Người dùng: "+tennguoidung+"\n"+"Chức vụ: "+quyen, "Thông báo");
               this.dispose();
             frmmain frm = new frmmain();
             frm.setVisible(true);

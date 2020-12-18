@@ -7,9 +7,29 @@ package GUI;
 
 import BLL.BLLSanPham;
 import DAO.DBConection;
+import static DAO.DBConection.conn;
 import DTO.MyCombobox;
+import static GUI.jdlNhapXuatExcel.hinhthucnhap;
+import static GUI.jdlNhapXuatExcel.idnhacungcap;
+import static GUI.jdlNhapXuatExcel.thanhtien;
 import static GUI.pnlsanpham.cbbLoaiSanPham;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Iterator;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.*;
 
 /**
  *
@@ -23,9 +43,9 @@ public class Test extends javax.swing.JDialog {
     public Test(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-//        DBConection db = new DBConection();
-//        BLLSanPham.HienThiSanPhamBanHang(jTable1,jTextField1.getText());
-//       jPopupMenu1.add(jPanel2);
+        DBConection db = new DBConection();
+    
+
     }
 
    
@@ -45,6 +65,10 @@ public class Test extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jScrollPane2.setBorder(null);
 
@@ -99,6 +123,27 @@ public class Test extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,13 +151,36 @@ public class Test extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 422, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addComponent(jButton1))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(179, 179, 179))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(343, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(jButton1)
+                .addGap(50, 50, 50)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jButton3)
+                .addGap(57, 57, 57)
+                .addComponent(jButton2)
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,6 +221,167 @@ String value = jTable1.getModel().getValueAt(row, column).toString();
 
     }//GEN-LAST:event_jTable1MouseClicked
 
+public static String ImagePast2;
+public static int addid;
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        int batchSize = 20;
+ 
+      
+ 
+        try {
+              conn.setAutoCommit(false);
+        } catch (Exception e) {
+        }
+       
+        
+        
+         JFileChooser file = new JFileChooser();
+        file.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.xls", "xlsx");
+        file.addChoosableFileFilter(filter);
+        int result = file.showSaveDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION){
+            File selectedFile  = file.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+        
+            ImagePast2 = path;
+          
+          
+        }
+          String ab = ImagePast2.toString();
+        
+        
+        try {
+           
+             
+            FileInputStream inputStream = new FileInputStream(ab);
+ 
+            Workbook workbook = new XSSFWorkbook(inputStream);
+ 
+            Sheet firstSheet = workbook.getSheetAt(0);
+            Iterator<Row> rowIterator = firstSheet.iterator();
+ 
+            
+            
+             String sql = "INSERT INTO chitietphieunhap (idphieunhap, idsanpham, donvi, soluong, gianhap, thanhtien, ghichu) VALUES (?, ?, ?, ?, ?, ?, ?)";
+           PreparedStatement statement = conn.prepareStatement(sql);    
+            
+            int count = 0;
+             
+            rowIterator.next(); // skip the header row
+             
+            while (rowIterator.hasNext()) {
+                Row nextRow = rowIterator.next();
+                Iterator<Cell> cellIterator = nextRow.cellIterator();
+ 
+                while (cellIterator.hasNext()) {
+                    Cell nextCell = cellIterator.next();
+ 
+                    int columnIndex = nextCell.getColumnIndex();
+ 
+                    switch (columnIndex) {
+                  
+                         
+                    case 0:
+                       int idphieunhap = (int) nextCell.getNumericCellValue();
+                       
+                              statement.setInt(1, idphieunhap);
+                                   break;
+
+                    case 1:
+                        int idsanpham = (int) nextCell.getNumericCellValue();
+                       
+                              statement.setInt(2, idsanpham);
+                              break;
+                    case 2:
+                        String donvi =  nextCell.getStringCellValue();
+                       
+                              statement.setString(3, donvi);
+                              break;
+                              
+                    case 3:
+                        int soluong = (int) nextCell.getNumericCellValue();
+                       
+                              statement.setInt(4, soluong);
+                        break;
+                     case 4:
+                        double gianhap = (int) nextCell.getNumericCellValue();
+                       
+                              statement.setDouble(5, gianhap);
+                              break;
+                    case 5:
+                        double thanhtien = (int) nextCell.getNumericCellValue();
+                       
+                              statement.setDouble(6, thanhtien);     
+                              break;
+                    case 6:
+                        String ghichu =  nextCell.getStringCellValue();
+                       
+                              statement.setString(7, ghichu);    
+                              break;
+                        
+                    }
+ 
+                }
+                 
+                statement.addBatch();
+                 
+                if (count % batchSize == 0) {
+                    statement.executeBatch();
+                }              
+ 
+            }
+        System.out.println(statement);
+        System.out.println("Nhập excel thành công");
+            workbook.close();
+             
+            // execute the remaining queries
+            statement.executeBatch();
+  
+            conn.commit();
+            conn.close();
+             
+         
+           
+             
+        } catch (IOException ex1) {
+            System.out.println("Error reading file");
+            ex1.printStackTrace();
+        } catch (SQLException ex2) {
+            System.out.println("Database error");
+            ex2.printStackTrace();
+        }
+ 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        LayThongTinCTPhieuNhap(Integer.parseInt(jTextField1.getText()));
+    }//GEN-LAST:event_jButton3ActionPerformed
+  public static ResultSet LayThongTinCTPhieuNhap(int idphieunhap) {
+        try {
+         String query = "SELECT idnhacungcap, sum(thanhtien), hinhthucnhap FROM `chitietphieunhap` WHERE idphieunhap = '"+idphieunhap+"'";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                
+                jdlNhapXuatExcel.idnhacungcap = rs.getInt(1);
+                 jdlNhapXuatExcel.thanhtien = rs.getDouble(2);
+                 jdlNhapXuatExcel.hinhthucnhap = rs.getString(3);
+            }        
+            System.out.println(idnhacungcap);
+              System.out.println(thanhtien);
+                System.out.println(hinhthucnhap);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
     /**
      * @param args the command line arguments
      */
@@ -197,6 +426,10 @@ String value = jTable1.getModel().getValueAt(row, column).toString();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;

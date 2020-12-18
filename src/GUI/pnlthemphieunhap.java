@@ -841,8 +841,8 @@ public class pnlthemphieunhap extends javax.swing.JPanel {
                 double GiaNhap = BLL.ChuyenDoi.ChuyenTien(tblChitietphieunhap.getValueAt(i, 7).toString());
                 double ThanhTien = BLL.ChuyenDoi.ChuyenTien(tblChitietphieunhap.getValueAt(i, 9).toString());
                 String GhiChuCT = "Mới";
-
-                DTO.DTOChiTietPhieuNhap ctpn = new DTO.DTOChiTietPhieuNhap(MaPN, MaSP, DonVi, SoLuong, GiaNhap, ThanhTien, GhiChuCT);
+                   
+                DTO.DTOChiTietPhieuNhap ctpn = new DTO.DTOChiTietPhieuNhap(MaPN, MaSP, DonVi, SoLuong, GiaNhap, ThanhTien, GhiChuCT, MaNCC, HinhThucNhap);
 
                 BLL.BLLPhieuNhap.ThemChiTietPhieuNhap(ctpn);
 

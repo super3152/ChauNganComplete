@@ -88,7 +88,50 @@ public class BLLPhieuNhap {
         }
 
     }
+ public static void DoDuLieuVaoCBBTenNguoiDungPN(JComboBox cbb) {
+        try {
+            DefaultComboBoxModel cbbModel = (DefaultComboBoxModel) cbb.getModel();
+            cbbModel.removeAllElements();
+            ResultSet rs = DAO.DAOPhieuNhap.LayPhieuNhapLocNguoiDung();
 
+            while (rs.next()) {
+                int MaND = rs.getInt("idnguoidung");
+                ResultSet rsND = DAO.DAOPhieuNhap.LayTenND(MaND);
+                while (rsND.next()) {
+
+                    String TenND = rsND.getString("tennguoidung");
+                    cbbModel.addElement(TenND);
+
+                }
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi truy vấn dữ liệu hóa đơn", "Thông báo");
+        }
+
+    }
+
+    public static void DoDuLieuVaoCBBTenNhaCungCapPN(JComboBox cbb) {
+        try {
+            DefaultComboBoxModel cbbModel = (DefaultComboBoxModel) cbb.getModel();
+            cbbModel.removeAllElements();
+            ResultSet rs = DAO.DAOPhieuNhap.LayPhieuNhapLocNhaCungCap();
+            
+            while (rs.next()) {
+                int MaNCC = rs.getInt("idnhacungcap");
+                ResultSet rsKH = DAO.DAOPhieuNhap.LayTenNCC(MaNCC);
+
+                while (rsKH.next()) {
+
+                    String TenKH = rsKH.getString("tennhacungcap");
+                    cbbModel.addElement(TenKH);
+
+                }
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi truy vấn dữ liệu hóa đơn", "Thông báo");
+        }
+
+    }
     public static void HienThiChiTietPhieuNhap(JTable tbl, int MaPhieuNhap) {
           pnlthemphieunhap.tblChitietphieunhap.getColumn("Ảnh").setCellRenderer(new BLLSanPham.mytable());
         ResultSet rs = DAO.DAOChiTietPhieuNhap.LayCTPNTheoMaPN(MaPhieuNhap);
@@ -501,6 +544,9 @@ public class BLLPhieuNhap {
     public static void ThemPhieuNhap(DTOPhieuNhap PN) {
         DAO.DAOPhieuNhap.ThemPhieNhap(PN);
     }
+     public static void ThemIDPhieuNhap(DTOPhieuNhap PN) {
+        DAO.DAOPhieuNhap.ThemIDPhieuNhap(PN);
+    }
 
     public static int LayMaPhieuNhapString(String TenPN) {
         try {
@@ -521,6 +567,10 @@ public class BLLPhieuNhap {
 
     public static void SuaTonKhoGia(DTOKho kh) {
         DAO.DAOPhieuNhap.SuaTonKhoGia(kh);
+    }
+    
+    public static void SuaPhieuNhap(DTOPhieuNhap pn) {
+        DAO.DAOPhieuNhap.SuaPhieuNhap(pn);
     }
 
     public static void SuaNhapKhoPN(DTOPhieuNhap pn) {

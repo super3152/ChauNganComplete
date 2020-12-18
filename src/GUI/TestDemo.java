@@ -6,6 +6,7 @@
 package GUI;
 
 import DAO.DBConection;
+import javax.swing.UIManager;
 
 /**
  *
@@ -18,18 +19,26 @@ public class TestDemo extends javax.swing.JDialog {
      */
     public TestDemo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+
+        }
         initComponents();
        DBConection db = new DBConection();
-//         pnlhanghoa gh = new pnlhanghoa();
+         pnlhanghoa gh = new pnlhanghoa();
 //         pnlsanpham sp = new pnlsanpham();
 //       pnltongquan tq = new pnltongquan();
     pnlbanhang bh = new pnlbanhang();
 //    
 //  
-//    pnlkhachhang kh = new pnlkhachhang();
-//    pnlgiaohang dh = new pnlgiaohang();
-//    pnlnhanvien tg = new pnlnhanvien();
-//    pnlthongke tk = new pnlthongke();
+    pnlkhachhang kh = new pnlkhachhang();
+
         
         jPanel1.add(bh);
     }

@@ -15,7 +15,9 @@ import java.util.logging.Logger;
 public class BLLlogin {
 
     public static DTO.DTONguoidung nguoidung = new DTONguoidung();
-
+    public static DTO.DTONguoidung idNguoidung = new DTONguoidung();
+    public static DTO.DTONguoidung quyen = new DTONguoidung();
+    
     public static boolean Checklogin(String username, String password) {
             if (username.trim().length() < 5) {
             //Thông báo
@@ -40,6 +42,7 @@ public class BLLlogin {
                     nguoidung.setIdNguoiDung(rs.getInt("idnguoidung"));
                     nguoidung.setTenDangNhap(username);
                     nguoidung.setTenNguoiDung(rs.getString("tennguoidung"));
+                      nguoidung.setQuyen(rs.getInt("quyen"));
                 }
             }
         } catch (SQLException ex) {

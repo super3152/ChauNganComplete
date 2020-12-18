@@ -92,7 +92,91 @@ public class BLLTraHang {
         return SoLuong;
 
     }
+       public static void DoDuLieuVaoCBBTenNguoiDungTH(JComboBox cbb) {
+        try {
+            DefaultComboBoxModel cbbModel = (DefaultComboBoxModel) cbb.getModel();
+            cbbModel.removeAllElements();
+            ResultSet rs = DAO.DAOTraHang.LayTraHangLocNguoiDung();
 
+            while (rs.next()) {
+                int MaND = rs.getInt("idnguoidung");
+                ResultSet rsND = DAO.DAOPhieuNhap.LayTenND(MaND);
+                while (rsND.next()) {
+
+                    String TenND = rsND.getString("tennguoidung");
+                    cbbModel.addElement(TenND);
+
+                }
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi truy vấn dữ liệu hóa đơn", "Thông báo");
+        }
+
+    }
+
+    public static void DoDuLieuVaoCBBTenKhachHangTH(JComboBox cbb) {
+        try {
+            DefaultComboBoxModel cbbModel = (DefaultComboBoxModel) cbb.getModel();
+            cbbModel.removeAllElements();
+            ResultSet rs = DAO.DAOTraHang.LayTraHangLocKhachHang();
+            
+            while (rs.next()) {
+                int MaND = rs.getInt("idkhachhang");
+                ResultSet rsKH = DAO.DAOPhieuNhap.LayTenKH(MaND);
+
+                while (rsKH.next()) {
+
+                    String TenKH = rsKH.getString("tenkhachhang");
+                    cbbModel.addElement(TenKH);
+
+                }
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi truy vấn dữ liệu hóa đơn", "Thông báo");
+        }
+    }
+   public static void HienThiTraHangLoc(JTable tbl,String MaKhachHang, String MaNhanVien, String TrangThaii, String HoanTienn) {
+        ResultSet rs = DAO.DAOTraHang.LayTraHangLoc( MaKhachHang, MaNhanVien, TrangThaii, HoanTienn);
+        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
+        tbModel.setRowCount(0);
+        Object obj[] = new Object[8];
+        try {
+            while (rs.next()) {
+                obj[0] = rs.getInt("idtrahang");
+                obj[1] = rs.getString("sotrahang");
+                int MaHD = rs.getInt("idhoadon");
+                ResultSet rsHD = DAO.DAOTraHang.LaySoHoaDon(MaHD);
+                if (rsHD.next()) {
+                    obj[2] = rsHD.getString("sohoadon");
+                }
+                int MaKH = rs.getInt("idkhachhang");
+                ResultSet rsKH = DAO.DAOPhieuNhap.LayTenKH(MaKH);
+                if (rsKH.next()) {
+                    obj[3] = rsKH.getString("tenkhachhang");
+                }
+                   int tt = rs.getInt("trangthai");
+                String TrangThai = String.valueOf(tt);
+                if (TrangThai.equals("0")) {
+                    obj[4] = "Đang Nhận";
+                } else {
+                    obj[4] = "Đã Nhận";
+                }
+                  int ht = rs.getInt("hoantien");
+                String HoanTien = String.valueOf(ht);
+                if (TrangThai.equals("0")) {
+                    obj[5] = "Chưa Thanh Toán";
+                } else {
+                    obj[5] = "Đã Thanh Toán";
+                }
+                obj[6] = ChuyenDoi.DinhDangTien(rs.getDouble("tongtien"));
+                obj[7] = rs.getString("lydotra");
+
+                tbModel.addRow(obj);
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng trả hàng", "Thông báo");
+        }
+    }
     public static void HienThiTraHang(JTable tbl) {
         ResultSet rs = DAO.DAOTraHang.LayTraHang();
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();

@@ -42,6 +42,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -64,7 +65,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+import java.io.IOException;
+import java.net.MalformedURLException;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.UIManager;
@@ -91,31 +93,17 @@ long time = System.currentTimeMillis();
 
 Runnable update = new Runnable() {
     public void run() {
-//      while (true) {            
-//        if (DBConection.conn != null) {
-//           
-//        }else{  
-//            ImageIcon icon = new ImageIcon("src/IMAGE/831.gif");
-//            
-//             Object[] options = {"Đồng ý",
-//                    "Thoát"};
-//         int ketquasaukhibam = JOptionPane.showOptionDialog(new JFrame(),
-//            "<html><body><strong>Vui lòng kết nối lại ?</strong></body?</html>", //thông báo
-//            "Thông báo!", //tiêu đề
-//           JOptionPane.YES_NO_OPTION,
-//    JOptionPane.QUESTION_MESSAGE,
-//    icon,     //không sử dụng icon tùy chỉnh
-//    options,  //các tiêu để của các nút
-//    options[0]); //tiêu đề nút mặc định
-//
-//        if (ketquasaukhibam == JOptionPane.YES_OPTION){
-//         DBConection db = new DBConection();
-//          } else{
-//            System.exit(0);
-//        }
-//        }
-//      }   
-                
+        try {
+         URL url = new URL("http://www.google.com");
+         URLConnection connection = url.openConnection();
+         connection.connect();        
+         
+      } catch (MalformedURLException e) {
+        ThongBaoThongTin.ThongBao("Mất kết nối", "Thông báo");
+       
+      } catch (IOException e) {
+        ThongBaoThongTin.ThongBao("Mất kết nối", "Thông báo");
+      }        
     }
  
 };
@@ -123,7 +111,7 @@ Runnable update = new Runnable() {
 java.util.Timer timer = new java.util.Timer();
 timer.schedule(new TimerTask() {
     public void run() {
-        update.run();
+        update.run();       
     }
 }, time % milisInAMinute, milisInAMinute);
 update.run();
@@ -133,6 +121,7 @@ update.run();
         
         
         lbltenuser.setText(BLL.BLLlogin.nguoidung.getTenNguoiDung());
+        
         btntongquan.addActionListener(this);
         btnbanhang.addActionListener(this);
         btnsanpham.addActionListener(this);
@@ -547,6 +536,11 @@ update.run();
         lbltenuser.setForeground(new java.awt.Color(255, 0, 0));
         lbltenuser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbltenuser.setText("ĐĂNG NHẬP");
+        lbltenuser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbltenuserMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -788,6 +782,10 @@ update.run();
            jdllogin jdl = new jdllogin();
            jdl.setVisible(true);
     }//GEN-LAST:event_lbldangxuat2MouseClicked
+
+    private void lbltenuserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbltenuserMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbltenuserMouseClicked
 
     void setcolorbutton(JPanel panel) {
         panel.setBackground(Color.WHITE);
@@ -1254,7 +1252,7 @@ update.run();
                     DTOChamCong scc = new DTOChamCong(1, 1, idnhanvien);
                     BLL.BLLChamCong.SuaChamCong(scc);
                     ThongBaoCanhBao.ThongBao("Điểm danh ca sáng thành công"+"\n"+"Nhân viên: "+tennguoidung , "Thông báo");
-                    BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+                    BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien),0);
                     String formatTimeStr5 = "yyyy";
                     String formatTimeStr6 = "MM";
                     DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
@@ -1286,7 +1284,7 @@ update.run();
             DTOChamCong scc = new DTOChamCong(4, 1, idnhanvien);
             BLL.BLLChamCong.SuaChamCong(scc);
             ThongBaoCanhBao.ThongBao("Điểm danh ca Chiều và ca Sáng thành công"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
-                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien),0);
             String formatTimeStr5 = "yyyy";
              String formatTimeStr6 = "MM";
          DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
@@ -1313,7 +1311,7 @@ update.run();
             DTOChamCong scc = new DTOChamCong(2, 1, idnhanvien);
             BLL.BLLChamCong.SuaChamCong(scc);
             ThongBaoCanhBao.ThongBao("Điểm danh ca chiều thành công"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
-                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien),0);
             String formatTimeStr5 = "yyyy";
              String formatTimeStr6 = "MM";
          DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
@@ -1344,7 +1342,7 @@ update.run();
             DTOChamCong scc = new DTOChamCong(6, 1, idnhanvien);
             BLL.BLLChamCong.SuaChamCong(scc);
             ThongBaoCanhBao.ThongBao("Điểm danh ca Tối thành công"+"\n"+"Hôm nay ca Chiều chưa điểm danh"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
-                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien),0);
             String formatTimeStr5 = "yyyy";
              String formatTimeStr6 = "MM";
          DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
@@ -1366,7 +1364,7 @@ update.run();
             DTOChamCong scc = new DTOChamCong(5, 1, idnhanvien);
             BLL.BLLChamCong.SuaChamCong(scc);
             ThongBaoCanhBao.ThongBao("Điểm danh ca Tối thành công"+"\n"+"Hôm nay ca Sáng chưa điểm danh"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
-                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien),0);
             String formatTimeStr5 = "yyyy";
              String formatTimeStr6 = "MM";
          DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
@@ -1393,7 +1391,7 @@ update.run();
             DTOChamCong scc = new DTOChamCong(7, 1, idnhanvien);
             BLL.BLLChamCong.SuaChamCong(scc);
             ThongBaoCanhBao.ThongBao("Điểm danh ca Tối thành công"+"\n"+"Hôm nay đã điểm danh Full Ngày"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
-                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien),0);
             String formatTimeStr5 = "yyyy";
              String formatTimeStr6 = "MM";
          DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);
@@ -1422,7 +1420,7 @@ update.run();
             DTOChamCong scc = new DTOChamCong(3, 1, idnhanvien);
             BLL.BLLChamCong.SuaChamCong(scc);
             ThongBaoCanhBao.ThongBao("Điểm danh ca tối thành công"+"\n"+"Nhân viên: "+tennguoidung, "Thông báo");
-                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien));
+                 BLLChamCong.HienThiLichSuChamCong(tbllichsuchamcong, String.valueOf(idnhanvien),0);
             String formatTimeStr5 = "yyyy";
              String formatTimeStr6 = "MM";
          DateFormat formatTime5 = new SimpleDateFormat(formatTimeStr5);

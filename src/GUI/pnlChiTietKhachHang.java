@@ -570,7 +570,8 @@ public class pnlChiTietKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTraNoActionPerformed
 
     private void btnDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanhSachActionPerformed
-         BLL.BLLKhachHang.HienThiKhachHang(pnlkhachhang.tblkhachhang, txtTimKiem.getText());
+          txtTimKiem.setText(""); 
+        BLL.BLLKhachHang.HienThiKhachHang(pnlkhachhang.tblkhachhang, txtTimKiem.getText(),0);
         pnlkhachhang.jPanel2.remove(this);
        pnlkhachhang.pnldanhsach.setVisible(true);
     }//GEN-LAST:event_btnDanhSachActionPerformed

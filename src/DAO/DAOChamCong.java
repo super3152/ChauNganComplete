@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.DTOChamCong;
+import static GUI.pnlnhanvien.countCC;
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,14 +21,28 @@ public class DAOChamCong {
     
     
     
-      public static ResultSet LayLichSuChamCong(String idnguoidung) {
+      public static ResultSet LayLichSuChamCong(String idnguoidung, int trang) {
 
-        String query = "SELECT * FROM chamcong where idnguoidung = '" + idnguoidung + "' ORDER BY idchamcong DESC";
+        String query = "SELECT * FROM chamcong where idnguoidung = '" + idnguoidung + "' ORDER BY idchamcong DESC limit "+trang+",7";
         ResultSet rs = DBConection.GetData(query);
         return rs;
 
     }
-     
+     public static ResultSet CountChamCong(int idnguoidung) {
+        try {
+         String query = "Select count(*) from chamcong where idnguoidung = '" + idnguoidung + "'";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countCC = rs.getInt(1);
+            }
+            System.out.println(countCC);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
+    }
        public static ResultSet LayThongTinCaChamCong(int idnguoidung) {
 
         String query = "SELECT chamcong.socachamcong,nguoidung.tennguoidung FROM `chamcong` INNER JOIN nguoidung on nguoidung.idnguoidung = chamcong.idnguoidung WHERE ngaychamcong = CURDATE() and nguoidung.idnguoidung = '"+idnguoidung+"'";

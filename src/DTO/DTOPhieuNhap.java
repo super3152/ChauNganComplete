@@ -43,6 +43,24 @@ public class DTOPhieuNhap {
         this.Tag = Tag;
         this.GhiChu = GhiChu;
     }
+    
+    
+     public DTOPhieuNhap(int IDPhieuNhap, int IDNhaCungCap, int IDNguoiDung, String SoPhieuNhap,  double ThanhTien, String HinhThucThanhToan, String HinhThucNhap, int TrangThai, int NhapKho, int ThanhToan, double CongNo,  String Tag, String GhiChu) {
+        this.IDPhieuNhap = IDPhieuNhap;
+        this.IDNhaCungCap = IDNhaCungCap;
+        this.IDNguoiDung = IDNguoiDung;
+        this.SoPhieuNhap = SoPhieuNhap;
+        this.ThanhTien = ThanhTien;
+        this.HinhThucThanhToan = HinhThucThanhToan;
+        this.HinhThucNhap = HinhThucNhap;
+        this.TrangThai = TrangThai;
+        this.NhapKho = NhapKho;
+        this.ThanhToan = ThanhToan;
+        this.CongNo = CongNo;
+      
+        this.Tag = Tag;
+        this.GhiChu = GhiChu;
+    }
 
     public DTOPhieuNhap(int IDNhaCungCap, int IDNguoiDung, String SoPhieuNhap, String NgayNhap, double ThanhTien, String HinhThucThanhToan, String HinhThucNhap, int TrangThai, int NhapKho, int ThanhToan, double CongNo, String Tag, String GhiChu) {
         this.IDNhaCungCap = IDNhaCungCap;
@@ -60,7 +78,10 @@ public class DTOPhieuNhap {
         this.GhiChu = GhiChu;
     }
 
-
+  public DTOPhieuNhap(int IDPhieuNhap) {
+        this.IDPhieuNhap = IDPhieuNhap;
+       
+    }
   
 
     public DTOPhieuNhap(String SoPhieuNhap, int NhapKho) {

@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 public class DAOChiTietPhieuNhap {
 
     public static int ThemChiTietPhieuNhap(DTOChiTietPhieuNhap ctpn) {
-        String query = "INSERT INTO `chitietphieunhap`(`idphieunhap`, `idsanpham`, `donvi`, `soluong`, `gianhap`, `thanhtien`, `ghichu`)"
+        String query = "INSERT INTO `chitietphieunhap`(`idphieunhap`, `idsanpham`, `donvi`, `soluong`, `gianhap`, `thanhtien`, `ghichu`,`idnhacungcap`, `hinhthucnhap`)"
                 + " VALUES"
                 + "('"+ctpn.getIDPhieuNhap()+"',"
                 + "'"+ctpn.getIDSanPham()+"',"
@@ -23,7 +23,9 @@ public class DAOChiTietPhieuNhap {
                 + "'"+ctpn.getSoLuong()+"',"
                 + "'"+ctpn.getGiaNhap()+"',"
                 + "'"+ctpn.getThanhTien()+"',"
-                + "'"+ctpn.getGhiChu()+"')";
+                 + "'"+ctpn.getGhiChu()+"',"
+                  + "'"+ctpn.getIdnhacungcap()+"',"
+                + "'"+ctpn.getHinhthucnhap()+"')";
         System.out.println(query);
         return DBConection.ExcuteTruyVan(query);
 

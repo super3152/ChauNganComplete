@@ -5,6 +5,7 @@
  */
 package BLL;
 
+import DAO.DAONhaCungCap;
 import DTO.DTONhaCungCap;
 import DTO.MyCombobox;
 import GUI.ThongBaoCanhBao;
@@ -49,6 +50,39 @@ public class BLLNhaCungCap {
             ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ", "Thông báo");
         }
 
+    }
+     public static void DoDuLieuVaoCBBTenNguoiDungNCC(JComboBox cbb) {
+        try {
+            DefaultComboBoxModel cbbModel = (DefaultComboBoxModel) cbb.getModel();
+            cbbModel.removeAllElements();
+            ResultSet rs = DAO.DAONhaCungCap.LayNhaCungCapLocNguoiDung();
+
+            while (rs.next()) {
+                int MaND = rs.getInt("idnguoidung");
+                ResultSet rsND = DAO.DAOPhieuNhap.LayTenND(MaND);
+                while (rsND.next()) {
+
+                    String TenND = rsND.getString("tennguoidung");
+                    cbbModel.addElement(TenND);
+
+                }
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi truy vấn dữ liệu hóa đơn", "Thông báo");
+        }
+
+    }
+         public static int LayMaLoaiNCCString(String TenLoaiNCC) {
+        try {
+            ResultSet rs = DAONhaCungCap.LayLoaiNCCTheoTen(TenLoaiNCC);
+
+            if (rs.next()) {
+                return rs.getInt("idloainhacungcap");
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi Lấy Mã Loại Nhà Cung Cấp !", "Thông Báo !");
+        }
+        return 0;
     }
     public static DTONhaCungCap GetMaNCC(Integer MaNCC) {
         try {
@@ -122,7 +156,18 @@ public class BLLNhaCungCap {
         }
 
     }
-     
+          public static int LayMaNhaCungCapString(String TenNCC) {
+        try {
+            ResultSet rs = DAONhaCungCap.LayNhaCungCapTheoTen(TenNCC);
+
+            if (rs.next()) {
+                return rs.getInt("idnhacungcap");
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi Lấy Mã Nhà Cung Cấp !", "Thông Báo !");
+        }
+        return 0;
+    }
       public static void DoDuLieuVaoCBBNhaCungCap(JComboBox cbb) {
         try {
             ResultSet rs = DAO.DAONhaCungCap.LayNhacCungCapCBB();

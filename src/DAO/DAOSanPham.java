@@ -7,6 +7,7 @@ package DAO;
 
 import DTO.DTOSanPham;
 import GUI.pnlsanpham;
+import static GUI.pnlsanpham.countSP;
 import static GUI.pnlsanpham.tblThemThuocTinh;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
@@ -49,6 +50,16 @@ public class DAOSanPham {
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
+     public static ResultSet LaySanPhamLoc(String MaLoaiSanPham, String MaHangSanPham, String MaKe, String MaSize, String MaMau) {
+        String query = "SELECT * FROM sanpham where idloaisanpham like'%"+MaLoaiSanPham+"%' and idhangsanpham like '%"+MaHangSanPham+"%' and idke like '%"+MaKe+"%' and idsizesanpham like '%"+MaSize+"%' and idmausanpham like '%"+MaMau+"%' ";
+        ResultSet rs = DBConection.GetData(query);
+        return rs;
+    }
+     public static ResultSet LayPhieuNhap() {
+        String query = "SELECT * FROM kho";
+        ResultSet rs = DBConection.GetData(query);
+        return rs;
+    }
      public static ResultSet GetByTenSP(String TenSanPham, int MaSize, int MaMau) {
         String cauTruyVan = "select * from sanpham where tensanpham = '" + TenSanPham + "' and idsizesanpham = '"+MaSize+"' and idmausanpham = '"+MaMau+"' ";
         ResultSet rs = DBConection.GetData(cauTruyVan);
@@ -69,10 +80,27 @@ public class DAOSanPham {
         ResultSet rs = DBConection.GetData(query);
         return rs;
     }
-     public static ResultSet LaySanPham() {
-        String query = "SELECT * FROM sanpham";
+     public static ResultSet LaySanPham(int trang, String tukhoa) {
+        String query = "SELECT * FROM sanpham where tensanpham like '%" + tukhoa + "%' or masanpham like '%" + tukhoa + "%' limit "+trang+",10";
         ResultSet rs = DBConection.GetData(query);
         return rs;
+    }
+     
+     
+     public static ResultSet CountSanPham() {
+        try {
+         String query = "Select count(*) from sanpham";
+        ResultSet rs = DBConection.GetData(query);
+      
+         while (rs.next()) {
+                countSP = rs.getInt(1);
+            }
+            System.out.println(countSP);
+        return rs;
+        } catch (Exception e) {
+        }
+        return null;
+      
     }
 
     public static ResultSet LayLoaiSanPham(int MaLoaiSanPham) {

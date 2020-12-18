@@ -18,8 +18,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BLLChamCong {
     
-     public static void HienThiLichSuChamCong(JTable tbl, String idnguoidung) {
-        ResultSet rs = DAO.DAOChamCong.LayLichSuChamCong(idnguoidung);
+     public static void HienThiLichSuChamCong(JTable tbl, String idnguoidung, int trang) {
+        ResultSet rs = DAO.DAOChamCong.LayLichSuChamCong(idnguoidung,trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         

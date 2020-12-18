@@ -30,8 +30,23 @@ public class DAONhaCungCap {
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
     }
+      public static ResultSet LayNhaCungCapTheoTen(String TenNCC) {
+        String query = "SELECT * FROM nhacungcap where tennhacungcap =  '" + TenNCC + "'";
+        ResultSet rs = DBConection.GetData(query);
+        return rs;
+    }
      public static ResultSet LayPhieuNhapTheoMaNCC(int MaNCC){
         String query = "Select * from phieunhap where idnhacungcap = '"+MaNCC+"'";
+        ResultSet rs = DAO.DBConection.GetData(query);
+        return rs;
+    }
+      public static ResultSet LayLoaiNCCTheoTen(String TenLoaiNCC){
+        String query = "Select * from loainhacungcap where tenloainhacungcap = '"+TenLoaiNCC+"'";
+        ResultSet rs = DAO.DBConection.GetData(query);
+        return rs;
+    }
+        public static ResultSet LayNhaCungCapLocNguoiDung() {
+        String query = "Select DISTINCT idnguoidung from nhacungcap";
         ResultSet rs = DAO.DBConection.GetData(query);
         return rs;
     }

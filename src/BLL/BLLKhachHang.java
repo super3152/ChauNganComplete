@@ -5,6 +5,7 @@
  */
 package BLL;
 
+import DAO.DBConection;
 import DTO.DTOKhachHang;
 import DTO.DTOLoaiKhachHang;
 import DTO.MyCombobox;
@@ -51,7 +52,32 @@ public class BLLKhachHang {
         }
 
     }
+public static void HienThiKhachHangLoc(JTable tbl,String GioiTinh, String CongNo) {
+        ResultSet rs = DAO.DAOKhachHang.LayKhachHangLoc(GioiTinh, CongNo);
+        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
+        tbModel.setRowCount(0);
+        Object obj[] = new Object[8];
+        try {
+            while (rs.next()) {
+                obj[0] = rs.getInt("idkhachhang");
+                obj[1] = rs.getString("tenkhachhang");
+                obj[2] = rs.getInt("sodienthoai");
+                obj[3] = rs.getString("email");
+                obj[4] = ChuyenDoi.GetNgay(rs.getDate("ngaysinh"));
+                obj[5] = rs.getString("diachi");
+                if (rs.getString("gioitinh").equals("1")) {
+                    obj[6] = "Nam";
+                } else {
+                    obj[6] = "Nữ";
+                }
 
+                tbModel.addRow(obj);
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng khách hàng", "Thông báo");
+        }
+
+    }
     public static void DoDuLieuVaoCBBLoaiKhachHang(JComboBox cbb) {
         try {
             ResultSet rs;
@@ -70,7 +96,13 @@ public class BLLKhachHang {
         }
 
     }
+ public static ResultSet LayKhachHangLoc(String GioiTinh,String CongNo) {
 
+        String query = "SELECT * FROM `khachhang` WHERE gioitinh like '%"+GioiTinh+"%' and congno "+CongNo+"";
+        ResultSet rs = DBConection.GetData(query);
+        System.out.println(query);
+        return rs;
+    }
     public static void DoDuLieuVaoCBBKhachHang(JComboBox cbb) {
         try {
             ResultSet rs = DAO.DAOKhachHang.LayKhachHangCBB();
@@ -152,8 +184,8 @@ public class BLLKhachHang {
 
     }
 
-    public static void HienThiKhachHang(JTable tbl, String TuKhoa) {
-        ResultSet rs = DAO.DAOKhachHang.LayKhachHang(TuKhoa);
+    public static void HienThiKhachHang(JTable tbl, String TuKhoa, int trang) {
+        ResultSet rs = DAO.DAOKhachHang.LayKhachHang(TuKhoa, trang);
         DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
         tbModel.setRowCount(0);
         Object obj[] = new Object[8];

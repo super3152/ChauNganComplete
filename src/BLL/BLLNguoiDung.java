@@ -49,7 +49,48 @@ public class BLLNguoiDung {
         }
 
     }
+    public static void HienThiNguoiDungLoc(JTable tbl, String GioiTinh, String Quyen, String TrangThai) {
+        ResultSet rs = DAO.DAONguoiDung.LayNguoiDungLoc(GioiTinh, Quyen, TrangThai);
+        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
+        tbModel.setRowCount(0);
+        Object obj[] = new Object[11];
+        try {
+            while (rs.next()) {
+                obj[0] = rs.getInt("idnguoidung");
+                obj[1] = rs.getString("tennguoidung");
+                obj[2] = rs.getInt("sodienthoai");
+                obj[3] = rs.getString("email");
+                if (rs.getInt("gioitinh") ==1) {
+                    obj[4] = "Nam";
+                } else {
+                    obj[4] = "Nữ";
+                }
+                obj[5] = ChuyenDoi.GetNgay(rs.getDate("ngaysinh"));
+               obj[6] = ChuyenDoi.GetNgay(rs.getDate("ngayvaolam"));
+                obj[7] = rs.getString("anhdaidien");
+                if (rs.getInt("quyen")==0) {
+                    obj[8] = "Quản Trị";
+                } else {
+                    obj[8] = "Nhân Viên";
+                }
+                if (rs.getInt("trangthai")==1) {
+                    obj[9] = "Đang làm việc";
+                } else {
+                    obj[9] = "Đã nghỉ làm";
+                }
+                int MaLuong = rs.getInt("idluong");
+                ResultSet rsLuong = DAO.DAONguoiDung.LayMaLuong(MaLuong);
+                if (rsLuong.next()) {
+                    obj[10] = ChuyenDoi.DinhDangTien(rsLuong.getDouble("mucluong"));
+                }
 
+                tbModel.addRow(obj);
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng người dùng", "Thông báo");
+        }
+
+    }
     public static void SetCBBLuong(JComboBox cbb, int MaLuong) {
         try {
             ResultSet rs = DAO.DAONguoiDung.LayMaLuongCBB(MaLuong);
@@ -75,10 +116,34 @@ public class BLLNguoiDung {
 
             DefaultComboBoxModel cbbModel = (DefaultComboBoxModel) cbb.getModel();
             cbbModel.removeAllElements();
+            
+            
             while (rs.next()) {
                 MyCombobox mb = new MyCombobox(rs.getString("tennguoidung"),
                         rs.getInt("idnguoidung"));
                 cbbModel.addElement(mb);
+
+            }
+        } catch (SQLException ex) {
+            ThongBaoCanhBao.ThongBao("Lỗi truy vấn dữ liệu", "Thông báo");
+        }
+
+    }
+ 
+ 
+ 
+ 
+ public static void DoDuLieuVaoCBBNguoiDungPhatLuong(JComboBox cbb) {
+        try {
+            ResultSet rs;
+            rs = DAO.DAONguoiDung.LayNhanVienCBB();
+
+            DefaultComboBoxModel cbbModel = (DefaultComboBoxModel) cbb.getModel();
+            cbbModel.removeAllElements();
+            while (rs.next()) {
+              String id =  rs.getString("tennguoidung");
+                       
+                cbbModel.addElement(id);
 
             }
         } catch (SQLException ex) {
@@ -327,6 +392,7 @@ public class BLLNguoiDung {
     public static void ThemNguoiDung(DTONguoidung nd) {
         DAO.DAONguoiDung.ThemNguoiDung(nd);
     }
+    
       public static boolean KiemTraSuaNguoiDung(String TenNguoiDung, String SoDienThoai, String Email, String NgaySinh, String NgayVaoLam, String DiaChi, String CMND, String TenDangNhap, String MatKhau, String MoTa) {
         if (TenNguoiDung.trim().equals("")) {
             ThongBaoCanhBao.ThongBao("Tên nhân viên không được bỏ trống!"
@@ -431,19 +497,8 @@ public class BLLNguoiDung {
         public static void SuaNguoiDung(DTONguoidung nd) {
         DAO.DAONguoiDung.SuaNhanVien(nd);
     }
-          public static boolean KiemTraPhatLuong(int MaNV, String NgayPhat, String SoCaDiLam, String SoCaNghi, String TienThuong, String TienPhat, String GhiChu, int MaLuong, String Tong) {
-        if (TienThuong.length() == 1) {
-            ThongBaoCanhBao.ThongBao("Vui lòng phập tiền thưởng!", "Thông báo");
-            return false;
-        }
-        if (TienPhat.length() == 1) {
-            ThongBaoCanhBao.ThongBao("Vui lòng phập tiền phạt!", "Thông báo");
-            return false;
-        }
-        if (GhiChu.length() < 1 || GhiChu.length() > 255) {
-            ThongBaoCanhBao.ThongBao("Ghi chú không được bỏ trống và lớn hơn 255 kí tự!", "Thông báo");
-            return false;
-        }
+          public static boolean KiemTraPhatLuong(int MaNV, int MaLuong, String NgayPhat, int SoCaDiLam, int SoCaNghi, Double TienThuong, Double TienPhat, String GhiChu, Double Tong) {
+       
 
         return true;
     }
@@ -522,33 +577,8 @@ public class BLLNguoiDung {
         
     }
              
-                  public static void CheckHienThiNguoiDungTheoChucVuChamCong(JTable tbl,int id, int thang, int nam) {
-        ResultSet rs = DAO.DAONguoiDung.CheckLayNguoiDungChamCongThangNam(id,thang, nam);
-        DefaultTableModel tbModel = (DefaultTableModel) tbl.getModel();
-        tbModel.setRowCount(0);
-       
-        Object obj[] = new Object[3];
-        try {
-             while (rs.next()) {
-                
-                obj[0] = (rs.getInt(1)*3)-rs.getInt(2);
-                
-                obj[1] = rs.getInt(2);
-                
-                 obj[2] = rs.getInt(1);
-                tbModel.addRow(obj);
-            }
-        } catch (SQLException ex) {
-            ThongBaoCanhBao.ThongBao("Lỗi đổ dữ liệu từ bảng người dùng", "Thông báo");
-        }
-
-        
-        
-        
-        
-        
-        
-    }
+     
+    
                
                
                public static void LayNhanVien(JTable tbl) {
